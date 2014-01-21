@@ -1,0 +1,163 @@
+{% assign search_pagination = settings.pagination_limit %}
+{% paginate search.results by search_pagination %}
+
+<div class="gutter">
+<div class="sixteen columns clearfix collection_nav">
+  <h1 class="collection_title collection_title_tags">Search</h1>
+  <ul class="collection_menu">
+    <li>
+      {{ search.results_count }} {{ search.results_count | pluralize: 'result', 'results' }} for <strong>"{{search.terms | escape}}"</strong>
+    </li>
+    </ul>    
+</div>
+
+{% if search.performed %}
+  
+  {% if search.results == empty %}    
+    <br class="clear" />
+    <br class="clear" />
+    <div class="clearfix">    
+      <p class="quote">Your search for <strong>"{{search.terms | escape}}"</strong> did not match any results.</p>         
+    </div>
+
+    <br class="clear" />
+    <br class="clear" />
+    <br class="clear" />
+  {% else %}  
+
+
+ {% if settings.search_option == 'everything' %}
+
+    {% for item in search.results %}
+     <div class="section">
+      <div class="product_row">
+        
+        {% if item.featured_image %}
+          <div class="four columns product_row">
+             <a href="{{ item.url }}" title="{{ item.title | escape }}">
+               <img src="{{ item.featured_image | product_img_url: 'large' }}"  alt="{{ item.title | escape }}" />
+             </a>
+          </div> 
+        {% endif %}
+        
+        <div class="{% if item.featured_image %}twelve{% else %}sixteen{% endif %} columns title_column">
+          <p>
+            <a href="{{item.url }}" title="{{ item.title | escape }}">{{ item.title }}</a>
+          </p> 
+
+          {% if item.price %}
+             <div class="info">                                              
+                <span class="price">
+                  <small><em>from</em></small>
+                  {% if item.compare_at_price_max > item.price %}
+                    <span class="was_price">{{ item.compare_at_price_max | money }}</span>
+                  {% endif %}
+                    
+                  {% if item.available %}
+                    {% if item.price_varies %}
+                      {% if item.compare_at_price_max > item.price %}
+                        <br />
+                      {% endif %}
+                      <small><em>from</em></small>
+                    {% endif %}
+                    {{ item.price_min | money }}
+                  {% else %}
+                    {{ item.price_min | money }} - Sold Out
+                  {% endif %}
+                </span>
+            </div>
+          {% endif %}
+          
+          <p>
+            {{ item.content | strip_html | truncatewords: 40 | highlight: search.terms | replace: 'Description', '' | replace: 'Specs', '' | replace: 'Shipping', '' }}
+          </p>         
+        </div>
+      </div>
+    </div>  
+    <hr />  
+   {% endfor %}  
+
+ {% elsif search.results.first.price >= 0 %}
+      {% if settings.collection_sidebar %}
+        {% include 'sidebar' %}
+        <div class="twelve columns">
+      {% else %}
+        <div class="sixteen columns">
+      {% endif %}
+
+      {% assign products = search.results %}
+      {% assign products_per_row = settings.products_per_row %}
+      {% include 'product-loop' with settings.collection_sidebar %}
+
+      </div>
+    {% else %}
+      {% assign blog_url = search.results.first.url | split: '/' %}
+      {% assign blog_handle = blog_url[2] %}
+      {% assign blog = blogs[blog_handle] %}
+
+      {% for article in search.results %}
+        <div class="sixteen columns article">
+          <div class="five columns alpha omega blog_meta">
+            <h6>
+              {{ article.published_at | date: "%B %d, %Y" }}
+            </h6>
+
+            {% if article.comments_enabled? %}
+              <p>
+                <a href="{{ article.url }}#comments" class="title" title="{{ article.title | escape }} Comments">{{ article.comments_count }} {{ article.comments_count | pluralize: 'Comment', 'Comments' }}</a>
+              </p>
+            {% endif %}
+
+            {% if settings.blog_tags %}
+              <p class="meta">
+                {% for tag in article.tags %}
+                  <a href="{{ shop.url }}/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}" title="{{ blog.title }} tagged {{ tag | escape }}" class="tag">{{ tag }} &rsaquo;</a>
+                {% endfor %}
+              </p>
+            {% endif %}
+
+            <hr />
+           
+            {% include "social-buttons" with "article" %}
+
+          </div>
+
+          <div class="ten columns alpha blog_content">
+            <h2><a href="{{ article.url }}" title="{{ article.title | escape }}">{{ article.title }}</a></h2>
+              
+            {% if article.excerpt != blank %}
+              {{ article.excerpt }}
+            
+              <a href="{{ article.url }}" title="{{ article.title | escape }}">Continue Reading &rarr;</a>
+            {% else %}
+              {{ article.content }} 
+            {% endif %}        
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+
+  {% include 'pagination' %}    
+
+{% else %}
+  <div class="clearfix search_page">  
+    <br class="clear" />
+    <br class="clear" />
+    <div class="eight columns align_right">
+      <p class="extra_padding search_page_text">
+        Search for anything in our shop.
+      </p>
+    </div>    
+    <div class="eight columns">
+      <form class="search" action="/search">
+        <input type="hidden" name="type" value="article,product" />
+        <input type="text" name="q" class="search_box" placeholder="Search..." value="{{ search.terms }}" />
+      </form>
+    </div>
+  </div>
+{% endif %}
+
+</div>
+
+{% endpaginate %}

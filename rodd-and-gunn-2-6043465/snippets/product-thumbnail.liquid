@@ -1,0 +1,74 @@
+{% if product-thumbnail %}
+  <div class="{% if products_per_row == "2" %}six columns {% cycle 'alpha', 'omega' %}{% elsif products_per_row == "3" %}four columns {% cycle 'alpha', '', 'omega' %}{% else %}three columns {% cycle 'alpha', '', '', 'omega' %}{% endif %} thumbnail">
+{% else %}
+  <div class="{% if products_per_row == "2" %}eight columns {% cycle 'alpha', 'omega' %}{% elsif products_per_row == "3" %}one-third column {% cycle 'alpha', '', 'omega' %}{% else %}four columns {% cycle 'alpha', '', '', 'omega' %}{% endif %} thumbnail">
+{% endif %}
+
+  {% if product.featured_image.alt contains 'youtube' or image.alt contains 'vimeo' %}
+    {% assign alt_text = product.title %}
+  {% else %}
+    {% assign alt_text = product.featured_image.alt %}
+  {% endif %}
+
+  <a class="image-wrap" href="{{ product.url | within: collection }}" title="{{ product.title | escape }}" data-color="{% for variant in product.variants %}{{ variant.option1 }},{% endfor %}" data-size="{% for variant in product.variants %}{{ variant.option2 }},{% endfor %}">
+    <div class="relative">
+      {% assign firstImage = true %}
+      {% for image in product.images %} 
+        <img {% if settings.align_height %}style="max-height:{{ settings.collection_height }}px"{% endif %} src="{{ 'loader.gif' | asset_url }}" data-src="{{ image | product_img_url: 'large' }}" data-src-retina="{{ image | product_img_url: 'grande' }}" class="{% if firstImage == true %}first{% endif %}" alt="{{ image.alt | escape }}" data-color="{{ image.alt | downcase | escape }}" />
+        {% assign firstImage = false %}
+      {% endfor %}
+    </div>
+  </a>
+
+  {% for option in product.options %}
+    {% if option == 'Color' %}
+      {% assign index = forloop.index0 %}
+      {% assign colorlist = '' %}
+      {% assign color = '' %}
+      <ul class="color-swatch">
+      {% for variant in product.variants %}
+        {% capture color %}
+          {{ variant.options[index] }}
+        {% endcapture %}
+        {% unless colorlist contains color %}
+        <li class="{{ color | downcase | escape | handleize }}" data-color="{{ color | downcase | handleize | replace: '-', ' ' | escape }}">
+          <a href="#">{{ color }}</a>
+        </li>
+          {% capture tempList %}
+            {{ colorlist | append: color | append: ‘ ‘}}
+          {% endcapture %}
+          {% assign colorlist = tempList %}
+        {% endunless %}
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+  
+  <a href="{{ product.url | within: collection }}" title="{{ product.title | escape }}" data-color="{% for variant in product.variants %}{{ variant.option1 }},{% endfor %}" data-size="{% for variant in product.variants %}{{ variant.option2 }},{% endfor %}">
+    <div class="info">            
+      <span class="title">{{ product.title }}</span>
+      <span class="price {% if product.compare_at_price_max > product.price %}sale{% endif %}">
+        {% if product.available %}
+          {% if product.price_varies %}
+            <small><em>from</em></small>
+          {% endif %}
+          {{ product.price_min | money }}
+        {% else %}
+          <span class="sold_out">{{ settings.sold_out_text }} - </span>{{ product.price_min | money }}
+        {% endif %}
+        {% if product.compare_at_price_max > product.price %}
+          <small><em>from</em></small>
+          <span class="was_price">{{ product.compare_at_price_max | money }}</span>
+        {% endif %}
+      </span>
+    </div>
+    {% if settings.sale_banner_enabled and product.compare_at_price_max > product.price %}
+      <div class="sale_banner">Sale</div>
+    {% endif %}
+    {% for col in product.collections %}
+      {% if col.handle == 'new' %}
+        <div class="new_banner">New</div>
+      {% endif %}
+    {% endfor %}
+  </a>
+</div>

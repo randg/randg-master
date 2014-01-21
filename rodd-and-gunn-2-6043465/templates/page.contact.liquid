@@ -1,0 +1,54 @@
+<div class="sixteen columns clearfix collection_nav">
+  <h1 class="collection_title">
+    {{ page.title }}
+  </h1>
+</div>
+
+{% form 'contact' %}
+  {% if form.posted_successfully? %}
+    <p class="quote">Thanks for contacting us! We'll get back to you as soon as possible.</p>
+  {% endif %}
+
+  {% if form.errors %}
+    <p class="quote">Not all the fields have been filled in correctly. Please try again.</p>
+  {% endif %}
+
+  <div class="sixteen columns page">
+    {{ page.content }}
+  </div>
+  
+  {% if settings.contact_address != blank %}
+    <br class="clear" />
+    <br class="clear" />
+    <div class="ten columns">
+      <iframe width="100%" height="340" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q={{ settings.contact_address | replace: ' ', '+' }}&amp;z={{ settings.zoom_level }}&amp;output=embed"></iframe>
+    </div>
+  {% endif %}
+
+  <div class="six columns {% if settings.contact_address == blank %}offset-by-five{% endif %}">
+    <br class="clear" />
+    <div class="three columns alpha">
+     <label for="contact_form_name">Name <span class="red">*</span></label>
+     <input type="text" id="contact_form_name" name="contact[name]" required value="{{ contact.fields.name }}" />
+    </div>
+    <div class="three columns omega">
+     <label for="contact_form_email">Email <span class="red">*</span></label>
+     <input type="text" id="contact_form_email" name="contact[email]" required pattern="[^ @]*@[^ @]*" value="{{ contact.fields.email }}"/>
+    </div>
+
+    <!--
+    <label for="contact_form_phone">Phone Number</label>
+    <input type="text" id="contact_form_phone" name="contact[phone]" value="{{ contact.fields.phone }}" />
+    -->
+
+   <label for="contact_message">Message</label>       
+   <textarea id="contact_message" name="contact[body]" required rows="5">{{ contact.fields.body }}</textarea>
+
+    <input type='submit' class="submit action_button add_to_cart" value="Send" />
+  </div>
+
+  <br class="clear" />
+  <br class="clear" />
+
+{% endform %}
+  

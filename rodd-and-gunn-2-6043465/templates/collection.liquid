@@ -1,0 +1,73 @@
+{% paginate collection.products by settings.pagination_limit %}
+
+<div class="gutter" id="collectionPage">
+
+  <div class="sixteen columns clearfix breadcrumb">
+
+  <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
+    &nbsp; / &nbsp;
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="url"><span itemprop="title">{{ collection.title }}</span></a></span>       
+  
+    {% if current_tags %}
+      {% for tag in current_tags %}
+        &nbsp; / &nbsp;
+        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}" title="{{ tag | escape }}" itemprop="url"><span itemprop="title">{{ tag }}</span></a></span>       
+      {% endfor %}
+    {% endif %}
+  
+    {% if paginate.pages != 0 %}      
+      &nbsp; / &nbsp; Page {{ paginate.current_page }} of {{ paginate.pages }}
+    {% endif %}
+
+    {% if settings.collection_tags %}
+      <select name="tag_filter" id="tag_filter">
+        <option {% unless current_tags %}selected="selected"{% endunless %} value="{% if collection.handle == "all" %}/collections/all{% else %}{{ collection.url }}{% endif %}">All {{ collection.title }}</option>
+        {% for tag in collection.all_tags %}
+          {% unless tag contains 'meta-related-collection-' %}
+            <option {% if current_tags contains tag %}selected="selected"{% endif %} value="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}">{{ tag }}</option>
+          {% endunless %}
+        {% endfor %}
+      </select>
+    {% endif %}
+  </div>
+
+  {% if settings.collection_sidebar %}
+    {% include 'sidebar' %}
+    <div class="twelve columns">
+  {% else %}
+    <div class="sixteen columns">
+  {% endif %}
+
+
+
+
+    {% if settings.display_collection_title %}
+      <h1>{{ collection.title }}</h1>
+    {% endif %}
+
+    {% if collection.description != blank %}
+      <div class="section clearfix collection_description">    
+        {{ collection.description }}
+      </div>
+    {% endif %}
+
+    {% if collection.products.size == 0 %}
+      <div class="section clearfix">     
+        <p class="quote">No products found in this collection.</p>
+      </div>
+    {% else %}
+      {% assign products = collection.products %}
+      {% assign products_per_row = settings.products_per_row %}
+      {% include 'product-loop' with settings.collection_sidebar %}
+    {% endif %}
+
+
+
+
+
+    {% include 'pagination' with settings.collection_sidebar %}
+  </div>
+
+</div>
+
+{% endpaginate %}

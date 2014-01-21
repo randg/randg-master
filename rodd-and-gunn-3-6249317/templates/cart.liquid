@@ -1,0 +1,137 @@
+  <div class="gutter">
+    <div class="sixteen columns clearfix collection_nav">
+      <h1 class="collection_title">Cart</h1>
+
+      {% if cart.item_count > 0 %}
+        <div class="continue_shopping">
+          <a href="{% if cart.items.first.product.collections != blank %}{{ cart.items.first.product.collections.last.url }}{% else %}/collections/all{% endif %}">Continue Shopping &rarr;</a>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if cart.item_count == 0 %}
+      <div class="sixteen columns">
+        <div class="section clearfix">
+          <p class="quote">There are no items in your cart. <a href="/collections/all">Continue Shopping &rarr;</a></p>    
+          <br class="clear" />
+
+          {% assign collection = '' %}
+          {% assign products = collections[settings.frontpage_collection].products %}
+          {% assign products_per_row = settings.frontpage_products_per_row %}
+          {% include 'product-loop' %}
+        </div>
+      </div>
+    {% else %}
+
+    <form action="/cart" method="post" id="cart_form">        
+      <div class="section clearfix">  
+        <div class="ten columns cart_items">
+          <h4 class="title">Products</h4>
+
+          {% for item in cart.items %}
+            <div class="five columns alpha">
+              {% assign option_index = 0 %}
+              {% assign found_option = false %}
+              {% assign index = 0 %}
+              {% assign found_image = false %}
+
+              {% for option in item.product.options %}
+                {% if found_option == false %}
+                  {% assign downcased_option = option %}
+                  {% if downcased_option contains 'Color' or downcased_option contains 'Colour' or downcased_option contains 'Style' %}
+                    {% assign option_index = forloop.index0 %}
+                    {% assign found_option = true %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+
+              {% if found_option %}
+                {% for image in item.product.images %}
+                  {% unless found_image %}
+                    {% if image.alt == item.variant.options[option_index] %}
+                      {% assign index = forloop.index0 %}
+                      {% assign found_image = true %}
+                    {% endif %}
+                  {% endunless %}
+                {% endfor %}
+              {% endif %}
+
+              <a href="{{ item.product.url }}" title="{{ item.title | escape }}">
+                <img src="{{ item.product.images[option_index] | product_img_url: 'compact' }}" alt="{{ item.variant.options[option_index] | escape }}" class="{{ image.alt }}" />
+              </a>
+            </div>
+
+            <div class="five columns omega">
+              <p>
+                <a href="{{item.product.url }}" title="{{ item.title | escape }}">{{ item.title }}</a>
+              </p> 
+              
+              {% if item.properties %}
+                <p>
+                {% for p in item.properties %}
+                  {% unless p.last == blank %}
+                    {% if p.last contains '/uploads/' %}
+                      {{ p.first }}: <a class="lightbox" href="{{ p.last }}">uploaded file</a><br />
+                    {% else %}
+                      {{ p.first }}: {{ p.last }}<br />
+                    {% endif %}
+                  {% endunless %}
+                {% endfor %}
+                </p>
+              {% endif %}
+
+              <p class="price_total">
+                {{ item.price | money_with_currency }}
+              </p>
+
+              <p id="quantity_{{ forloop.index }}">
+                <label for="updates_{{ item.id }}" class="quantity_label">Quantity:</label>
+                <input type="number" min="0" size="2" maxlength="2" class="quantity" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
+              </p>
+
+              <p class="remove_item">
+                <a href="/cart/change?line={{ forloop.index }}&quantity=0" title="Remove Item">Remove</a>
+              </p>
+            </div>
+            <br class="clear" />
+            <br class="clear" />
+          {% endfor %}
+        </div>
+
+        <div class="five columns offset-by-one">
+          <h4 class="subtotal">
+            Subtotal
+          </h4>
+
+          <p class="subtotal_amount">
+            <strong>{{ cart.total_price | money_with_currency }}</strong> 
+            <small id="estimated-shipping" style="display:none">+ <em>{{ 0 | money }} estimated shipping</em></small>
+
+            {% unless settings.tax_included %}
+              <small class="excluding_tax"><em>Excluding tax &amp; shipping</em></small>
+            {% endunless %}
+          </p>
+
+          {% if settings.display_special_instructions %} 
+            <label for="note">Note to {{ shop.name }}:</label>
+            <textarea id="note" name="note" rows="2">{{ cart.note }}</textarea>        
+          {% endif %}
+
+          <p>
+            <input type="submit" class="action_button add_to_cart" id="checkout" name="checkout" value="Checkout" />
+          </p>
+          
+          {% if settings.display_additional_checkout and additional_checkout_buttons %}
+            <p class="center">
+              {{ content_for_additional_checkout_buttons | google_button_options: 'transparent' }}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    </form>
+    
+    {% include 'cart-shipping-calculator' %}
+    <br class="clear" />
+    <br class="clear" />
+  {% endif %}
+</div>
