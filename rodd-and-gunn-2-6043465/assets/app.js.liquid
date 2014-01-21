@@ -40,7 +40,7 @@ $(function() {
   $(window).scroll(function() {
     if(!$('html').hasClass('mm-opened')) {
       $header.toggleClass('header_bar', $(window).scrollTop() > 79);
-      if ($(window).scrollTop() > 79 && $(window).width() >= 768) {
+      if ($(window).scrollTop() > 79 && $(window).width() >= 768) { 
         $('.mini-logo').fadeIn();
       } else {
         $('.mini-logo').fadeOut();

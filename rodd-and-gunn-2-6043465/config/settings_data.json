@@ -48,7 +48,7 @@
       "headline_websafe_font": "'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif",
       "headline_weight": "bold",
       "headline_font_style": "uppercase",
-      "headline_font_size": "26",
+      "headline_font_size": "26", 
       "headline_color": "#483F1A",
       "headline_footer_text_color": "#404040",
       "headline_letter_spacing": "1",
