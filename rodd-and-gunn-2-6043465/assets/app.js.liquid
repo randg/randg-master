@@ -39,16 +39,16 @@ $(function() {
   {% endif %}
   $(window).scroll(function() {
     if(!$('html').hasClass('mm-opened')) {
-      $header.toggleClass('header_bar', $(window).scrollTop() > 79);
-      if ($(window).scrollTop() > 79 && $(window).width() >= 768) {
+      $header.toggleClass('header_bar', $(window).scrollTop() > 57);
+      if ($(window).scrollTop() > 57 && $(window).width() >= 768) {
         $('.mini-logo').fadeIn();
       } else {
         $('.mini-logo').fadeOut();
       };
-      if ($(window).scrollTop() > 0 && $(window).scrollTop() < 79 && $(window).width() >= 768) {
+      if ($(window).scrollTop() > 0 && $(window).scrollTop() < 57 && $(window).width() >= 768) {
         $('.utility-navigation-wrap').css({ top: 8 + $(window).scrollTop() + 'px' });
-      } else if ($(window).scrollTop() >= 79) {
-        $('.utility-navigation-wrap').css({ top: 87 + 'px' });
+      } else if ($(window).scrollTop() >= 57) {
+        $('.utility-navigation-wrap').css({ top: 64 + 'px' });
       } else {
         $('.utility-navigation-wrap').css({ top: 8 + 'px' });
       };

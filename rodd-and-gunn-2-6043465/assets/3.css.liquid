@@ -62,21 +62,24 @@
 
 /* Header */
 
-.header-wrap, .header-bar, .header { min-height:115px; }
-.logo { width:273px; }  
+.header-wrap, .header-bar, .header { min-height:85px; }
+.logo { width:175px; }  
 .mini-logo { position:absolute; bottom:-2px; left:30px; width:55px; }
 .mini-logo img { width:100%; }
 
 /* Main Navigation */
 
-.utility-navigation-wrap { display:block; position:absolute; top:8px; right:80px; } 
+.utility-navigation-wrap { display:block; position:absolute; top:8px; right:20px; } 
 
 /* Home page banners */
 
-.home-banner { width:49.5%; }
+.home-banner { width:49.9%; }
 .home-banner.newsletter-sign-up { display:block; }
 
-.container .home-banner-wrap .two.columns { width:34%; }
+.container .home-banner-wrap .two.columns.returns { width:41%; line-height:20px; margin:6px 0 0; }
+.container .home-banner-wrap .two.columns.delivery { width:45%; line-height:20px; margin:6px 0 0; }
+.container .home-banner-wrap .returns { width:34%; }
+.container .home-banner-wrap input[type="email"] { padding:5px 8px 5px 12px; }
 
 .home-banner p { margin:0; width:26%; float:left; line-height:17px; padding:0 5px 0 0; font-family:{{ settings.regular_google_webfont_font }} }
 .home-banner .contact-form { overflow:hidden; width:72%; }
@@ -84,10 +87,10 @@
 .home-banner #sign_up { width:30%; float:right; margin:0; padding:5px 14px; }
 
 .home-banner .delivery,
-.home-banner .returns { padding:0 0 0 50px; line-height:17px; font-size:14px; }
+.home-banner .returns { padding:0 0 0 40px; line-height:17px; font-size:14px; }
 .home-banner .delivery span,
 .home-banner .returns span { font-size:11px; }
 
-.home-banner .delivery { background-size:36px; background-position:0 7px; }
+.home-banner .delivery { background-size:26px; background-position:5px 0; }
 
-.home-banner .returns { background-size:40px; }
+.home-banner .returns { background-size:30px; background-position:5px -6px; }
