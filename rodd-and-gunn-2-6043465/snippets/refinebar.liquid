@@ -6,37 +6,74 @@
 
   <h4 class="toggle"><span>+</span>{{ settings.tags_text }}</h4>
 
+{% for col in collections %}
+  {% assign poop = col.handle %}
   <h5>Color</h5>
   <ul>
-    <li>
-      {% for product in collections.jeans.products %}
-        {% for variant in product.variants %}
+    {% assign colorlist = '' %}
+    {% assign color = '' %}
+    {% for product in collections.[poop].products %}   
+      {% for variant in product.variants %}
+        {% capture color %}
           {{ variant.option1 }}
-        {% endfor %}
+        {% endcapture %}
+        {% unless colorlist contains color %}
+          <li class="{{ color }}">
+            {{ color }}
+          </li>
+          {% capture tempList %}
+            {{ colorlist | append: color | append: ‘ ‘}}
+          {% endcapture %}
+          {% assign colorlist = tempList %}
+        {% endunless %}
       {% endfor %}
-    </li>
+    {% endfor %}
   </ul>
 
   <h5>Size</h5>
   <ul>
-    <li>
-      {% for product in collections.jeans.products %}
-        {% for variant in product.variants %}
+    {% assign sizelist = '' %}
+    {% assign size = '' %}
+    {% for product in collections.[poop].products %}   
+      {% for variant in product.variants %}
+        {% capture size %}
           {{ variant.option2 }}
-        {% endfor %}
+        {% endcapture %}
+        {% unless sizelist contains size %}
+          <li class="{{ size }}">
+            {{ size }}
+          </li>
+          {% capture tempList2 %}
+            {{ sizelist | append: size | append: ‘ ‘}}
+          {% endcapture %}
+          {% assign sizelist = tempList2 %}
+        {% endunless %}
       {% endfor %}
-    </li>
+    {% endfor %}
   </ul>
 
   <h5>Leg Length</h5>
   <ul>
-    <li>
-      {% for product in collections.jeans.products %}
-        {% for variant in product.variants %}
+    {% assign lengthlist = '' %}
+    {% assign length = '' %}
+    {% for product in collections.[poop].products %}   
+      {% for variant in product.variants %}
+        {% capture length %}
           {{ variant.option3 }}
-        {% endfor %}
+        {% endcapture %}
+        {% unless lengthlist contains length %}
+          <li class="{{ length }}">
+            {{ length }}
+          </li>
+          {% capture tempList2 %}
+            {{ lengthlist | append: length | append: ‘ ‘}}
+          {% endcapture %}
+          {% assign lengthlist = tempList2 %}
+        {% endunless %}
       {% endfor %}
-    </li>
+    {% endfor %}
   </ul>
+
+{% endfor %}
 
 </div>
