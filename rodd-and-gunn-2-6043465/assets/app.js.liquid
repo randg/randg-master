@@ -41,9 +41,9 @@ $(function() {
     if(!$('html').hasClass('mm-opened')) {
       $header.toggleClass('header_bar', $(window).scrollTop() > 57);
       if ($(window).scrollTop() > 57 && $(window).width() >= 768) {
-        $('.mini-logo').fadeIn();
+        $('.mini-logo').show();
       } else {
-        $('.mini-logo').fadeOut();
+        $('.mini-logo').hide();
       };
       if ($(window).scrollTop() > 0 && $(window).scrollTop() < 57 && $(window).width() >= 768) {
         $('.utility-navigation-wrap').css({ top: 8 + $(window).scrollTop() + 'px' });

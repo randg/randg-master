@@ -40,7 +40,7 @@
 .container .offset-by-fifteen { padding-left: 0; }
 
 
-
+#debugger { position:absolute; top:0; left:0; font-family:Arial, Sans-serif; z-index:1001; }
 
 
 .logo { padding:0; margin:0 auto 3px; width:200px; }
@@ -48,14 +48,14 @@
 
 /* Layout */
 
-div.container.banners { padding:0; margin:0 auto 10px; }
+div.container.banners { padding:0; margin:0 auto 10px; background-color:#f3f0e5; }
 .gutter { display:block; padding:0 20px; }
 
 /* Main Navigation */
 
 .main-navigation-wrap { text-align:center; width:100%; }
 .utility-navigation-wrap { display:none; } 
-
+ 
 /* Footer Navigation */
 
 .footer_menu { list-style:none; padding:0; margin:0; overflow:hidden; text-align:center; } 
@@ -65,9 +65,9 @@ div.container.banners { padding:0; margin:0 auto 10px; }
 
 /* Home page banners */
 
-.home-banner { width:100%; font-size:12px; font-weight:bold; margin:0; background-color:#564729; color:#fff; }
+.home-banner { width:100%; font-size:12px; font-weight:bold; margin:0; color:#000; }
 .home-banner.newsletter-sign-up { display:none; }
-.home-banner-wrap { padding:5px 10px; overflow:hidden; }
+.home-banner-wrap { padding:10px; overflow:hidden; }
 
 .container .home-banner-wrap .two.columns { width:37%; float:left; }
 
@@ -88,7 +88,7 @@ div.home-tiles { margin:0; }
 
 /* Color swatches */
 
-ul.color-swatch { list-style:none; padding:0; margin:0 overflow:hidden; }
+ul.color-swatch { list-style:none; padding:0; margin:0; overflow:hidden; }
 ul.color-swatch li { float:left; width:10px; height:10px; margin:2px; }
 ul.color-swatch li a { text-indent:-9999em; padding:0; }
 
@@ -101,6 +101,12 @@ ul.color-swatch li.coal { background-color:{{ settings.coal }}; }
 
 /* Collection page image carousel */
 
-.relative { overflow:hidden; height:198px; }
-.relative img { display:none; margin:0; }
+.relative { overflow:hidden; }
+.relative img { display:none; margin:0; vertical-align:top; }
 .relative img.first { display:block; }
+
+.footer .container { border:solid #f3f0e5; border-width:1px 0 0; }
+
+#collectionPage .thumbnail { width:50%; float:left; }
+
+#categorydescription p { padding:10px 0; }

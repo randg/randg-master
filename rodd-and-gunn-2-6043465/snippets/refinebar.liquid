@@ -1,0 +1,42 @@
+<div class="sidebar four columns">
+  {% if settings.collection_top_sidebar_page != blank %}
+    <h4>{{ pages[settings.collection_top_sidebar_page].title }}</h4>
+    {{ pages[settings.collection_top_sidebar_page].content }}
+  {% endif %}
+
+  <h4 class="toggle"><span>+</span>{{ settings.tags_text }}</h4>
+
+  <h5>Color</h5>
+  <ul>
+    <li>
+      {% for product in collections.jeans.products %}
+        {% for variant in product.variants %}
+          {{ variant.option1 }}
+        {% endfor %}
+      {% endfor %}
+    </li>
+  </ul>
+
+  <h5>Size</h5>
+  <ul>
+    <li>
+      {% for product in collections.jeans.products %}
+        {% for variant in product.variants %}
+          {{ variant.option2 }}
+        {% endfor %}
+      {% endfor %}
+    </li>
+  </ul>
+
+  <h5>Leg Length</h5>
+  <ul>
+    <li>
+      {% for product in collections.jeans.products %}
+        {% for variant in product.variants %}
+          {{ variant.option3 }}
+        {% endfor %}
+      {% endfor %}
+    </li>
+  </ul>
+
+</div>
