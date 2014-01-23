@@ -565,16 +565,16 @@ input[type="submit"].guest_button:hover {
   padding-left: 25px;
 }
 
-.sidebar a {
+.sidebar a, .refinebar a {
   display: block;
   color: {{ settings.nav_color }};
 }
 
-.sidebar a:hover {
+.sidebar a:hover, .refinebar a:hover {
   color: {{ settings.nav_color_hover }};
 }
 
-.sidebar a {
+.sidebar a, .refinebar a {
   position: relative;
   left: -8px;
   padding-left: 8px;
@@ -584,16 +584,16 @@ input[type="submit"].guest_button:hover {
   -o-transition : border 200ms ease-out;  
 }
 
-.sidebar a.active, .sidebar li.active a, .sidebar a:hover {
+.sidebar a.active, .sidebar li.active a, .sidebar a:hover, .refinebar a.active, .refinebar li.active a, .refinebar a:hover {
   border-left: solid 4px {{ settings.nav_active_color }};
 }
 
-.sidebar li ul {
+.sidebar li ul, .refinebar li ul {
   margin: 10px 0 8px 14px;
   font-size: {{ settings.regular_font_size | minus: 1 }}px; 
 }
 
-.sidebar li ul li {
+.sidebar li ul li, .refinebar li ul li {
   margin-bottom: 12px;
 }
 
@@ -667,7 +667,7 @@ input[type="submit"].guest_button:hover {
   so the best solution is to individually call these properties on images that 
   are children of the grid that you want to resize with grid. 
 */
-  .product_row img, .product_image_col img, .article img, .blog_content img, .section img, .thumbnail img, .logo img, .page img, .sidebar img, .cart_image img, .sub-footer img { 
+  .product_row img, .product_image_col img, .article img, .blog_content img, .section img, .thumbnail img, .logo img, .page img, .sidebar img, .refinebar img, .cart_image img, .sub-footer img { 
     max-width: 100%;
     height: auto; }
 .zoomImg {
@@ -1488,13 +1488,13 @@ div.hidden { display: none; }
     float: right;
     display: none;
   }  
-  .sidebar p {
+  .sidebar p, .refinebar p {
     font-size: {{ settings.regular_font_size | minus: 1 }}px;
   }
-  .sidebar .search {
+  .sidebar .search, .refinebar .search {
     padding-top: 8px;
   }
-  .sidebar .search input {
+  .sidebar .search input, .refinebar .search input {
     width: 100%; 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

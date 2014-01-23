@@ -1,4 +1,4 @@
-<div class="sidebar four columns">
+<div class="refinebar four columns">
   {% if settings.collection_top_sidebar_page != blank %}
     <h4>{{ pages[settings.collection_top_sidebar_page].title }}</h4>
     {{ pages[settings.collection_top_sidebar_page].content }}
@@ -6,74 +6,174 @@
 
   <h4 class="toggle"><span>+</span>{{ settings.tags_text }}</h4>
 
-{% for col in collections %}
-  {% assign poop = col.handle %}
-  <h5>Color</h5>
-  <ul>
-    {% assign colorlist = '' %}
-    {% assign color = '' %}
-    {% for product in collections.[poop].products %}   
-      {% for variant in product.variants %}
-        {% capture color %}
-          {{ variant.option1 }}
-        {% endcapture %}
-        {% unless colorlist contains color %}
-          <li class="{{ color }}">
-            {{ color }}
-          </li>
-          {% capture tempList %}
-            {{ colorlist | append: color | append: ‘ ‘}}
-          {% endcapture %}
-          {% assign colorlist = tempList %}
-        {% endunless %}
-      {% endfor %}
-    {% endfor %}
-  </ul>
+  {% if collection.handle == 'knitwear' %}
+    {% assign theCollection = 'knitwear' %}
+  {% elsif collection.handle == 'jeans' %}
+    {% assign theCollection = 'jeans' %}
+  {% elsif collection.handle == 'accessories' %}
+    {% assign theCollection = 'accessories' %}
+  {% elsif collection.handle == 'bags-luggage' %}
+    {% assign theCollection = 'bags-luggage' %}
+  {% elsif collection.handle == 'jackets' %}
+    {% assign theCollection = 'jackets' %}
+  {% elsif collection.handle == 'sweaters' %}
+    {% assign theCollection = 'sweaters' %}
+  {% elsif collection.handle == 'pants' %}
+    {% assign theCollection = 'pants' %}
+  {% elsif collection.handle == 'polo-shirts' %}
+    {% assign theCollection = 'polo-shirts' %}
+  {% elsif collection.handle == 'shirts' %}
+    {% assign theCollection = 'shirts' %}
+  {% elsif collection.handle == 'shoes' %}
+    {% assign theCollection = 'shoes' %}
+  {% elsif collection.handle == 'shorts' %}
+    {% assign theCollection = 'shorts' %}
+  {% elsif collection.handle == 't-shirts' %}
+    {% assign theCollection = 't-shirts' %}
+  {% endif %}
 
-  <h5>Size</h5>
-  <ul>
-    {% assign sizelist = '' %}
-    {% assign size = '' %}
-    {% for product in collections.[poop].products %}   
-      {% for variant in product.variants %}
-        {% capture size %}
-          {{ variant.option2 }}
-        {% endcapture %}
-        {% unless sizelist contains size %}
-          <li class="{{ size }}">
-            {{ size }}
-          </li>
-          {% capture tempList2 %}
-            {{ sizelist | append: size | append: ‘ ‘}}
-          {% endcapture %}
-          {% assign sizelist = tempList2 %}
-        {% endunless %}
-      {% endfor %}
-    {% endfor %}
-  </ul>
+  {% for col in collections %}
+    {% assign whichCollection = col.handle %}
+    {% if whichCollection == theCollection %}
 
-  <h5>Leg Length</h5>
-  <ul>
-    {% assign lengthlist = '' %}
-    {% assign length = '' %}
-    {% for product in collections.[poop].products %}   
-      {% for variant in product.variants %}
-        {% capture length %}
-          {{ variant.option3 }}
-        {% endcapture %}
-        {% unless lengthlist contains length %}
-          <li class="{{ length }}">
-            {{ length }}
-          </li>
-          {% capture tempList2 %}
-            {{ lengthlist | append: length | append: ‘ ‘}}
-          {% endcapture %}
-          {% assign lengthlist = tempList2 %}
-        {% endunless %}
+      {% assign heading1Open = false %}
+      {% for product in collections.[whichCollection].products %}   
+        {% for variant in product.variants %}
+          {% if variant.option1 != null %}
+            {% assign heading1Open = true %}
+          {% endif %}
+        {% endfor %}
       {% endfor %}
-    {% endfor %}
-  </ul>
+      {% if heading1Open == true %}
+      <h5>Color</h5>
+      <ul>
+      {% endif %}
+      {% assign colourlist = '' %}
+      {% assign colour = '' %}
+      {% for product in collections.[whichCollection].products %}   
+        {% for variant in product.variants %}
+          {% if variant.option1 != null %}
+            {% capture colour %}
+              {{ variant.option1 }}
+            {% endcapture %}
+          {% endif %}
+          {% unless colourlist contains colour %}
+            <li class="{{ colour | escape | downcase | handleize }} color-list">
+              <a href="#" class="{{ colour }}">{{ colour }}</a>
+              <input type="checkbox" name="{{ colour }}" id="{{ colour }}" />
+            </li>
+            {% capture tempList %}
+              {{ colourlist | append: colour | append: ‘ ‘}}
+            {% endcapture %}
+            {% assign colourlist = tempList %}
+          {% endunless %}
+        {% endfor %}
+      {% endfor %}
+      {% assign heading1Close = false %}
+      {% for product in collections.[whichCollection].products %}   
+        {% for variant in product.variants %}
+          {% if variant.option1 != null %}
+            {% assign heading1Close = true %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      {% if heading1Close == true %}
+      </ul>
+      {% endif %}
 
-{% endfor %}
+      {% assign heading2Open = false %}
+      {% for product in collections.[whichCollection].products %}   
+        {% for variant in product.variants %}
+          {% if variant.option2 != null %}
+            {% assign heading2Open = true %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      {% if heading2Open == true %}
+      <h5>Size</h5>
+      <ul>
+      {% endif %}
+      {% assign sizelist = '' %}
+      {% assign size = '' %}
+      {% for product in collections.[whichCollection].products %}   
+        {% for variant in product.variants %}
+          {% if variant.option2 != null %}
+            {% capture size %}
+              {{ variant.option2 }}
+            {% endcapture %}
+          {% endif %}
+          {% unless sizelist contains size %}
+            <li class="{{ size | escape | downcase | handleize }} size-list">
+              <a href="#" class="{{ size }}">{{ size }}</a>
+              <input type="checkbox" name="{{ size }}" id="{{ size }}" />
+            </li>
+            {% capture tempList2 %}
+              {{ sizelist | append: size | append: ‘ ‘}}
+            {% endcapture %}
+            {% assign sizelist = tempList2 %}
+          {% endunless %}
+        {% endfor %}
+      {% endfor %}
+      {% assign heading2Close = false %}
+      {% for product in collections.[whichCollection].products %}   
+        {% for variant in product.variants %}
+          {% if variant.option2 != null %}
+            {% assign heading2Close = true %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      {% if heading2Close == true %}
+      </ul>
+      {% endif %}
+
+      {% assign heading3Open = false %}
+      {% for product in collections.[whichCollection].products %}   
+        {% for variant in product.variants %}
+          {% if variant.option3 != null %}
+            {% assign heading3Open = true %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      {% if heading3Open == true %}
+      <h5>Leg Length</h5>
+      <ul>
+      {% endif %}
+      {% assign lengthlist = '' %}
+      {% assign leglength = '' %}
+      {% for product in collections.[whichCollection].products %}   
+        {% for variant in product.variants %}
+          {% if variant.option3 != null %}
+            {% capture leglength %}
+              {{ variant.option3 }}
+            {% endcapture %}
+          {% endif %}
+          {% unless lengthlist contains leglength %}
+            <li class="{{ leglength }} length-list">
+              <a href="#" class="{{ leglength }}">{{ leglength }}</a>
+              <input type="checkbox" name="{{ leglength }}" id="{{ leglength }}" />
+            </li>
+            {% capture tempList3 %}
+              {{ lengthlist | append: leglength | append: ‘ ‘}}
+            {% endcapture %}
+            {% assign lengthlist = tempList3 %}
+          {% endunless %}
+        {% endfor %}
+      {% endfor %}
+      {% assign heading3Close = false %}
+      {% for product in collections.[whichCollection].products %}   
+        {% for variant in product.variants %}
+          {% if variant.option3 != null %}
+            {% assign heading3Close = true %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      {% if heading3Close == true %}
+      </ul>
+      {% endif %}
+
+      
+
+    {% endif %}
+  {% endfor %}
 
 </div>

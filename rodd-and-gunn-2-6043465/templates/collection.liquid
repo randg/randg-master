@@ -56,9 +56,11 @@
         <p class="quote">No products found in this collection.</p>
       </div>
     {% else %}
-      {% assign products = collection.products %}
-      {% assign products_per_row = settings.products_per_row %}
-      {% include 'product-loop' with settings.collection_sidebar %}
+      <div class="product-listing">
+        {% assign products = collection.products %}
+        {% assign products_per_row = settings.products_per_row %}
+        {% include 'product-loop' with settings.collection_sidebar %}
+      </div>
     {% endif %}
 
 
