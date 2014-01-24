@@ -15,6 +15,7 @@ RG.collectionPage = (function(doc, $, undefined) {
 	refineOptions4 = [],
 	refineOptions5 = [],
 	refineOptions6 = [],
+
 	
 	init = function() {
 		$container = $('#collectionPage');
@@ -68,6 +69,8 @@ RG.collectionPage = (function(doc, $, undefined) {
 				removeID = true;
 			};
 
+			//console.log($obj.attr('id'));
+
 			filterCollection($obj, removeID, listIndex);
 		});
 
@@ -111,6 +114,21 @@ RG.collectionPage = (function(doc, $, undefined) {
 			};
 		};
 
+		if (listIndex == 3) {
+			if (removeID) {
+				refineOptions3 = $.grep(refineOptions3, function(value) {
+				  return value != refineOption;
+				});
+			} else {
+				var found = $.inArray(refineOptions3, refineOption);
+				if (found >= 0) {
+					refineOptions3.splice(found, 1);
+				} else {
+					refineOptions3.push(refineOption);
+				};
+			};
+		};
+
 		if (refineOptions1.length > 0) {
 			$('.thumbnail').each(function() {
 				for (var i = 0; i < refineOptions1.length; i++) {
@@ -134,6 +152,18 @@ RG.collectionPage = (function(doc, $, undefined) {
 			$('.thumbnail').each(function() {
 				for (var i = 0; i < refineOptions2.length; i++) {
 					if ($(this).children("a.image-wrap[data-option-2*='" + refineOptions2[i] + "']").length > 0) {	
+						$(this).addClass('true');
+					} else {
+						$(this).addClass('false');
+					};
+				};
+			});
+		};
+
+		if (refineOptions3.length > 0) {
+			$('.thumbnail').each(function() {
+				for (var i = 0; i < refineOptions3.length; i++) {
+					if ($(this).children("a.image-wrap[data-option-3*='" + refineOptions3[i] + "']").length > 0) {	
 						$(this).addClass('true');
 					} else {
 						$(this).addClass('false');

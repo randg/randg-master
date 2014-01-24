@@ -61,7 +61,7 @@
           {% unless colourlist contains colour %}
             <li class="{{ colour | escape | downcase | handleize }} color-list">
               <a href="#" class="{{ colour }}">{{ colour }}</a>
-              <input type="checkbox" name="color" id="{{ colour }}" value="{{ colour }}" />
+              <input type="checkbox" name="color" id="{{ colour | escape | handleize }}" value="{{ colour }}" />
             </li>
             {% capture tempList %}
               {{ colourlist | append: colour | append: ‘ ‘}}
@@ -154,8 +154,8 @@
           {% endif %}
           {% unless lengthlist contains leglength %}
             <li class="{{ leglength }} length-list">
-              <a href="#" class="{{ leglength }}">{{ leglength }}</a>
-              <input type="checkbox" name="leglength" id="{{ leglength }}" value="{{ leglength }}" />
+              <a href="#" class='{{ leglength }}'>{{ leglength }}</a>
+              <input type="checkbox" name="leglength" id="{{ leglength | escape | handleize }}" value="{{ leglength }}" />
             </li>
             {% capture tempList3 %}
               {{ lengthlist | append: leglength | append: ‘ ‘}}
