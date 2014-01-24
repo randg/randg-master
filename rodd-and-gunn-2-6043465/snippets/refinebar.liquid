@@ -45,8 +45,9 @@
         {% endfor %}
       {% endfor %}
       {% if heading1Open == true %}
+      <div class="refine-list">
       <h5>Color</h5>
-      <ul>
+      <ul id="colorRefine">
       {% endif %}
       {% assign colourlist = '' %}
       {% assign colour = '' %}
@@ -60,7 +61,7 @@
           {% unless colourlist contains colour %}
             <li class="{{ colour | escape | downcase | handleize }} color-list">
               <a href="#" class="{{ colour }}">{{ colour }}</a>
-              <input type="checkbox" name="{{ colour }}" id="{{ colour }}" />
+              <input type="checkbox" name="color" id="{{ colour }}" value="{{ colour }}" />
             </li>
             {% capture tempList %}
               {{ colourlist | append: colour | append: ‘ ‘}}
@@ -79,6 +80,7 @@
       {% endfor %}
       {% if heading1Close == true %}
       </ul>
+      </div>
       {% endif %}
 
       {% assign heading2Open = false %}
@@ -90,8 +92,9 @@
         {% endfor %}
       {% endfor %}
       {% if heading2Open == true %}
+      <div class="refine-list">
       <h5>Size</h5>
-      <ul>
+      <ul id="sizeRefine">
       {% endif %}
       {% assign sizelist = '' %}
       {% assign size = '' %}
@@ -105,7 +108,7 @@
           {% unless sizelist contains size %}
             <li class="{{ size | escape | downcase | handleize }} size-list">
               <a href="#" class="{{ size }}">{{ size }}</a>
-              <input type="checkbox" name="{{ size }}" id="{{ size }}" />
+              <input type="checkbox" name="size" id="{{ size }}" value="{{ size }}" />
             </li>
             {% capture tempList2 %}
               {{ sizelist | append: size | append: ‘ ‘}}
@@ -124,6 +127,7 @@
       {% endfor %}
       {% if heading2Close == true %}
       </ul>
+      </div>
       {% endif %}
 
       {% assign heading3Open = false %}
@@ -135,8 +139,9 @@
         {% endfor %}
       {% endfor %}
       {% if heading3Open == true %}
+      <div class="refine-list">
       <h5>Leg Length</h5>
-      <ul>
+      <ul id="lengthRefine">
       {% endif %}
       {% assign lengthlist = '' %}
       {% assign leglength = '' %}
@@ -150,7 +155,7 @@
           {% unless lengthlist contains leglength %}
             <li class="{{ leglength }} length-list">
               <a href="#" class="{{ leglength }}">{{ leglength }}</a>
-              <input type="checkbox" name="{{ leglength }}" id="{{ leglength }}" />
+              <input type="checkbox" name="leglength" id="{{ leglength }}" value="{{ leglength }}" />
             </li>
             {% capture tempList3 %}
               {{ lengthlist | append: leglength | append: ‘ ‘}}
@@ -169,6 +174,7 @@
       {% endfor %}
       {% if heading3Close == true %}
       </ul>
+      </div>
       {% endif %}
 
       

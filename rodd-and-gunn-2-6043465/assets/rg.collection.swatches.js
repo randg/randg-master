@@ -9,7 +9,12 @@ RG.collectionPage = (function(doc, $, undefined) {
 	var
 
 	$container = null,
-	refineOptions = [],
+	refineOptions1 = [],
+	refineOptions2 = [],
+	refineOptions3 = [],
+	refineOptions4 = [],
+	refineOptions5 = [],
+	refineOptions6 = [],
 	
 	init = function() {
 		$container = $('#collectionPage');
@@ -54,37 +59,94 @@ RG.collectionPage = (function(doc, $, undefined) {
 		});
 
 		$(document).on('click', '.refinebar ul li input', function() {
-			var $obj = $(this);
-			filterCollection($obj);
+			var $obj = $(this),
+				listID = $obj.parents('.refine-list'),
+				listIndex = $obj.parents('.refine-list').index(),
+				removeID = false;
+
+			if (!$obj.is(':checked')) {
+				removeID = true;
+			};
+
+			filterCollection($obj, removeID, listIndex);
 		});
 
 	},
-	filterCollection = function($obj) {
+	filterCollection = function($obj, removeID, listIndex) {
 
 		$('a.image-wrap').each(function() {
 			$(this).attr('data-show-item', '0');
+			$(this).parent().removeClass('true').removeClass('false');
 		});
 
-		var refineOption = $obj.attr('id').replace(/\s+/g, ''),
-			found = $.inArray(refineOption, refineOptions);
+		var refineOption = $obj.attr('id').replace(/\s+/g, '');
 
-		if (found >= 0) {
-			refineOptions.splice(found, 1);
-		} else {
-			refineOptions.push(refineOption);
-		};
-
-		if (refineOptions.length == 0) {
-			$('.thumbnail').each(function() {
-				$(this).children("a.image-wrap").attr("data-show-item", "1");
-			});
-		} else {
-			for (var i = 0; i < refineOptions.length; i++) {
-				$('.thumbnail').each(function() {
-					$(this).children("a.image-wrap[data-option-one*='" + refineOptions[i] + "']").attr("data-show-item", "1");
+		if (listIndex == 1) {
+			if (removeID) {
+				refineOptions1 = $.grep(refineOptions1, function(value) {
+				  return value != refineOption;
 				});
+			} else {
+				var found = $.inArray(refineOptions1, refineOption);
+				if (found >= 0) {
+					refineOptions1.splice(found, 1);
+				} else {
+					refineOptions1.push(refineOption);
+				};
 			};
 		};
+
+		if (listIndex == 2) {
+			if (removeID) {
+				refineOptions2 = $.grep(refineOptions2, function(value) {
+				  return value != refineOption;
+				});
+			} else {
+				var found = $.inArray(refineOptions2, refineOption);
+				if (found >= 0) {
+					refineOptions2.splice(found, 1);
+				} else {
+					refineOptions2.push(refineOption);
+				};
+			};
+		};
+
+		if (refineOptions1.length > 0) {
+			$('.thumbnail').each(function() {
+				for (var i = 0; i < refineOptions1.length; i++) {
+					if ($(this).children("a.image-wrap[data-option-1*='" + refineOptions1[i] + "']").length > 0) {	
+						if ($(this).hasClass('false')) {
+							$(this).removeClass('false').addClass('true');
+						} else {
+							$(this).addClass('true');
+						};
+					} else {
+						if (!$(this).hasClass('true')) {
+							$(this).addClass('false');
+						};
+						
+					};
+				};
+			});
+		};
+
+		if (refineOptions2.length > 0) {
+			$('.thumbnail').each(function() {
+				for (var i = 0; i < refineOptions2.length; i++) {
+					if ($(this).children("a.image-wrap[data-option-2*='" + refineOptions2[i] + "']").length > 0) {	
+						$(this).addClass('true');
+					} else {
+						$(this).addClass('false');
+					};
+				};
+			});
+		};
+
+		$('.thumbnail').each(function() {
+			if ($(this).hasClass('true') && !$(this).hasClass('false') || !$(this).hasClass('true') && !$(this).hasClass('false')) {
+				$(this).children('a.image-wrap').attr('data-show-item', '1');
+			};
+		});
 
 		$('.thumbnail').each(function() {
 			$(this).removeClass('omega');
@@ -95,16 +157,14 @@ RG.collectionPage = (function(doc, $, undefined) {
 		$("a.image-wrap[data-show-item='0']").parent().hide();
 		$("a.image-wrap[data-show-item='1']").parent().show();
 
-		if ($('.thumbnail:visible').length > 4) {
-			console.log('1');
-			$('.thumbnail:visible:first').addClass('alpha');
+		/*if ($('.thumbnail:visible').length > 4) {
+			//console.log('1');
+		} else {
+			//console.log('2');
+			$('.thumbnail:visible:first-child').addClass('alpha');
 			$('.thumbnail:visible:nth-child(4n)').addClass('omega');
 			$('.thumbnail:visible:nth-child(5n)').addClass('alpha');
-		} else {
-			console.log('2');
-			$('.thumbnail:visible:first').addClass('alpha');
-			$('.thumbnail:visible:nth-child(4n)').addClass('omega');
-		};
+		};*/
 
 	},
 	colorSwatches = function() {

@@ -193,7 +193,7 @@ Shopify.onCartUpdate = function(cart) {
   if ($(window).width() >= 768) {
     $(".fancybox").fancybox({padding: 0, wrapCSS: 'gallery'});
     {% if settings.product_slideshow_animation == 'zoom' %}
-      CloudZoom.quickStart();
+      
     {% endif %}
   }
 

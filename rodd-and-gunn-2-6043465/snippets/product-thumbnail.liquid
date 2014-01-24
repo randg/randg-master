@@ -10,7 +10,7 @@
     {% assign alt_text = product.featured_image.alt %}
   {% endif %}
 
-  <a class="image-wrap" href="{{ product.url | within: collection }}" title="{{ product.title | escape }}" data-option-one="{% for variant in product.variants %}{{ variant.option1 }},{% endfor %}" data-option-two="{% for variant in product.variants %}{{ variant.option2 }},{% endfor %}" data-option-three="{% for variant in product.variants %}{{ variant.option3 }},{% endfor %}" data-types="{% for options in product.options %}{{ options }},{% endfor %}" data-show-item="1">
+  <a class="image-wrap" href="{{ product.url | within: collection }}" title="{{ product.title | escape }}" data-option-1="{% for variant in product.variants %}{{ variant.option1 }},{% endfor %}" data-option-2="{% for variant in product.variants %}{{ variant.option2 }},{% endfor %}" data-option-3="{% for variant in product.variants %}{{ variant.option3 }},{% endfor %}" data-types="{% for options in product.options %}{{ options }},{% endfor %}" data-show-item="1">
     <div class="relative">
       {% assign firstImage = true %}
       {% for image in product.images %} 
