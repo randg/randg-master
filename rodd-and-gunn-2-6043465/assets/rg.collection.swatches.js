@@ -187,14 +187,14 @@ RG.collectionPage = (function(doc, $, undefined) {
 		$("a.image-wrap[data-show-item='0']").parent().hide();
 		$("a.image-wrap[data-show-item='1']").parent().show();
 
-		/*if ($('.thumbnail:visible').length > 4) {
+		if ($('.thumbnail:visible').length > 4) {
 			//console.log('1');
 		} else {
 			//console.log('2');
 			$('.thumbnail:visible:first-child').addClass('alpha');
 			$('.thumbnail:visible:nth-child(4n)').addClass('omega');
 			$('.thumbnail:visible:nth-child(5n)').addClass('alpha');
-		};*/
+		};
 
 	},
 	colorSwatches = function() {
