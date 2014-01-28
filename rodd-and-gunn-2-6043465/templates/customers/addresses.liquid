@@ -1,24 +1,47 @@
 {% layout settings.customer_layout %}
 
-<div class="gutter">
-  <div class="sixteen columns clearfix collection_nav">
-    <h1 class="collection_title">Manage Account Address</h1>
+<div class="gutter" id="accountSummary">
+
+  <div class="sixteen columns clearfix breadcrumb">
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
+      &nbsp; / &nbsp;
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/account" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">My Account</span></a></span> 
+    &nbsp; / &nbsp;
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span itemprop="title">Address Book</span></span>       
   </div>
 
-  <div class="sixteen columns">
+  <div class="sixteen columns clearfix page-header">
+
+    <h1>Address Book <span>Welcome {{ customer.name }}
+      {% if customer %}
+        (<a class="logout" href="/account/logout">Logout</a>)
+      {% endif %}
+    </span></h1>
+
+    <div class="account-navigation">
+      <ul>
+        <li><a class="button" href="/account/order_history">Order History</a></li>
+        <li><a class="button" href="#">Products I've Bought</a></li>
+        <li><a class="button" href="/account/addresses">Address Book</a></li>
+        <li><a class="button" href="#">Payment Methods</a></li>
+        <li><a class="button" href="#">Account Details</a></li>
+        <li><a class="button" href="#">Preferences</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!--<div class="sixteen columns">
     <div class="breadcrumb">
       <div class="right">
         {% if shop.email %}<a href="mailto:{{shop.email}}">Contact Shop Owner</a>{% endif %}
       </div>
-
-      {% if customer %}
-        Logged in as <a href="/account" title="My Account">{{ customer.name }}</a> ({{ "logout" | customer_logout_link }})
-      {% endif %}
     </div>
-  </div>
+  </div>-->
 
   <div class="section clearfix">
     <div class="sixteen columns">
+
       <p>
         <div id="action" class="action_link action_add note"><a href="#" class="action_button" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Add New Address</a></div>
       </p>
@@ -89,6 +112,7 @@
 
         {% for address in customer.addresses %}
         <div class="address_table">
+
           <div id="view_address_{{address.id}}" class="customer_address">
             <h4 class="address_title">
               {{ address.street }} 
@@ -107,6 +131,9 @@
               <p>{{ address.phone }}</p>
             </div>
           </div>    
+
+
+
           <div id="edit_address_{{address.id}}" class="customer_address edit_address" style="display:none;">
             {% form 'customer_address', address %}
               <table class="customer_address_table">

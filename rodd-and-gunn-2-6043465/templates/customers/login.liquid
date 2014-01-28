@@ -1,20 +1,25 @@
 {% layout settings.customer_layout %}
 
 <div class="gutter">
-  <div class="sixteen columns clearfix collection_nav">
-    <h1 class="collection_title">Customer Login</h1>
+
+  <div class="sixteen columns clearfix breadcrumb">
+
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
+      &nbsp; / &nbsp;
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span itemprop="title">Account Login</span></span>       
+
+  </div>
+
+  <div class="six columns form-wrapper">
+    <h1>Customer Login</h1>
   </div>
 
   <div class="clearfix" id="customer">  
-    <br class="clear" />
-    <br class="clear" />
-    <div class="one-third column">
-      &nbsp;
-    </div>
-    <div class="six columns" id="login_form">
+
+    <div class="six columns form-wrapper" id="login_form">
 
       {% form 'customer_login' %}
-        {{ form.errors | default_errors }}
+        {{ form.errors | default_errors }} 
 
         <label for="customer_email" class="login">Email Address</label>
         <input type="email" value="" name="customer[email]" id="customer_email" class="large" size="30" />
@@ -48,7 +53,7 @@
     </div>
       
       <div id="recover-password" style='display:none'>
-        <div class="six columns">
+        <div class="six columns form-wrapper">
       
           <h4>Reset Password</h4>
 
@@ -74,9 +79,6 @@
     </div>
   </div>
 
-
-  <br class="clear" />
-  <br class="clear" />
 </div>
 
 <script type="text/javascript">

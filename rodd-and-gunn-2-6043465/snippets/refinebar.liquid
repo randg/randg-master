@@ -47,6 +47,7 @@
       {% if heading1Open == true %}
       <div class="refine-list">
       <h5>Color</h5>
+      <div class="refine-list-wrapper">
       <ul id="colorRefine">
       {% endif %}
       {% assign colourlist = '' %}
@@ -81,6 +82,7 @@
       {% if heading1Close == true %}
       </ul>
       </div>
+      </div>
       {% endif %}
 
       {% assign heading2Open = false %}
@@ -94,7 +96,8 @@
       {% if heading2Open == true %}
       <div class="refine-list">
       <h5>Size</h5>
-      <ul id="sizeRefine">
+      <div class="refine-list-wrapper">
+      <ul id="sizeRefine"> 
       {% endif %}
       {% assign sizelist = '' %}
       {% assign size = '' %}
@@ -128,19 +131,21 @@
       {% if heading2Close == true %}
       </ul>
       </div>
+      </div>
       {% endif %}
 
       {% assign heading3Open = false %}
       {% for product in collections.[whichCollection].products %}   
         {% for variant in product.variants %}
-          {% if variant.option3 != null %}
+          {% if variant.option3 != null %} 
             {% assign heading3Open = true %}
           {% endif %}
         {% endfor %}
-      {% endfor %}
+      {% endfor %} 
       {% if heading3Open == true %}
       <div class="refine-list">
       <h5>Leg Length</h5>
+      <div class="refine-list-wrapper">
       <ul id="lengthRefine">
       {% endif %}
       {% assign lengthlist = '' %}
@@ -174,6 +179,7 @@
       {% endfor %}
       {% if heading3Close == true %}
       </ul>
+      </div>
       </div>
       {% endif %}
 

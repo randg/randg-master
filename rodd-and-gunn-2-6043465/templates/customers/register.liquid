@@ -1,17 +1,22 @@
 {% layout settings.customer_layout %}
 
 <div class="gutter">
-  <div class="sixteen columns clearfix collection_nav">
-    <h1 class="collection_title">Create Account</h1>
+
+  <div class="sixteen columns clearfix breadcrumb">
+
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
+      &nbsp; / &nbsp;
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span itemprop="title">Register</span></span>       
+
+  </div>
+
+  <div class="six columns form-wrapper">
+    <h1>Create Account</h1>
   </div>
 
   <div class="clearfix" id="customer">  
-    <br class="clear" />
-    <br class="clear" />
-    <div class="one-third column">
-      &nbsp;
-    </div>
-    <div class="six columns" id="login_form">
+
+    <div class="six columns form-wrapper" id="login_form">
       <div id="customer">
         <!-- Create Customer -->
         <div id="create-customer">

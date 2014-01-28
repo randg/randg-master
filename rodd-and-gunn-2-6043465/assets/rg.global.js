@@ -54,6 +54,7 @@ RG.global = (function (doc, $, undefined) {
 			// Initiate other code
 			RG.collectionPage.init();
 			RG.productPage.init();
+			RG.accountPage.init();
 
 		},
 

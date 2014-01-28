@@ -195,20 +195,20 @@
                     {% assign found = false %}
                     {% for img in item.product.images %}
                       {% if found == false and item.variant.title contains img.alt %}
-                        <div class="cart_image wee">
+                        <div class="cart_image">
                           <img src="{{ img | product_img_url: 'medium' }}" alt="{{ item.product.title | escape }}" />
                         </div>
                         {% assign found = true %}
                        {% endif %}
                     {% endfor %}
                     {% if found == false %}
-                      <div class="cart_image poop">
+                      <div class="cart_image">
                         <img src="{{ item.product.featured_image | product_img_url: 'medium' }}" alt="{{ item.product.title | escape }}" />
                       </div>
                     {% endif %} 
 
-                    <div><strong>{{ item.quantity }} x</strong> {{ item.title }}</div>
-                    <strong class="price">{{ item.price | money }}</strong>
+                    <div class="item-details"><strong>{{ item.quantity }} x</strong> {{ item.title }}</div>
+                    <div class="item-price"><strong class="price">{{ item.price | money }}</strong></div>
                   </a>
                 </li>
               {% endfor %}
@@ -404,6 +404,7 @@
     
     <!-- Custom Javascript -->
     {{ 'rg.collection.swatches.js' | asset_url | script_tag }}
+    {{ 'rg.account.js' | asset_url | script_tag }}
     {{ 'rg.product.page.js' | asset_url | script_tag }}
     {{ 'rg.global.js' | asset_url | script_tag }}
     {{ 'app.js' | asset_url | script_tag }}

@@ -143,15 +143,12 @@ html.mm-blocking #mm-blocker {
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      color: inherit;
       line-height: 20px;
       display: block;
       padding: 10px 10px 10px 20px;
       margin: 0; }
   .mm-list > li:not(.mm-subtitle):not(.mm-label):not(.mm-noresults)::after {
     content: '';
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
     display: block;
     width: 100%;
     position: absolute;
@@ -257,22 +254,21 @@ html.mm-opened .mm-page {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); }
 
 .mm-ismenu {
-  background: #333333; }
+  background: #fcfbf9; }
 
 .mm-menu {
   color: rgba(255, 255, 255, 0.6); }
   .mm-menu .mm-list > li:after {
-    border-color: rgba(0, 0, 0, 0.15); }
+     }
   .mm-menu .mm-list > li > a.mm-subclose {
-    background: rgba(0, 0, 0, 0.1);
-    color: rgba(255, 255, 255, 0.3); }
+    background: rgba(0, 0, 0, 0.1); }
   .mm-menu .mm-list > li > a.mm-subopen:after, .mm-menu .mm-list > li > a.mm-subclose:before {
     border-color: rgba(255, 255, 255, 0.3); }
   .mm-menu .mm-list > li > a.mm-subopen:before {
     border-color: rgba(0, 0, 0, 0.15); }
   .mm-menu .mm-list > li.mm-selected > a:not(.mm-subopen),
   .mm-menu .mm-list > li.mm-selected > span {
-    background: rgba(0, 0, 0, 0.1); }
+    background:#f3f0e5; }
   .mm-menu .mm-list > li.mm-label {
     background: rgba(255, 255, 255, 0.05); }
   .mm-menu.mm-vertical .mm-list li.mm-opened > a.mm-subopen,
