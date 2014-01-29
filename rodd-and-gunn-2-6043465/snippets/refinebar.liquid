@@ -30,6 +30,8 @@
     {% assign theCollection = 'shorts' %}
   {% elsif collection.handle == 't-shirts' %}
     {% assign theCollection = 't-shirts' %}
+  {% elsif collection.handle == 'sale-1' %}
+    {% assign theCollection = 'sale-1' %}
   {% endif %}
 
   {% for col in collections %}

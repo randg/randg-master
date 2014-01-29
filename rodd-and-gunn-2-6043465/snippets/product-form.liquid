@@ -11,7 +11,7 @@
 
     {% if product.options.size > 1 %}
       <div class="select">
-        <select id="product-select-{{ product.id }}" name='id'>
+        <select id="product-select-{{ product.id }}" name="id">
           {% for variant in product.variants %}
             <option value="{{ variant.id | downcase | escape | handleize }}">{{ variant.title }}</option>
           {% endfor %}
@@ -20,14 +20,14 @@
     {% elsif product.options.size == 1 and (product.variants.size > 1 or product.options[0] != "Title") %}
       <div class="select">
         <label>{{ product.options[0] }}:</label>
-        <select id="product-select-{{ product.id }}" name='id'>
+        <select id="product-select-{{ product.id }}" name="id">
           {% for variant in product.variants %}
             <option value="{{ variant.id | downcase | escape | handleize }}">{{ variant.title }}</option>
           {% endfor %}
         </select>
       </div>
     {% else %}
-      <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+      <input type="hidden" value="{{ product.variants.first.id }}" />
     {% endif %}
  
     {% if settings.display_product_quantity %}

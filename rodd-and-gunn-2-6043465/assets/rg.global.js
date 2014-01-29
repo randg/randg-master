@@ -61,9 +61,72 @@ RG.global = (function (doc, $, undefined) {
 		// Sets Global click events for common objects 
 		events = function() {
 			
-			
+			// Add to Cart API Call
+		    $(document).on('click', '.add_to_cart', function(e) {
+		  		var quantity = 1,
+		  			variantId = getVariantId();
+		    	e.preventDefault();
+		    	Shopify.addItem(variantId, quantity, updateCartUI);
+		  	});
 
 		},
+
+		updateCartUI = function(line_item) {
+
+		  	$('#cart').mmenu().off("opened.mm");
+
+			var params = {
+			    type: 'GET',
+			    url: '/cart/cart.js',
+			    dataType: 'json',
+			    success: function(cart) { 
+			        updateCartCount(cart);
+			    },
+			    error: function(XMLHttpRequest, textStatus) {
+			        Shopify.onError(XMLHttpRequest, textStatus);
+			    }
+			};
+
+			$.ajax(params);
+
+		  	$('#cart').mmenu().trigger("open").on("opened.mm", function() {
+		  		var cartItem = '';
+		  		cartItem = '<li class="cart_item" data-id="' + line_item.id + '">' +
+	        				   '<a href="' + line_item.url + '">' +
+	        				   '<div class="cart_image"><img src="' + line_item.image + '" alt="' + line_item.title + '"></div>' +
+	        				   '<div class="item-details"><strong>' + line_item.quantity + ' x</strong> ' + line_item.title + '</div>' +
+	        				   '<div class="item-price"><strong class="price">' + line_item.price  + '</strong></div>' +
+	        				   '</a></li>';
+
+		    	$('#cart ul li:first-child').after(cartItem);
+		  	});
+
+		},
+
+		updateCartCount = function(cart) {
+			if (cart.item_count == 0) { 
+	          $('.cart-button').remove('.cart_count'); 
+	        } else if (cart.item_count == 1 && !$('.cart_count').length) {
+	        	$('.cart-button').append('<div class="cart_count">' + cart.item_count + '</div>');
+	        } else {
+	          $('.cart_count').html(cart.item_count);
+	        };
+		},
+
+		getVariantId = function() {
+
+	  		var variantId = null,
+	  			colorVariant = $('.selector-wrapper:first-child').children('.single-option-selector').find(':selected').text(),
+		  		sizeVariant = $('.selector-wrapper:first-child').next('.selector-wrapper').children('.single-option-selector').find(':selected').text();
+	  		
+	  		$('.select > select').children('option').each(function() {
+	  			if ($(this).text() == colorVariant + ' / ' + sizeVariant) {
+	  				variantId = $(this).val();
+	  				console.log(variantId);
+	  			};
+	  		});
+	  		return variantId;
+	  	},
 
 		// This if for debugging resolutions and misc actions
 		debugging = {

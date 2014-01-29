@@ -212,7 +212,8 @@ a:hover, a:focus { color: {{ settings.link_hover_color }}; }
 .header_bar {
   position:fixed;
   background-color: {{ settings.header_bg_color }};
-  top:-57px;
+  top:0px;
+  z-index: 1000;
 }
 
 .header_bar .nav a, .header_bar .nav a:visited {
@@ -350,7 +351,6 @@ html.mm-right.mm-opening #header
 
 div#header a span {
   display: inline;
-  padding-left: 4px;
   position: relative;
   top: -2px;
 }
@@ -806,11 +806,11 @@ a.button,
   }
 
   #cart a.action_button.edit_cart {
-    width:180px;margin-left: 40px; margin-top:12px; margin-right:0; background-color:#ddd; color: {{ settings.btn_text_color }}; text-align: center; text-indent: 0;
+    width:180px;margin-left: 40px; margin-top:12px; margin-right:0; background-color:#404040; color: {{ settings.btn_text_color }}; text-align: center; text-indent: 0;
   }
 
   #cart .action_button {
-    width:180px;margin-right: 20px; margin-top:12px; margin-left:10px; background-color: {{ settings.btn_color }}; color: {{ settings.btn_text_color }}; text-align: center; text-indent: 0;
+    width:180px;margin-right: 20px; margin-top:12px; margin-left:10px; background-color:#ff7f00; color: {{ settings.btn_text_color }}; text-align: center; text-indent: 0;
   }
   
 /* #Tabs
