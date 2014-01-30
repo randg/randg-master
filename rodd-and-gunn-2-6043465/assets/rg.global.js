@@ -64,16 +64,24 @@ RG.global = (function (doc, $, undefined) {
 			// Add to Cart API Call
 		    $(document).on('click', '.add_to_cart', function(e) {
 		  		var quantity = 1,
-		  			variantId = getVariantId();
+		  			variantId = getVariantId(),
+		  			loader = '<li class="loader"></li>';
+
+		  		if (!$('#cart ul li[data-id="' + variantId + '"]').length) {
+			  		$('#cart ul li:first-child').after(loader);
+			  	} else {
+			  		$('#cart ul li[data-id="' + variantId + '"]').addClass('loader');
+			  	};
+
 		    	e.preventDefault();
-		    	Shopify.addItem(variantId, quantity, updateCartUI);
+		    	$('#cart').mmenu().trigger("open").on("opened.mm", function() {
+			    	Shopify.addItem(variantId, quantity, updateCartUI);
+			    });
 		  	});
 
 		},
 
 		updateCartUI = function(line_item) {
-
-		  	$('#cart').mmenu().off("opened.mm");
 
 			var params = {
 			    type: 'GET',
@@ -89,17 +97,34 @@ RG.global = (function (doc, $, undefined) {
 
 			$.ajax(params);
 
-		  	$('#cart').mmenu().trigger("open").on("opened.mm", function() {
+
+			if ($('#cart ul li[data-id="' + line_item.id + '"]').length) {
+
+				$('#cart ul li[data-id="' + line_item.id + '"]').find('.item-details').children('strong').html(line_item.quantity + ' x');
+				$('#cart ul li[data-id="' + line_item.id + '"]').removeClass('loader');
+
+			} else {
+
+				$('#cart ul li.loader').attr('data-id', line_item.id);
+
 		  		var cartItem = '';
-		  		cartItem = '<li class="cart_item" data-id="' + line_item.id + '">' +
-	        				   '<a href="' + line_item.url + '">' +
+		  		cartItem = '<a href="' + line_item.url + '">' +
 	        				   '<div class="cart_image"><img src="' + line_item.image + '" alt="' + line_item.title + '"></div>' +
 	        				   '<div class="item-details"><strong>' + line_item.quantity + ' x</strong> ' + line_item.title + '</div>' +
 	        				   '<div class="item-price"><strong class="price">' + line_item.price  + '</strong></div>' +
-	        				   '</a></li>';
+	        				   '</a>';
 
-		    	$('#cart ul li:first-child').after(cartItem);
-		  	});
+		    	$('#cart ul li.loader').append(cartItem).addClass('cart_item').removeClass('loader');
+
+			};
+
+	    	$('#cart').mmenu().off("opened.mm");
+
+	    	setTimeout(function() {
+	    		$('#cart').mmenu().trigger("close");
+	    	}, 3000);
+
+
 
 		},
 
