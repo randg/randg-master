@@ -9,29 +9,58 @@ RG.productPage = (function(doc, $, undefined) {
 	var
 
 	$container = null,
+	userSelectedColor = null,
 	
 	init = function() {
 		$container = $('#productPage');
 		if ($container.length) {
 			events();
 			preSelectColorVariation();
+			buildImageGallery();
 		};
 	},
 	events = function() {
-		
+		$(document).on('click', '.selector-wrapper:first-child', function() {
+			$(this).addClass('user-initiated');
+		});
 	},
 	preSelectColorVariation = function() {
-		var colorQuery = getQueryVariable('color'),
+		var colorQuery = getQueryVariable('color');
 		userSelectedColor = colorQuery.replace(/-/g,' ');
 		$('.single-option-selector option').filter(function() { 
 		    return ($(this).val() == capitaliseFirstLetters(userSelectedColor));
 		}).prop('selected', true).trigger('change');
-		$('.flex-control-thumbs li img').filter(function() { 
-		    return ($(this).attr('alt') == capitaliseFirstLetters(userSelectedColor));
-		}).trigger('click');
+	},
+	buildImageGallery = function() {
+
+		$('ul.slides').html('');
+		$('ol.flex-control-thumbs').remove();
+		$('.flex-direction-nav').remove();
+		
+		$('ul.all-images li').each(function() {
+			if ($(this).attr('data-title') == capitaliseFirstLetters(userSelectedColor)) {
+				$(this).clone().appendTo('ul.slides');
+			};
+		});
+
+		setTimeout(function() {
+			$("img", '.product_slider').unveil();
+			$('.flexslider').flexslider({
+			    touch: false,
+			    pauseOnHover: true,
+			    controlNav: "thumbnails",
+			    directionNav: true,
+			    slideshow: false,
+			    animation: 'slide',
+			    start: function(slider) {
+			      console.log('inititated');
+			    }
+			});
+		}, 100);
+
 	},
 	// Check if their is a query on page load.
-	getQueryVariable = function(variable) {
+	getQueryVariable = function(variable) { 
        var query = window.location.search.substring(1);
        var vars = query.split("&");
        for (var i=0;i<vars.length;i++) {
@@ -61,13 +90,21 @@ RG.productPage = (function(doc, $, undefined) {
 	    var $notify_form = $('#notify-form-' + selector.product.id);
 
 	    if (variant) {
-	      var $thumbs = $('.flex-control-thumbs img', $product);
-	      var optionValue = variant.options[1];
+
+	      var $thumbs = $('.all-images li');
+	      var optionValue = variant.options[0];
 
 	      $.each($thumbs, function(index, value) {
-	        if($(value).attr('alt').toLowerCase() == optionValue.toLowerCase() && !$(value).hasClass('flex-active')) {
-	          $(value).click();
-	          return false;
+	        if($(value).attr('data-title').toLowerCase() == optionValue.toLowerCase() && !$(value).hasClass('flex-active')) {
+
+	        	if ($('.user-initiated').length) {
+	        		console.log($(value).attr('data-title'));
+		        	userSelectedColor = $(value).attr('data-title');
+		        	$('.flexslider').flexslider('destroy');
+		        	buildImageGallery();
+		        };
+
+	            return false;
 	        };
 	      });
 	    }
@@ -81,7 +118,7 @@ RG.productPage = (function(doc, $, undefined) {
 	      $('.sold_out', $product).text('');
 	      $('.current_price', $product).html(Shopify.formatMoney(variant.price, $('form.product_form', $product).data('money-format')));
 	      $('.add_to_cart', $product).removeClass('disabled').removeAttr('disabled').val('Add to Cart');
-	      $notify_form.hide();
+	      $notify_form.hide(); 
 
 	    } else {
 	      var message = variant ? "{{ settings.sold_out_text }}" : "Out of Stock";    

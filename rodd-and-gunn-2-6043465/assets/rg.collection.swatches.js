@@ -33,9 +33,9 @@ RG.collectionPage = (function(doc, $, undefined) {
 				if ($(this).data('color') == dClass) {
 					$(this).show();
 					$(this).siblings().hide();
-					var cleanUrl = $(this).parents('a.image-wrap').attr('href').split('?')[0],
-					queryUrl = cleanUrl + '?color=' + dClass;
-					$(this).parents('a.image-wrap').attr('href', queryUrl);
+					//var cleanUrl = $(this).parents('a.image-wrap').attr('href').split('?')[0],
+					//queryUrl = cleanUrl + '?color=' + dClass;
+					//$(this).parents('a.image-wrap').attr('href', queryUrl);
 				};
 			});
 		}).on('click', '.color-swatch li a', function(e){
@@ -221,10 +221,10 @@ RG.collectionPage = (function(doc, $, undefined) {
 				};
 				nextImage.show();
 				
-			var cleanUrl = $obj.attr('href').split('?')[0],
+			/*var cleanUrl = $obj.attr('href').split('?')[0],
 				dClass = $obj.find('img:visible').data('color').replace(/ /g,'-'),
 				queryUrl = cleanUrl + '?color=' + dClass;
-				$obj.attr('href', queryUrl);
+				$obj.attr('href', queryUrl);*/
 
 			};
 		}, 1000);

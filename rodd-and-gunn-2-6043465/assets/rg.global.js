@@ -79,6 +79,13 @@ RG.global = (function (doc, $, undefined) {
 			    });
 		  	});
 
+		  	$(document).on('click', 'a.image-wrap', function() {
+		  		var $obj = $(this),
+		  			colorObj = $obj.find('img:visible').attr('alt').toLowerCase(),
+		  			color = colorObj.replace(/ /g,'-');
+		  		$obj.attr('href', $obj.attr('href') + '?color=' + color);
+		  	});
+
 		},
 
 		updateCartUI = function(line_item) {
@@ -147,7 +154,7 @@ RG.global = (function (doc, $, undefined) {
 	  		$('.select > select').children('option').each(function() {
 	  			if ($(this).text() == colorVariant + ' / ' + sizeVariant) {
 	  				variantId = $(this).val();
-	  				console.log(variantId);
+	  				//console.log(variantId);
 	  			};
 	  		});
 	  		return variantId;
@@ -210,7 +217,8 @@ RG.global = (function (doc, $, undefined) {
 		
 	// Public functions
 	return {
-		init : init
+		init : init,
+		getVariantId : getVariantId
 	};
 
 })(document, jQuery);
