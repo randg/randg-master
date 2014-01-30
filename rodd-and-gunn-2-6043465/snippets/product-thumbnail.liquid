@@ -13,8 +13,20 @@
   <a class="image-wrap" href="{{ product.url | within: collection }}" title="{{ product.title | escape }}" data-option-1="{% for variant in product.variants %}{{ variant.option1 | escape | handleize }},{% endfor %}" data-option-2="{% for variant in product.variants %}{{ variant.option2 }},{% endfor %}" data-option-3="{% for variant in product.variants %}{{ variant.option3 | escape | handleize }},{% endfor %}" data-types="{% for options in product.options %}{{ options }},{% endfor %}" data-show-item="1">
     <div class="relative">
       {% assign firstImage = true %}
+      {% assign index = forloop.index0 %}
+      {% assign imglist = '' %}
+      {% assign img = '' %}
       {% for image in product.images %} 
-        <img {% if settings.align_height %}style="max-height:{{ settings.collection_height }}px"{% endif %} src="{{ 'loader.gif' | asset_url }}" data-src="{{ image | product_img_url: 'large' }}" data-src-retina="{{ image | product_img_url: 'grande' }}" class="{% if firstImage == true %}first{% endif %}" alt="{{ image.alt | escape }}" data-color="{{ image.alt | downcase | escape }}" />
+        {% capture img %}
+          {{ image.alt }}
+        {% endcapture %}
+        {% unless imglist contains img %}
+          <img {% if settings.align_height %}style="max-height:{{ settings.collection_height }}px"{% endif %} src="{{ 'loader.gif' | asset_url }}" data-src="{{ image | product_img_url: 'large' }}" data-src-retina="{{ image | product_img_url: 'grande' }}" class="{% if firstImage == true %}first{% endif %}" alt="{{ image.alt | escape }}" data-color="{{ image.alt | downcase | escape }}" />
+          {% capture tempList %}
+            {{ imglist | append: img | append: ‘ ‘}}
+          {% endcapture %}
+          {% assign imglist = tempList %}
+        {% endunless %}
         {% assign firstImage = false %}
       {% endfor %}
     </div>
