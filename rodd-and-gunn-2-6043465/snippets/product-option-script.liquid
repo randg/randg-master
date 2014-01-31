@@ -12,12 +12,17 @@
               {% if variant.available and found_one_in_stock == false %}
                 {% assign found_one_in_stock = true %}
                 {% for option in product.options %}
-                  $('.single-option-selector:eq(' + {{ forloop.index0 }} + ')', $product).val({{ variant.options[forloop.index0] | json }}).trigger('change');
+                  $('.single-option-selector:eq(' + {{ forloop.index0 }} + ')', $product).val({{ variant.options[forloop.index0] | json }}).attr('data-position', {{ forloop.index0 }}).trigger('change');
                 {% endfor %}
               {% endif %}
             {% endfor %}
           {% endif %}
         }
+
+        $(document).on('mouseover', '.single-option-selector', function() {
+          $('body').attr('data-select-position', $(this).attr('data-position'));
+        });
+
       });
     // ]]>
   </script>
