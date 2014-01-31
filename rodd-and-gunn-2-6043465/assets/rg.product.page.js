@@ -53,7 +53,7 @@ RG.productPage = (function(doc, $, undefined) {
 			    slideshow: false,
 			    animation: 'slide',
 			    start: function(slider) {
-			      console.log('inititated');
+			      //console.log('inititated');
 			    }
 			});
 		}, 100);
@@ -98,7 +98,7 @@ RG.productPage = (function(doc, $, undefined) {
 	        if($(value).attr('data-title').toLowerCase() == optionValue.toLowerCase() && !$(value).hasClass('flex-active')) {
 
 	        	if ($('.user-initiated').length) {
-	        		console.log($(value).attr('data-title'));
+
 		        	userSelectedColor = $(value).attr('data-title');
 		        	$('.flexslider').flexslider('destroy');
 		        	buildImageGallery();
@@ -110,13 +110,17 @@ RG.productPage = (function(doc, $, undefined) {
 	    }
 
 	    if (variant && variant.available == true) {
+
 	      if(variant.price < variant.compare_at_price){
 	        $('.was_price', $product).html(Shopify.formatMoney(variant.compare_at_price, $('form.product_form', $product).data('money-format')))        
 	      } else {
 	        $('.was_price', $product).text('')
 	      } 
 	      $('.sold_out', $product).text('');
-	      $('.current_price', $product).html(Shopify.formatMoney(variant.price, $('form.product_form', $product).data('money-format')));
+	      $('.current_price', $product).html( Shopify.formatMoney(variant.price, $('form.product_form', $product).data('money-format')) );
+
+	      Currency.convertAll(shopCurrency, cookieCurrency);
+
 	      $('.add_to_cart', $product).removeClass('disabled').removeAttr('disabled').val('Add to Cart');
 	      $notify_form.hide(); 
 

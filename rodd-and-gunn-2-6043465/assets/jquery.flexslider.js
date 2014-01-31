@@ -1042,7 +1042,7 @@
       $(window).unbind(slider.vars.eventNamespace + "-" + slider.id); // Remove events from window for this instance only 
       slider.stop(); // Stop the interval
       slider.removeData('flexslider'); // Remove data
-      console.log('oioioi');
+
     }
 
     //FlexSlider: Initialize

@@ -34,6 +34,7 @@
               {% assign found_option = false %}
               {% assign index = 0 %}
               {% assign found_image = false %}
+              {% assign variantColor = false %}
 
               {% for option in item.product.options %}
                 {% if found_option == false %}
@@ -46,19 +47,28 @@
               {% endfor %}
 
               {% if found_option %}
+
+                {% assign found = false %}
+                {% capture title %}
+                  {{ item.variant.option1 | strip | escape | handleize }}
+                {% endcapture %}
+
                 {% for image in item.product.images %}
                   {% unless found_image %}
                     {% if image.alt == item.variant.options[option_index] %}
                       {% assign index = forloop.index0 %}
                       {% assign found_image = true %}
+                      {% assign variantColor = item.variant.options[option_index] %}
+                      <a href="{{ image }}" title="{{ item.title | escape }}">
+                        <img src="{{ image | product_img_url: 'compact' }}" alt="{{ item.variant.options[option_index] | escape }}" class="{{ image.alt }}" />
+                      </a>
                     {% endif %}
                   {% endunless %}
                 {% endfor %}
+
               {% endif %}
 
-              <a href="{{ item.product.url }}" title="{{ item.title | escape }}">
-                <img src="{{ item.product.images[option_index] | product_img_url: 'compact' }}" alt="{{ item.variant.options[option_index] | escape }}" class="{{ image.alt }}" />
-              </a>
+              
             </div>
 
             <div class="five columns omega">
@@ -81,7 +91,7 @@
               {% endif %}
 
               <p class="price_total">
-                {{ item.price | money_with_currency }}
+                {{ item.line_price | money_with_currency }}
               </p>
 
               <p id="quantity_{{ forloop.index }}">

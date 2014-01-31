@@ -33,9 +33,6 @@ RG.collectionPage = (function(doc, $, undefined) {
 				if ($(this).data('color') == dClass) {
 					$(this).show();
 					$(this).siblings().hide();
-					//var cleanUrl = $(this).parents('a.image-wrap').attr('href').split('?')[0],
-					//queryUrl = cleanUrl + '?color=' + dClass;
-					//$(this).parents('a.image-wrap').attr('href', queryUrl);
 				};
 			});
 		}).on('click', '.color-swatch li a', function(e){
@@ -190,19 +187,12 @@ RG.collectionPage = (function(doc, $, undefined) {
 		$("a.image-wrap[data-show-item='1']").parent().show();
 
 		if ($('.true').length > 4) {
-			console.log('1');
 			$('.true:first-child').addClass('alpha');
-			/*$('.true:nth-child(4n)').addClass('omega');
-			$('.true:nth-child(5n)').addClass('alpha');*/
-			//$('.thumbnail:visible:nth-child(5n)').addClass('alpha');
-
 			$('.product-listing div.thumbnail:visible').each(function (i) {
 			    if ((i + 1) % 4 == 0) $(this).addClass('omega');
 			    if ((i + 1) % 5 == 0) $(this).addClass('alpha');
 			});
-
 		} else {
-			console.log('2');
 			$('.thumbnail:visible:first-child').addClass('alpha');
 			$('.thumbnail:visible:nth-child(3n)').addClass('omega');
 			$('.thumbnail:visible:nth-child(4n)').addClass('alpha');
@@ -220,12 +210,6 @@ RG.collectionPage = (function(doc, $, undefined) {
 					nextImage = $obj.find('img:first-child');
 				};
 				nextImage.show();
-				
-			/*var cleanUrl = $obj.attr('href').split('?')[0],
-				dClass = $obj.find('img:visible').data('color').replace(/ /g,'-'),
-				queryUrl = cleanUrl + '?color=' + dClass;
-				$obj.attr('href', queryUrl);*/
-
 			};
 		}, 1000);
 	}

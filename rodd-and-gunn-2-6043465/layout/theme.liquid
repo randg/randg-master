@@ -208,22 +208,23 @@
                     {% endif %} 
 
                     <div class="item-details"><strong>{{ item.quantity }} x</strong> {{ item.title }}</div>
-                    <div class="item-price"><strong class="price">{{ item.price | money }}</strong></div>
+                    <div class="item-price"><strong class="price">{{ item.line_price | money }}</strong></div>
                   </a>
                 </li>
               {% endfor %}
-              <li class="mm-selected">
-                <em class="subtotal">{{ cart.total_price | money_with_currency }}</em>
-                <a href="/cart">
-                  <strong>Subtotal</strong>
-                </a>
-              </li>
-
-              <li>
-                <a href="/cart" class="action_button edit_cart left">Edit Cart</a>
-                <a href="/checkout" class="action_button left">Checkout</a>
-              </li>
+              
             {% endif %}
+            <li class="mm-selected {% if cart.item_count == 0 %}cart-hidden{% endif %}">
+              <em class="subtotal">{{ cart.total_price | money_with_currency }}</em>
+              <a href="/cart">
+                <strong>Subtotal</strong>
+              </a>
+            </li>
+
+            <li class="{% if cart.item_count == 0 %}cart-hidden{% endif %}">
+              <a href="/cart" class="action_button edit_cart left">Edit Cart</a>
+              <a href="/checkout" class="action_button left">Checkout</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -239,6 +240,10 @@
                 {{ shop.name }}
               {% endif %}
             </a>
+          </div>
+
+          <div class="currency-dropdown">
+            {% include 'currencies-switcher' %}
           </div>
           
         </div>
@@ -421,14 +426,13 @@
     {{ 'rg.global.js' | asset_url | script_tag }}
     {{ 'app.js' | asset_url | script_tag }}
 
-    
+    {% include 'currencies' %}
      
-
     <script type="text/javascript">
         jQuery(document).ready(function () {
             RG.global.init();
         });
-    </script> 
+    </script>   
 
   </body>
 </html>
