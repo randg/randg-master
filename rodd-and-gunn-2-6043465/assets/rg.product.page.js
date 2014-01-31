@@ -113,9 +113,15 @@ RG.productPage = (function(doc, $, undefined) {
 	      } else {
 	        $('.was_price', $product).text('')
 	      } 
-	      $('.sold_out', $product).text('');
-	      $('.current_price', $product).html( Shopify.formatMoney(variant.price, $('form.product_form', $product).data('money-format')) );
 
+	      $('.sold_out', $product).text('');
+
+	      if (selector.product.price_varies && !$('.user-initiated').length) {
+	      	$('.current_price', $product).html('From ' + Shopify.formatMoney(selector.product.price_min, $('form.product_form', $product).data('money-format')) + ' to ' + Shopify.formatMoney(selector.product.price_max, $('form.product_form', $product).data('money-format')));
+	      } else {
+	      	$('.current_price', $product).html(Shopify.formatMoney(variant.price, $('form.product_form', $product).data('money-format')));
+	      };
+	      
 	      Currency.convertAll(shopCurrency, cookieCurrency);
 
 	      $('.add_to_cart', $product).removeClass('disabled').removeAttr('disabled').val('Add to Cart');
