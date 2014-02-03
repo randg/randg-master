@@ -6,6 +6,8 @@
         if($('.single-option-selector', $product).length == 0) {
           new Shopify.OptionSelectors("product-select-{{ product.id }}", { product: {{ product | json }}, onVariantSelected: RG.productPage.selectCallback });
 
+          
+
           {% if product.available %}
             {% assign found_one_in_stock = false %}
             {% for variant in product.variants %}

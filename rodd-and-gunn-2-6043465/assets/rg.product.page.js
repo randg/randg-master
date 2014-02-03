@@ -40,6 +40,9 @@ RG.productPage = (function(doc, $, undefined) {
 		$('.single-option-selector option').filter(function() { 
 		    return ($(this).val() == capitaliseFirstLetters(userSelectedColor));
 		}).prop('selected', true).trigger('change');
+
+		//$('select[data-position="1"] option:selected').addClass('poop').trigger('change');
+
 	},
 	buildImageGallery = function() {
 
@@ -128,7 +131,7 @@ RG.productPage = (function(doc, $, undefined) {
 	      if(variant.price < variant.compare_at_price){
 	        $('.was_price', $product).html(Shopify.formatMoney(variant.compare_at_price, $('form.product_form', $product).data('money-format')))        
 	      } else {
-	        $('.was_price', $product).text('')
+	        $('.was_price', $product).text('');
 	      } 
 
 	      $('.sold_out', $product).text('');
@@ -142,15 +145,20 @@ RG.productPage = (function(doc, $, undefined) {
 	      Currency.convertAll(shopCurrency, cookieCurrency);
 
 	      $('.add_to_cart', $product).removeClass('disabled').removeAttr('disabled').val('Add to Cart');
+
 	      $notify_form.hide(); 
 
 	    } else {
-	      var message = variant ? "{{ settings.sold_out_text }}" : "Out of Stock";    
+
+	    	console.log(variant);
+
+	      var message = variant ? "Sold Out" : "Out of Stock";    
 	      $('.was_price', $product).text('')
 	      $('.current_price', $product).text('')
 	      $('.sold_out', $product).text(message);
 	      $('.add_to_cart', $product).addClass('disabled').attr('disabled', 'disabled').val(message); 
-	      $notify_form.fadeIn();
+	      $notify_form.show();
+
 	    }
 	}
 

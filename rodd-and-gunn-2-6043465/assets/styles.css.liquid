@@ -385,6 +385,42 @@ div#header a span {
   *display: inline;
 }
 
+
+
+
+
+.nav ul li a.top-link::after, 
+.nav ul li a.active::after{
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: {{ settings.nav_active_color }};
+  content: '';
+  opacity: 0;
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+  -moz-transition: opacity 0.3s, -moz-transform 0.3s;
+  transition: opacity 0.3s, transform 0.3s;
+  -webkit-transform: translateY(-10px);
+  -moz-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.nav ul li a.top-link:hover::after,
+.nav ul li a.top-link:focus::after,
+.nav ul li a.active::after {
+  opacity: 0.2;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  transform: translateY(0px);
+}
+
+
+
+
+
+
 .nav ul li:hover a.sub-menu::after {
   background-color: transparent;
 }
