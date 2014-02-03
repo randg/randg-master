@@ -38,12 +38,13 @@
   	  
     	 {% if settings.product_images_position == 'left' %}             
          <div class="{% if settings.product_sidebar %}four{% else %}six{% endif %} columns product-gallery {% if product-images == blank %}{% if settings.product_images_position == 'left' %}alpha{% else %}omega{% endif %}{% endif %}">
+            <h1 class="product_name desktop-hidden" itemprop="name">{{ product.title }}</h1>
            {% include 'product-images' %}
           </div>
        {% endif %}
 
        <div class="{% if settings.product_sidebar %}four{% else %}six{% endif %} columns product-information">
-         <h1 class="product_name" itemprop="name">{{ product.title }}</h1>
+         <h1 class="product_name mobile_hidden" itemprop="name">{{ product.title }}</h1>
 
          <p class="modal_price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
            <meta itemprop="currency" content="{{ shop.currency }}" />

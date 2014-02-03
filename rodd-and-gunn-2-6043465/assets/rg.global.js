@@ -19,7 +19,8 @@ RG.info = {
 	pageSize : 0,
 	sizes : [ 480, 768, 980, 1200 ],
 	mobile : $(window).width() < 768,
-	tablet : $(window).width() >= 768
+	tablet : $(window).width() >= 768,
+	action : 'click'
 };
 
 RG.global = (function (doc, $, undefined) {
@@ -60,7 +61,13 @@ RG.global = (function (doc, $, undefined) {
 
 		// Sets Global click events for common objects 
 		events = function() {
+
+			//console.log('poop');
+
+			//$(document).off('click');
 			
+			RG.info.action = (hasTouch() ? 'tap' : 'click');
+
 			// Add to Cart API Call
 		    $(document).on('click', '.add_to_cart', function(e) {
 		  		var quantity = 1,
@@ -80,11 +87,14 @@ RG.global = (function (doc, $, undefined) {
 			    });
 		  	});
 
-		  	$(document).on('click', 'a.image-wrap', function() {
-		  		var $obj = $(this),
+		  	$(document).one('click', 'a.image-wrap', function() {
+		  		var queryExists = getQueryVariable('color'),
+		  			$obj = $(this),
 		  			colorObj = $obj.find('img:visible').attr('alt').toLowerCase(),
 		  			color = colorObj.replace(/ /g,'-');
-		  		$obj.attr('href', $obj.attr('href') + '?color=' + color);
+		  		if (queryExists == false) {
+			  		$obj.attr('href', $obj.attr('href') + '?color=' + color);
+			  	};
 		  	});
 
 		  	$(document).on('click', '.cart_item a', function() {
@@ -108,6 +118,24 @@ RG.global = (function (doc, $, undefined) {
 		  		};
 		  	});
 
+		},
+
+		getQueryVariable = function(variable) { 
+	       var query = window.location.search.substring(1);
+	       var vars = query.split("&");
+	       for (var i=0;i<vars.length;i++) {
+	    	   var pair = vars[i].split("=");
+	           if(pair[0] == variable){return pair[1];}
+	       }
+	       return(false);
+		},
+
+		hasTouch = function() {
+			if (Modernizr.touch) {
+			    return true;
+			} else {
+			    return false
+			};
 		},
 
 		updateCartUI = function(line_item) {

@@ -169,19 +169,6 @@ $(function() {
 		});
 	});
 
-  $('.toggle').click(function() {
-    if ($(window).width() <= 767) { 
-      var $toggle = $(this);
-      if($toggle.next('ul').is(':visible')) {
-        $toggle.next('ul').hide();
-        $toggle.children('span').html('+');
-      } else {
-        $toggle.next('ul').show();
-        $toggle.children('span').html('-');
-      }
-    }
-  });
-
 
 });
 

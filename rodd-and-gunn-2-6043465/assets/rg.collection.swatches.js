@@ -73,8 +73,30 @@ RG.collectionPage = (function(doc, $, undefined) {
 			e.preventDefault();
 		});
 
+		$(document).on(RG.info.action, '.refinebar h4', function() {
+		    if (RG.info.mobile) { 
+		        var $obj= $(this);
+		        if($obj.siblings('.refine-list').is(':visible')) {
+		        	$obj.siblings('.refine-list').hide();
+		        	$obj.children('span').html('+');
+		        } else {
+		        	$obj.siblings('.refine-list').show();
+		        	$obj.children('span').html('-');
+		        };
+		    };
+		});
+
+		$(document).on('click', '.filter-helper a', function(e) {
+			var $obj = $(this);
+			e.preventDefault();
+			$.scrollTo('#productList');
+			$obj.parent().remove();
+		});
+
 	},
 	filterCollection = function($obj, removeID, listIndex) {
+
+		$('.filter-helper').remove();
 
 		$('a.image-wrap').each(function() {
 			$(this).attr('data-show-item', '0');
@@ -186,6 +208,11 @@ RG.collectionPage = (function(doc, $, undefined) {
 		$("a.image-wrap[data-show-item='0']").parent().hide();
 		$("a.image-wrap[data-show-item='1']").parent().show();
 
+		if (RG.info.mobile) {
+			filterHelper($obj);
+		};
+
+		// TODO: This is broken, needs to be fixed
 		if ($('.true').length > 4) {
 			$('.true:first-child').addClass('alpha');
 			$('.product-listing div.thumbnail:visible').each(function (i) {
@@ -198,6 +225,11 @@ RG.collectionPage = (function(doc, $, undefined) {
 			$('.thumbnail:visible:nth-child(4n)').addClass('alpha');
 		};
 
+	},
+	filterHelper = function($obj) {
+		var resultsTotal = $('.thumbnail:visible').length;
+		$('.refinebar').append('<div class="filter-helper"><a href="#">View ' + resultsTotal + ' results</a></div>');
+		$('.filter-helper').css({ top: $obj.position().top + 'px' });
 	},
 	colorSwatches = function() {
 
