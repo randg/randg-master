@@ -75,6 +75,7 @@ $(function() {
     });
     $('.icon-cart, .icon-menu').on("click", function(e) { 
       scrollTo(0,0); 
+      $('#cart').removeClass('auto-open');
       $('#search').hide();
       e.stopPropagation();
       return false;

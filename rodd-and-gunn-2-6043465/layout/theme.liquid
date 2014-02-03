@@ -184,7 +184,7 @@
           
         <nav id="cart">
           <ul>
-            <li><a class="close continue" href="#cart">Continue Shopping</a></li>
+            <li><a class="close continue" href="#cart">Continue Shopping<span>X</span></a></li>
 
             {% if cart.item_count == 0 %}
               <li class="Label">Your Cart is Empty</li>
@@ -196,7 +196,7 @@
                     {% for img in item.product.images %}
                       {% if found == false and item.variant.title contains img.alt %}
                         <div class="cart_image">
-                          <img src="{{ img | product_img_url: 'small' }}" alt="{{ item.product.title | escape }}" />
+                          <img src="{{ img | product_img_url: 'small' }}" data-color="{{ img.alt }}" alt="{{ item.product.title | escape }}" />
                         </div>
                         {% assign found = true %}
                        {% endif %}

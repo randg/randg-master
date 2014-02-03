@@ -3,12 +3,12 @@
     <div class="clearfix breadcrumb">
       <div class="right mobile_hidden">
         {% if collection.previous_product %}
-          <a href="{{ collection.previous_product }}">&larr; Prev</a>
+          <a class="next-prev" href="{{ collection.previous_product }}">&larr; Prev</a>
           {% if collection.next_product %}&nbsp; | &nbsp;{% endif %}
         {% endif %}
 
         {% if collection.next_product %}
-          <a href="{{collection.next_product}}">Next &rarr;</a>
+          <a class="next-prev" href="{{collection.next_product}}">Next &rarr;</a>
         {% endif %}
       </div>
 

@@ -23,10 +23,20 @@ RG.productPage = (function(doc, $, undefined) {
 		$(document).on('mouseover', '.selector-wrapper:first-child .single-option-selector', function() {
 			$(this).addClass('user-initiated');
 		});
+		$(document).on('click', 'a.next-prev', function() {
+			var $obj = $(this);
+	  		$obj.attr('href', $obj.attr('href') + '?color=default');
+		});
 	},
 	preSelectColorVariation = function() {
 		var colorQuery = getQueryVariable('color');
-		userSelectedColor = colorQuery.replace(/-/g,' ');
+		if (colorQuery != false) {
+			userSelectedColor = colorQuery.replace(/-/g,' ');
+		};
+		if (colorQuery == 'default' || colorQuery == false) {
+			var firstOption = $('.single-option-selector option:eq(0)').val();
+			userSelectedColor =  firstOption.replace(/-/g,' ');
+		};
 		$('.single-option-selector option').filter(function() { 
 		    return ($(this).val() == capitaliseFirstLetters(userSelectedColor));
 		}).prop('selected', true).trigger('change');
@@ -48,12 +58,16 @@ RG.productPage = (function(doc, $, undefined) {
 			$('.flexslider').flexslider({
 			    touch: false,
 			    pauseOnHover: true,
-			    controlNav: "thumbnails",
+			    controlNav: 'thumbnails',
 			    directionNav: true,
 			    slideshow: false,
 			    animation: 'slide',
 			    start: function(slider) {
-			      //console.log('inititated');
+			      if (!$('.flex-control-thumbs').children().length) {
+			      	$('.flex-direction-nav').hide();
+			      };
+			      $('.flexslider').css({ height: 'auto' });
+			      $('.loader').remove();
 			    }
 			});
 		}, 100);
@@ -98,6 +112,9 @@ RG.productPage = (function(doc, $, undefined) {
 	        if($(value).attr('data-title').toLowerCase() == optionValue.toLowerCase() && !$(value).hasClass('flex-active')) {
 	        	if ($('.user-initiated').length && $('body[data-select-position="0"]').length) {
 		        	userSelectedColor = $(value).attr('data-title');
+
+		        	$('.flexslider').css({ height: $('ul.slides li:first-child').find('img').height() + 'px' }).append('<div class="loader"></div>');
+
 		        	$('.flexslider').flexslider('destroy');
 		        	buildImageGallery();
 		        };

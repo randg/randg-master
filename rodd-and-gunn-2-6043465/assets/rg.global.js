@@ -75,6 +75,7 @@ RG.global = (function (doc, $, undefined) {
 
 		    	e.preventDefault();
 		    	$('#cart').mmenu().trigger("open").on("opened.mm", function() {
+		    		$('#cart').addClass('auto-open');
 			    	Shopify.addItem(variantId, quantity, updateCartUI);
 			    });
 		  	});
@@ -84,6 +85,27 @@ RG.global = (function (doc, $, undefined) {
 		  			colorObj = $obj.find('img:visible').attr('alt').toLowerCase(),
 		  			color = colorObj.replace(/ /g,'-');
 		  		$obj.attr('href', $obj.attr('href') + '?color=' + color);
+		  	});
+
+		  	$(document).on('click', '.cart_item a', function() {
+		  		var $obj = $(this),
+		  			colorObj = $obj.find('img').attr('data-color');
+	  			if (colorObj != null) {
+	  				var colorQuery = colorObj.toLowerCase(),
+	  					color = colorQuery.replace(/ /g,'-');
+	  				$obj.attr('href', $obj.attr('href') + '?color=' + color);
+	  			};
+		  	});
+
+		  	$(document).on('click', '.mm-menu a.close', function(e) {
+		  		$('#cart').mmenu().trigger("close");
+		  		e.preventDefault();
+		  	});
+
+		  	$(document).on('mouseover', '#cart', function() {
+		  		if ($(this).hasClass('auto-open')) {
+		  			$(this).removeClass('auto-open');
+		  		};
 		  	});
 
 		},
@@ -141,7 +163,10 @@ RG.global = (function (doc, $, undefined) {
 	    	$('#cart').mmenu().off("opened.mm");
 
 	    	setTimeout(function() {
-	    		$('#cart').mmenu().trigger("close");
+	    		if ($('.auto-open').length) {
+	    			$('#cart').mmenu().trigger("close");
+	    		};
+	
 	    	}, 3000);
 
 		},
