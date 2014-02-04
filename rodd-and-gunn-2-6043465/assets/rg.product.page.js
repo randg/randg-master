@@ -27,6 +27,22 @@ RG.productPage = (function(doc, $, undefined) {
 			var $obj = $(this);
 	  		$obj.attr('href', $obj.attr('href') + '?color=default');
 		});
+		$('.flex-control-thumbs img').click(function(e) { 
+		    var optionValue = $(this).attr('alt');
+		    var $selector = $('select.single-option-selector:contains(' + optionValue + ')');
+		    if ($selector.length && $selector.val() != optionValue) {
+		    	$selector.val(optionValue).trigger('change');
+		    }
+		});
+		if ($(window).width() >= 768) {
+		    $(".size-chart-overlay").fancybox({
+		        padding: 0,
+		        beforeShow: function(e) {
+		        	console.log($(this.element).data('type'));
+		        	$('#inlineChart').addClass($(this.element).data('type'));
+		        }
+		    });
+		};
 	},
 	preSelectColorVariation = function() {
 		var colorQuery = getQueryVariable('color');
@@ -40,9 +56,6 @@ RG.productPage = (function(doc, $, undefined) {
 		$('.single-option-selector option').filter(function() { 
 		    return ($(this).val() == capitaliseFirstLetters(userSelectedColor));
 		}).prop('selected', true).trigger('change');
-
-		//$('select[data-position="1"] option:selected').addClass('poop').trigger('change');
-
 	},
 	buildImageGallery = function() {
 

@@ -100,57 +100,25 @@ $(function() {
   $('.lightbox').fancybox();
   
   if ($(window).width() >= 959) {
-    $('.thumbnail').hover(function(){ $('.quick_shop', this).show(); }, function(){ $('.quick_shop', this).hide(); })
+
     var modal_width = '860px';
     if($(window).width() >= 1200 || $('html').hasClass('ie')) {
       modal_width = '1100px'
-    }
-    $(".quick_shop").fancybox({
-      width: modal_width,
-      height: 'auto',
-      autoSize: false,
-      padding: 0,
-      beforeShow: function(e) {
-        var $gallery = $('#' + $(this.element).data('gallery'));
-        var $product = $(this.element).data("fancybox-href");        
-        $("img", $gallery).unveil();
-        $gallery.flexslider({
-          touch: false,
-          pauseOnHover: true,
-          controlNav: "thumbnails",
-          directionNav: false,
-          {% if settings.product_slideshow_animation == 'none' or settings.product_slideshow_animation == 'zoom' %}
-            slideshow: false,
-          {% else %}
-            animation: "{{ settings.product_slideshow_animation }}",
-          {% endif %}
-          slideshowSpeed: {% if settings.slideshow_speed != blank %}{{ settings.slideshow_speed }}{% else %}10{% endif %}*1000 
-        });
-        $('.flex-control-thumbs img', $product).click(function(e) { 
-          var optionValue = $(this).attr('alt');
-          var $selector = $('select.single-option-selector:contains(' + optionValue + ')', $product);
-          if ($selector.length && $selector.val() != optionValue) {
-            $selector.val(optionValue).trigger('change');
-          }
-        });
-      }
-    });
-  } 
+    };
+
+  };
 
   if ($(window).width() >= 768) {
-    $(".fancybox").fancybox({padding: 0, wrapCSS: 'gallery'});
-    {% if settings.product_slideshow_animation == 'zoom' %}
-      
-    {% endif %}
-  }
 
-  $('.flex-control-thumbs img').click(function(e) { 
-    var optionValue = $(this).attr('alt');
-    var $selector = $('select.single-option-selector:contains(' + optionValue + ')');
-    if ($selector.length && $selector.val() != optionValue) {
-      $selector.val(optionValue).trigger('change');
-    }
-  });
+    $(".fancybox").fancybox({
+      width: modal_width,
+      padding: 0, 
+      wrapCSS: 'gallery'
+    });
+
+  };
+
+  
 
   $('#tag_filter').change(function() { window.location = $('#tag_filter option:selected').val(); });  
   $("#cart_form input[type='number']").change(function() {$("#cart_form").submit(); });

@@ -36,7 +36,11 @@
         <input type="number" min="1" size="2" class="quantity" name="quantity" id="quantity" value="1" />
       </div>
     {% endif %}
-    <div class="size-chart"><a data-type="{{ collection.title | escape | handleize }}" href="#">View size chart</a></div>
+
+    {% if product.type != 'Accessories' and product.type != 'Bag' %} 
+      <div class="size-chart"><a data-type="{{ product.type | escape | handleize }}" class="size-chart-overlay" href="#inlineChart">View size chart</a></div>
+    {% endif %}
+
     <div class="purchase clearfix {% if settings.display_product_quantity %}inline_purchase{% endif %}">
       {% if settings.cart_return == 'back' %}
         <input type="hidden" name="return_to" value="back" />
@@ -44,4 +48,888 @@
       <input type="submit" name="add" value="Add to Cart" class="action_button add_to_cart" />
     </div>  
   </form>
+
+  <div id="inlineChart">
+
+      <div class="tees">
+        <h2>MENS T-SHIRTS</h2>
+        <table> 
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td>CM</td>
+              <td>INCHES</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">Size</td>
+              <td>Chest</td>
+              <td>Chest</td>
+            </tr>
+            <tr>
+              <td class="first">XS</td>
+              <td>90-95</td>
+              <td>35-37</td>
+            </tr>
+            <tr>
+              <td class="first">SM</td>
+              <td>95-100</td>
+              <td>37-39</td>
+            </tr>
+            <tr>
+              <td class="first">ME</td>
+              <td>100-105</td>
+              <td>39-41</td>
+            </tr>
+            <tr>
+              <td class="first">LG</td>
+              <td>105-110</td>
+              <td>41-43</td>
+            </tr>
+            <tr>
+              <td class="first">XL</td>
+              <td>110-115</td>
+              <td>43-45</td>
+            </tr>
+            <tr>
+              <td class="first">XXL</td>
+              <td>115-122.5</td>
+              <td>45-48</td>
+            </tr>
+            <tr>
+              <td class="first">XXXL</td>
+              <td>122.5-130</td>
+              <td>48-51</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="polo">
+        <h2>MENS POLO SHIRTS</h2>
+        <p class="fit-title"><strong>Original Fit</strong></p>
+        <p>Our fuller fit shirt, designed for comfort and everyday wear</p>
+        <table> 
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td>CM</td>
+              <td>INCHES</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">Size</td>
+              <td>Chest</td>
+              <td>Chest</td>
+            </tr>
+            <tr>
+              <td class="first">SM</td>
+              <td>95-100</td>
+              <td>37-39</td>
+            </tr>
+            <tr>
+              <td class="first">ME</td>
+              <td>100-105</td>
+              <td>39-41</td>
+            </tr>
+            <tr>
+              <td class="first">LG</td>
+              <td>105-110</td>
+              <td>41-43</td>
+            </tr>
+            <tr>
+              <td class="first">XL</td>
+              <td>110-115</td>
+              <td>43-45</td>
+            </tr>
+            <tr>
+              <td class="first">XXL</td>
+              <td>115-122.5</td>
+              <td>45-48</td>
+            </tr>
+            <tr>
+              <td class="first">XXXL</td>
+              <td>122.5-130</td>
+              <td>48-51</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="fit-title"><strong>Slim Fit</strong></p>
+        <p>Fitted across the chest and shoulder for a modern look</p>
+        <table> 
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td>CM</td>
+              <td>INCHES</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">Size</td>
+              <td>Chest</td>
+              <td>Chest</td>
+            </tr>
+            <tr>
+              <td class="first">SM</td>
+              <td>90-95</td>
+              <td>35-37</td>
+            </tr>
+            <tr>
+              <td class="first">ME</td>
+              <td>95-100</td>
+              <td>37-39</td>
+            </tr>
+            <tr>
+              <td class="first">LG</td>
+              <td>100-105</td>
+              <td>39-41</td>
+            </tr>
+            <tr>
+              <td class="first">XL</td>
+              <td>105-110</td>
+              <td>41-43</td>
+            </tr>
+            <tr>
+              <td class="first">XXL</td>
+              <td>110-115</td>
+              <td>43-45</td>
+            </tr>
+            <tr>
+              <td class="first">XXXL</td>
+              <td>115-122.5</td>
+              <td>45-48</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="blazer">
+        <h2>MENS TAILORED BLAZERS</h2>
+        <p class="fit-title"><strong>Original Fit</strong></p>
+        <p>Our fuller fit shirt, designed for comfort and everyday wear</p>
+        <table> 
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td>CM</td>
+              <td>INCHES</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">Size</td>
+              <td>Chest</td>
+              <td>Chest</td>
+            </tr>
+            <tr>
+              <td class="first">XS</td>
+              <td>90-95</td>
+              <td>35-37</td>
+            </tr>
+            <tr>
+              <td class="first">SM</td>
+              <td>95-100</td>
+              <td>37-39</td>
+            </tr>
+            <tr>
+              <td class="first">ME</td>
+              <td>100-105</td>
+              <td>39-41</td>
+            </tr>
+            <tr>
+              <td class="first">LG</td>
+              <td>105-110</td>
+              <td>41-43</td>
+            </tr>
+            <tr>
+              <td class="first">XL</td>
+              <td>110-115</td>
+              <td>43-45</td>
+            </tr>
+            <tr>
+              <td class="first">XXL</td>
+              <td>115-122.5</td>
+              <td>45-48</td>
+            </tr>
+            <tr>
+              <td class="first">XXXL</td>
+              <td>122.5-130</td>
+              <td>48-51</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="fit-title"><strong>Slim Fit</strong></p>
+        <p>Fitted across the chest and shoulder for a modern look</p>
+        <table> 
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td>CM</td>
+              <td>INCHES</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">Size</td>
+              <td>Chest</td>
+              <td>Chest</td>
+            </tr>
+            <tr>
+              <td class="first">XS</td>
+              <td>88-93</td>
+              <td>34-36</td>
+            </tr>
+            <tr>
+              <td class="first">SM</td>
+              <td>93-98</td>
+              <td>36-38</td>
+            </tr>
+            <tr>
+              <td class="first">ME</td>
+              <td>98-103</td>
+              <td>38-40</td>
+            </tr>
+            <tr>
+              <td class="first">LG</td>
+              <td>103-108</td>
+              <td>40-42</td>
+            </tr>
+            <tr>
+              <td class="first">XL</td>
+              <td>108-113</td>
+              <td>42-44</td>
+            </tr>
+            <tr>
+              <td class="first">XXL</td>
+              <td>113-120.5</td>
+              <td>44-46</td>
+            </tr>
+            <tr>
+              <td class="first">XXXL</td>
+              <td>120.5-128</td>
+              <td>46-49</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="outerwear">
+        <h2>MENS OUTERWEAR</h2>
+        <table> 
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td>CM</td>
+              <td>INCHES</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">Size</td>
+              <td>Chest</td>
+              <td>Chest</td>
+            </tr>
+            <tr>
+              <td class="first">XS</td>
+              <td>90-95</td>
+              <td>35-37</td>
+            </tr>
+            <tr>
+              <td class="first">SM</td>
+              <td>95-100</td>
+              <td>37-39</td>
+            </tr>
+            <tr>
+              <td class="first">ME</td>
+              <td>100-105</td>
+              <td>39-41</td>
+            </tr>
+            <tr>
+              <td class="first">LG</td>
+              <td>105-110</td>
+              <td>41-43</td>
+            </tr>
+            <tr>
+              <td class="first">XL</td>
+              <td>110-115</td>
+              <td>43-45</td>
+            </tr>
+            <tr>
+              <td class="first">XXL</td>
+              <td>115-122.5</td>
+              <td>45-48</td>
+            </tr>
+            <tr>
+              <td class="first">XXXL</td>
+              <td>122.5-130</td>
+              <td>48-51</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="jean">
+        <h2>MENS JEANS</h2>
+        <table> 
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td colspan="3">CM</td>
+              <td colspan="3">INCHES</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">Size</td>
+              <td>Waist</td>
+              <td>Inseam Reg Leg</td>
+              <td>Inseam Long Leg</td>
+              <td>Waist</td>
+              <td>Inseam Reg Leg</td>
+              <td>Inseam Long Leg</td>
+            </tr>
+            <tr>
+              <td class="first">30</td>
+              <td>76</td>
+              <td>82</td>
+              <td>86</td>
+              <td>30</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">32</td>
+              <td>81</td>
+              <td>82</td>
+              <td>86</td>
+              <td>32</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">33</td>
+              <td>84</td>
+              <td>82</td>
+              <td>86</td>
+              <td>33</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">34</td>
+              <td>86</td>
+              <td>82</td>
+              <td>86</td>
+              <td>34</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">35</td>
+              <td>89</td>
+              <td>82</td>
+              <td>86</td>
+              <td>35</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">36</td>
+              <td>91</td>
+              <td>82</td>
+              <td>86</td>
+              <td>36</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">38</td>
+              <td>96</td>
+              <td>82</td>
+              <td>86</td>
+              <td>38</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">40</td>
+              <td>101</td>
+              <td>82</td>
+              <td>86</td>
+              <td>40</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">42</td>
+              <td>106</td>
+              <td>82</td>
+              <td>86</td>
+              <td>42</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">44</td>
+              <td>111</td>
+              <td>82</td>
+              <td>86</td>
+              <td>44</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pant">
+        <h2>MENS PANTS</h2>
+        <table> 
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td colspan="3">CM</td>
+              <td colspan="3">INCHES</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">Size</td>
+              <td>Waist</td>
+              <td>Inseam Reg Leg</td>
+              <td>Inseam Long Leg</td>
+              <td>Waist</td>
+              <td>Inseam Reg Leg</td>
+              <td>Inseam Long Leg</td>
+            </tr>
+            <tr>
+              <td class="first">30</td>
+              <td>76</td>
+              <td>82</td>
+              <td>86</td>
+              <td>30</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">32</td>
+              <td>81</td>
+              <td>82</td>
+              <td>86</td>
+              <td>32</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">33</td>
+              <td>84</td>
+              <td>82</td>
+              <td>86</td>
+              <td>33</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">34</td>
+              <td>86</td>
+              <td>82</td>
+              <td>86</td>
+              <td>34</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">35</td>
+              <td>89</td>
+              <td>82</td>
+              <td>86</td>
+              <td>35</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">36</td>
+              <td>91</td>
+              <td>82</td>
+              <td>86</td>
+              <td>36</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">38</td>
+              <td>96</td>
+              <td>82</td>
+              <td>86</td>
+              <td>38</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">40</td>
+              <td>101</td>
+              <td>82</td>
+              <td>86</td>
+              <td>40</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">42</td>
+              <td>106</td>
+              <td>82</td>
+              <td>86</td>
+              <td>42</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">44</td>
+              <td>111</td>
+              <td>82</td>
+              <td>86</td>
+              <td>44</td>
+              <td>32</td>
+              <td>34</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="shirt">
+        <h2>Mens Shirts</h2>
+        <p class="fit-title"><strong>Original Fit</strong></p>
+        <p>Our fuller fit shirt, designed for comfort and everyday wear</p>
+        <table> 
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td colspan="3">CM</td>
+              <td colspan="3">INCHES</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">Size</td>
+              <td>Chest</td>
+              <td>Neck</td>
+              <td>Sleeve Length</td>
+              <td>Chest</td>
+              <td>Neck</td>
+              <td>Sleeve Length</td>
+            </tr>
+            <tr>
+              <td class="first">SM</td>
+              <td>95-100</td>
+              <td>39</td>
+              <td>87.5</td>
+              <td>37-39</td>
+              <td>15.5</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">ME</td>
+              <td>100-105</td>
+              <td>40</td>
+              <td>89.5</td>
+              <td>39-41</td>
+              <td>16</td>
+              <td>35</td>
+            </tr>
+            <tr>
+              <td class="first">LG</td>
+              <td>104-110</td>
+              <td>42</td>
+              <td>92</td>
+              <td>41-43</td>
+              <td>16.5</td>
+              <td>36</td>
+            </tr>
+            <tr>
+              <td class="first">XL</td>
+              <td>110-115</td>
+              <td>43</td>
+              <td>94</td>
+              <td>43-45</td>
+              <td>17</td>
+              <td>37</td>
+            </tr>
+            <tr>
+              <td class="first">XXL</td>
+              <td>115-122.5</td>
+              <td>45</td>
+              <td>97</td>
+              <td>45-48</td>
+              <td>17.75</td>
+              <td>38</td>
+            </tr>
+            <tr>
+              <td class="first">XXXL</td>
+              <td>122.5-130</td>
+              <td>47</td>
+              <td>100</td>
+              <td>48-51</td>
+              <td>18.5</td>
+              <td>39</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="fit-title"><strong>Slim Fit</strong></p>
+        <p>Fitted across the chest and shoulder for a modern look</p>
+        <table> 
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td colspan="3">CM</td>
+              <td colspan="3">INCHES</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">Size</td>
+              <td>Chest</td>
+              <td>Neck</td>
+              <td>Sleeve Length</td>
+              <td>Chest</td>
+              <td>Neck</td>
+              <td>Sleeve Length</td>
+            </tr>
+            <tr>
+              <td class="first">SM</td>
+              <td>90-95</td>
+              <td>38</td>
+              <td>85.5</td>
+              <td>35-37</td>
+              <td>15</td>
+              <td>33</td>
+            </tr>
+            <tr>
+              <td class="first">ME</td>
+              <td>95-100</td>
+              <td>39</td>
+              <td>87.5</td>
+              <td>37-39</td>
+              <td>15.5</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">LG</td>
+              <td>100-105</td>
+              <td>40</td>
+              <td>89.5</td>
+              <td>39-41</td>
+              <td>16</td>
+              <td>35</td>
+            </tr>
+            <tr>
+              <td class="first">XL</td>
+              <td>105-110</td>
+              <td>42</td>
+              <td>92</td>
+              <td>41-43</td>
+              <td>16.5</td>
+              <td>36</td>
+            </tr>
+            <tr>
+              <td class="first">XXL</td>
+              <td>110-117.5</td>
+              <td>44</td>
+              <td>94</td>
+              <td>43-46</td>
+              <td>17.25</td>
+              <td>37</td>
+            </tr>
+            <tr>
+              <td class="first">XXXL</td>
+              <td>117.5-125</td>
+              <td>46</td>
+              <td>97</td>
+              <td>46-49</td>
+              <td>18</td>
+              <td>38</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="shoe">
+        <h2>MENS SHOES</h2>
+        <table>
+          <thead>
+            <tr>
+              <td>Sizes</td>
+              <td>US</td>
+              <td>UK</td>
+              <td>EU</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">41</td>
+              <td>8</td>
+              <td>7</td>
+              <td>41</td>
+            </tr>
+            <tr>
+              <td class="first">42</td>
+              <td>9</td>
+              <td>8</td>
+              <td>42</td>
+            </tr>
+            <tr>
+              <td class="first">43</td>
+              <td>10</td>
+              <td>9</td>
+              <td>43</td>
+            </tr>
+            <tr>
+              <td class="first">44</td>
+              <td>11</td>
+              <td>10</td>
+              <td>44</td>
+            </tr>
+            <tr>
+              <td class="first">45</td>
+              <td>12</td>
+              <td>11</td>
+              <td>45</td>
+            </tr>
+            <tr>
+              <td class="first">46</td>
+              <td>13</td>
+              <td>12</td>
+              <td>46</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="short">
+        <h2>MENS SHORTS</h2>
+        <table>
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td>CM</td>
+              <td>INCHES</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">Size</td>
+              <td>Waist</td>
+              <td>Waist</td>
+            </tr>
+            <tr>
+              <td class="first">30</td>
+              <td>80</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td class="first">32</td>
+              <td>84</td>
+              <td>32</td>
+            </tr>
+            <tr>
+              <td class="first">33</td>
+              <td>86</td>
+              <td>33</td>
+            </tr>
+            <tr>
+              <td class="first">34</td>
+              <td>88</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="first">35</td>
+              <td>90</td>
+              <td>35</td>
+            </tr>
+            <tr>
+              <td class="first">36</td>
+              <td>92</td>
+              <td>36</td>
+            </tr>
+            <tr>
+              <td class="first">38</td>
+              <td>96</td>
+              <td>38</td>
+            </tr>
+            <tr>
+              <td class="first">40</td>
+              <td>100</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <td class="first">42</td>
+              <td>104</td>
+              <td>42</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="knit">
+        <h2>Mens Sweaters</h2>
+        <table> 
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td>CM</td>
+              <td>INCHES</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first">Size</td>
+              <td>Chest</td>
+              <td>Chest</td>
+            </tr>
+            <tr>
+              <td class="first">XS</td>
+              <td>90-95</td>
+              <td>35-37</td>
+            </tr>
+            <tr>
+              <td class="first">SM</td>
+              <td>95-100</td>
+              <td>37-39</td>
+            </tr>
+            <tr>
+              <td class="first">ME</td>
+              <td>100-105</td>
+              <td>39-41</td>
+            </tr>
+            <tr>
+              <td class="first">LG</td>
+              <td>105-110</td>
+              <td>41-43</td>
+            </tr>
+            <tr>
+              <td class="first">XL</td>
+              <td>110-115</td>
+              <td>43-45</td>
+            </tr>
+            <tr>
+              <td class="first">XXL</td>
+              <td>115-122.5</td>
+              <td>45-48</td>
+            </tr>
+            <tr>
+              <td class="first">XXXL</td>
+              <td>122.5-130</td>
+              <td>48-51</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+  </div>
+
 {% endif %}
