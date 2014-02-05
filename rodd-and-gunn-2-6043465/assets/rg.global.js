@@ -61,10 +61,6 @@ RG.global = (function (doc, $, undefined) {
 
 		// Sets Global click events for common objects 
 		events = function() {
-
-			//console.log('poop');
-
-			//$(document).off('click');
 			
 			RG.info.action = (hasTouch() ? 'tap' : 'click');
 
@@ -218,13 +214,13 @@ RG.global = (function (doc, $, undefined) {
 		getVariantId = function() {
 
 	  		var variantId = null,
-	  			colorVariant = $('.selector-wrapper:first-child').children('.single-option-selector').find(':selected').text(),
-		  		sizeVariant = $('.selector-wrapper:first-child').next('.selector-wrapper').children('.single-option-selector').find(':selected').text();
+	  			colorVariant = $('.selector-wrapper:eq(0)').children('.single-option-selector').find(':selected').text(),
+		  		sizeVariant = $('.selector-wrapper:eq(1)').children('.single-option-selector').find(':selected').text(),
+		  		lengthVariant = $('.selector-wrapper:eq(2)').children('.single-option-selector').find(':selected').text();
 	  		
 	  		$('.select > select').children('option').each(function() {
-	  			if ($(this).text() == colorVariant + ' / ' + sizeVariant) {
+	  			if ($(this).text() == colorVariant + ' / ' + sizeVariant || $(this).text() == colorVariant + ' / ' + sizeVariant + ' / ' + lengthVariant) {
 	  				variantId = $(this).val();
-	  				//console.log(variantId);
 	  			};
 	  		});
 	  		return variantId;
