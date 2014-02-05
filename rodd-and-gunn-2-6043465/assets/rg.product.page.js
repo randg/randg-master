@@ -177,7 +177,18 @@ RG.productPage = (function(doc, $, undefined) {
 	        } else {
 
 	        	$('.sold_out', $product).text('');
-		      	$('.current_price', $product).html('From ' + Shopify.formatMoney(selector.product.price_min, $('form.product_form', $product).data('money-format')) + ' to ' + Shopify.formatMoney(selector.product.price_max, $('form.product_form', $product).data('money-format')));
+
+	        	if (selector.product.price_varies) {
+		      		$('.current_price', $product).html('From ' + Shopify.formatMoney(selector.product.price_min, $('form.product_form', $product).data('money-format')) + ' to ' + Shopify.formatMoney(selector.product.price_max, $('form.product_form', $product).data('money-format')));
+		        } else {
+		      		$('.current_price', $product).html(Shopify.formatMoney(selector.product.price_min, $('form.product_form', $product).data('money-format')));
+		        };
+
+		      	//$('.current_price', $product).html('From ' + Shopify.formatMoney(selector.product.price_min, $('form.product_form', $product).data('money-format')) + ' to ' + Shopify.formatMoney(selector.product.price_max, $('form.product_form', $product).data('money-format')));
+		      	
+
+
+
 		      	$('.add_to_cart', $product).removeClass('disabled').removeAttr('disabled').val('Add to Cart');
 		      	Currency.convertAll(shopCurrency, cookieCurrency);
 		      	$notify_form.hide(); 
