@@ -166,6 +166,7 @@
   {% endif %}
 
   <ul class="all-images hidden">
+    <li data-title="default"></li>
     {% for image in product.images %}
         <li data-thumb="{{ image | product_img_url: 'large' }}" data-title="{{ image.alt | escape }}">
           <a href="{{ image | product_img_url: 'master' }}" class="fancybox" data-fancybox-group="{{ product.id }}" title="{{ image.alt | escape }}">

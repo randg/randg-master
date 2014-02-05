@@ -3,23 +3,13 @@
     // <![CDATA[  
       $(function() {    
         $product = $('#product-' + {{ product.id }});
+
         if($('.single-option-selector', $product).length == 0) {
           new Shopify.OptionSelectors("product-select-{{ product.id }}", { product: {{ product | json }}, onVariantSelected: RG.productPage.selectCallback });
-
-          
-
-          {% if product.available %}
-            {% assign found_one_in_stock = false %}
-            {% for variant in product.variants %}
-              {% if variant.available and found_one_in_stock == false %}
-                {% assign found_one_in_stock = true %}
-                {% for option in product.options %}
-                  $('.single-option-selector:eq(' + {{ forloop.index0 }} + ')', $product).val({{ variant.options[forloop.index0] | json }}).attr('data-position', {{ forloop.index0 }}).trigger('change');
-                {% endfor %}
-              {% endif %}
-            {% endfor %}
+          {% if product.available and product.options.size > 1 %}
+            Shopify.linkOptionSelectors({{ product | json }});
           {% endif %}
-        }
+        };
 
         $(document).on('mouseover', '.single-option-selector', function() {
           $('body').attr('data-select-position', $(this).attr('data-position'));
