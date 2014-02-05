@@ -493,6 +493,14 @@
         if (!$(this).hasClass('available') && $(this).is(':selected') && $(this).val() != 'default') {
           $(this).prop('selected', false);
         };
+        if ($(this).is(':disabled') && $(this).val() != 'default') {
+          var str = $(this).text();
+          if (str.indexOf('Out of stock') < 0) {
+            $(this).html($(this).text() + ' Out of stock');
+          };
+        } else if (!$(this).is(':disabled') && $(this).val() != 'default') {
+          $(this).html($(this).val());
+        };
       });
       
       selector.trigger('change');  
