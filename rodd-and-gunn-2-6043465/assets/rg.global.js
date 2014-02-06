@@ -64,6 +64,24 @@ RG.global = (function (doc, $, undefined) {
 			
 			RG.info.action = (hasTouch() ? 'tap' : 'click');
 
+			$(document).on('click', '.add_to_cart', function(e) {
+ 		  		var quantity = 1,
+ 		  			variantId = getVariantId(),
+ 		  			loader = '<li class="loader"></li>';
+ 
+ 		  		if (!$('#cart ul li[data-id="' + variantId + '"]').length) {
+ 			  		$('#cart ul li:first-child').after(loader);
+ 			  	} else {
+ 			  		$('#cart ul li[data-id="' + variantId + '"]').addClass('loader');
+ 			  	};
+ 
+ 		    	e.preventDefault();
+ 		    	$('#cart').mmenu().trigger("open").on("opened.mm", function() {
+ 		    		$('#cart').addClass('auto-open');
+ 			    	Shopify.addItem(variantId, quantity, updateCartUI);
+ 			    });
+ 		  	});
+
 		  	$(document).one('click', 'a.image-wrap', function() {
 		  		var queryExists = getQueryVariable('color'),
 		  			$obj = $(this),
@@ -264,9 +282,7 @@ RG.global = (function (doc, $, undefined) {
 		
 	// Public functions
 	return {
-		init : init,
-		getVariantId : getVariantId,
-		updateCartUI: updateCartUI
+		init : init
 	};
 
 })(document, jQuery);
