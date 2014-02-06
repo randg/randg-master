@@ -10,6 +10,7 @@ RG.productPage = (function(doc, $, undefined) {
 
 	$container = null,
 	userSelectedColor = null,
+	galleryHeight = null,
 	
 	init = function() {
 		$container = $('#productPage');
@@ -94,6 +95,10 @@ RG.productPage = (function(doc, $, undefined) {
 		    }
 		});
 
+		setTimeout(function() {
+			galleryHeight = $('ul.slides li:first-child').find('img').height();
+		}, 1000);
+
 	},
 	// Check if their is a query on page load.
 	getQueryVariable = function(variable) { 
@@ -141,7 +146,7 @@ RG.productPage = (function(doc, $, undefined) {
 	        if($(value).attr('data-title').toLowerCase() == optionValue.toLowerCase() && !$(value).hasClass('flex-active')) {
 	        	if ($('.user-initiated').length && $('body[data-select-position="0"]').length) {
 		        	userSelectedColor = $(value).attr('data-title');
-		        	$('.flexslider').css({ height: $('ul.slides li:first-child').find('img').height() + 'px' }).append('<div class="loader"></div>');
+		        	$('.flexslider').css({ height: galleryHeight + 'px' }).append('<div class="loader"></div>');
 		        	$('.flexslider').flexslider('destroy');    	
 		        	buildImageGallery();
 		        };
@@ -186,9 +191,6 @@ RG.productPage = (function(doc, $, undefined) {
 
 		      	//$('.current_price', $product).html('From ' + Shopify.formatMoney(selector.product.price_min, $('form.product_form', $product).data('money-format')) + ' to ' + Shopify.formatMoney(selector.product.price_max, $('form.product_form', $product).data('money-format')));
 		      	
-
-
-
 		      	$('.add_to_cart', $product).removeClass('disabled').removeAttr('disabled').val('Add to Cart');
 		      	Currency.convertAll(shopCurrency, cookieCurrency);
 		      	$notify_form.hide(); 
