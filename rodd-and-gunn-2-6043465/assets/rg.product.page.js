@@ -96,6 +96,10 @@ RG.productPage = (function(doc, $, undefined) {
 			galleryHeight = $('ul.slides li:first-child').find('img').height();
 		}, 1000);
 
+		if (RG.info.mobile) {
+			$('html, body').animate({ scrollTop: $("#productGallery").offset().top + 'px' }, 750 );
+		};
+
 	},
 	// Check if their is a query on page load.
 	getQueryVariable = function(variable) { 

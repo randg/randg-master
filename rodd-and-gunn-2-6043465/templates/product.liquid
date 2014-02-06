@@ -37,7 +37,7 @@
   	<div class="section product_section clearfix">
   	  
     	 {% if settings.product_images_position == 'left' %}             
-         <div class="{% if settings.product_sidebar %}four{% else %}six{% endif %} columns product-gallery {% if product-images == blank %}{% if settings.product_images_position == 'left' %}alpha{% else %}omega{% endif %}{% endif %}">
+         <div class="{% if settings.product_sidebar %}four{% else %}six{% endif %} columns product-gallery {% if product-images == blank %}{% if settings.product_images_position == 'left' %}alpha{% else %}omega{% endif %}{% endif %}" id="productGallery">
             <h1 class="product_name desktop-hidden" itemprop="name">{{ product.title }}</h1>
            {% include 'product-images' %}
           </div>

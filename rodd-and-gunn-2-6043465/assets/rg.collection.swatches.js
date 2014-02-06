@@ -89,7 +89,7 @@ RG.collectionPage = (function(doc, $, undefined) {
 		$(document).on('click', '.filter-helper a', function(e) {
 			var $obj = $(this);
 			e.preventDefault();
-			$.scrollTo('#productList');
+			$('html, body').animate({ scrollTop: $("#productList").offset().top - 40 + 'px' }, 750 );
 			$obj.parent().remove();
 		});
 
