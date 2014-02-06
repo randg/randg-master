@@ -236,6 +236,8 @@ RG.collectionPage = (function(doc, $, undefined) {
 			$('.thumbnail:visible:nth-child(4n)').addClass('alpha');
 		};
 
+		$("img", '.product-listing').unveil();
+
 	},
 	filterHelperBack = function() {
 		$('body').append('<div class="filter-helper-back"><a href="#">Back to filter</a></div>');
