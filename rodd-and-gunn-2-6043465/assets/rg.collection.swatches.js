@@ -89,7 +89,18 @@ RG.collectionPage = (function(doc, $, undefined) {
 		$(document).on('click', '.filter-helper a', function(e) {
 			var $obj = $(this);
 			e.preventDefault();
-			$('html, body').animate({ scrollTop: $("#productList").offset().top - 40 + 'px' }, 750 );
+			$('html, body').animate({ scrollTop: $("#productList").offset().top - 40 + 'px' }, 750, function() {
+				if (!$('.filter-helper-back').length) {
+					//filterHelperBack();
+				};
+			});
+			$obj.parent().remove();
+		});
+
+		$(document).on('click', '.filter-helper-back a', function(e) {
+			var $obj = $(this);
+			e.preventDefault();
+			$('html, body').animate({ scrollTop: $("#refineBar").offset().top - 40 + 'px' }, 750);
 			$obj.parent().remove();
 		});
 
@@ -225,6 +236,9 @@ RG.collectionPage = (function(doc, $, undefined) {
 			$('.thumbnail:visible:nth-child(4n)').addClass('alpha');
 		};
 
+	},
+	filterHelperBack = function() {
+		$('body').append('<div class="filter-helper-back"><a href="#">Back to filter</a></div>');
 	},
 	filterHelper = function($obj) {
 		var resultsTotal = $('.thumbnail:visible').length;
