@@ -38,15 +38,12 @@ RG.productPage = (function(doc, $, undefined) {
 		    	$selector.val(optionValue).trigger('change');
 		    }
 		});
-		if ($(window).width() >= 768) {
-		    $(".size-chart-overlay").fancybox({
-		        padding: 0,
-		        beforeShow: function(e) {
-		        	//console.log($(this.element).data('type'));
-		        	$('#inlineChart').addClass($(this.element).data('type'));
-		        }
-		    });
-		};
+	    $(".size-chart-overlay").fancybox({
+	        padding: 0,
+	        beforeShow: function(e) {
+	        	$('#inlineChart').addClass($(this.element).data('type'));
+	        }
+	    });
 	},
 	preSelectColorVariation = function() {
 		var colorQuery = getQueryVariable('color');
