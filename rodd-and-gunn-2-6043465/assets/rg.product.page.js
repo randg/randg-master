@@ -46,6 +46,81 @@ RG.productPage = (function(doc, $, undefined) {
 		        }
 		    });
 		};
+
+		$('select[data-position="1"]').on('change', function() {
+			if ($('body').hasClass('option-one')) {
+				$('.product_form').validate().form();
+			} else {
+				$('body').addClass('option-one');
+				$('select[data-position="2"]').on('change', function() {
+					if ($('body').hasClass('option-two')) {
+						$('.product_form').validate().form();
+					} else {
+						$('body').addClass('option-two');
+					};
+				});
+			};
+		});
+
+		$('.product_form').validate({
+			rules: {
+				sizeSelect: {
+					notDefaultSizeText: true,
+					required: true
+				},
+				leglengthSelect: {
+					notDefaultLengthText: true,
+					required: true 
+				}
+			},
+			messages: {
+				sizeSelect: {
+					notDefaultSizeText: "Please select a size",
+					required: "Please select a size"
+				},
+				leglengthSelect: {
+					notDefaultLengthText: "Please select a leg length",
+					required: "Please select a leg length"
+				}
+			},
+			submitHandler: function(form) {
+				var quantity = 1,
+		  			variantId = RG.global.getVariantId(), 
+		  			loader = '<li class="loader"></li>';
+
+		  		if (!$('#cart ul li[data-id="' + variantId + '"]').length) {
+			  		$('#cart ul li:first-child').after(loader);
+			  	} else {
+			  		$('#cart ul li[data-id="' + variantId + '"]').addClass('loader');
+			  	};
+
+		    	$('#cart').mmenu().trigger("open").on("opened.mm", function() {
+		    		$('#cart').addClass('auto-open');
+			    	Shopify.addItem(variantId, quantity, RG.global.updateCartUI);
+			    });
+		        return false;
+		    }
+		});
+
+		$('.product_form').removeAttr("novalidate");
+
+		$.validator.addMethod('notDefaultSizeText', notDefaultSizeText);
+		$.validator.addMethod('notDefaultLengthText', notDefaultLengthText);
+
+	},
+	notDefaultSizeText = function(value, element) {
+        if (value == 'default' || value == 'Select a size') {
+            return false;
+        } else {
+        	return true;
+        };
+	},
+	notDefaultLengthText = function(value, element) {
+        if (value == 'default' || value == 'Select a leg length') {
+            return false;
+        } else {
+        	return true;
+        };
 	},
 	preSelectColorVariation = function() {
 		var colorQuery = getQueryVariable('color');
