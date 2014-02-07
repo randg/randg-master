@@ -87,16 +87,16 @@ RG.productPage = (function(doc, $, undefined) {
 		      if (!$('.flex-control-thumbs').children().length) {
 		      	$('.flex-direction-nav').hide();
 		      };
-		      $('.flexslider').css({ height: 'auto' });
+		      $('.flexslider').css({ height: 'auto' }); 
 		      $('.loader').remove();
-		    }
+		    } 
 		});
 
 		setTimeout(function() {
 			galleryHeight = $('ul.slides li:first-child').find('img').height();
 		}, 1000);
 
-		if (RG.info.mobile) {
+		if (RG.info.mobile && $('.user-initiated').length) {
 			$('html, body').animate({ scrollTop: $("#productGallery").offset().top + 'px' }, 750 );
 		};
 
