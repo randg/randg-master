@@ -22,6 +22,7 @@ RG.collectionPage = (function(doc, $, undefined) {
 		if ($container.length) {
 			events();
 			colorSwatches();
+			filterHistory();
 			if (RG.info.mobile) {
 				mobileLayout();
 			};
@@ -57,6 +58,7 @@ RG.collectionPage = (function(doc, $, undefined) {
 			var $obj = $(this);
 			$obj.removeClass('rotate');
 			clearTimeout(rotateTimer);
+			$.cookie('positionTop', $('body').scrollTop());
 		});
 
 		$(document).on('click', '.refinebar ul li input', function() {
@@ -107,6 +109,26 @@ RG.collectionPage = (function(doc, $, undefined) {
 			$obj.parent().remove();
 		});
 
+	},
+	filterHistory = function() {
+		var backButton = false;
+		$('.refine-list-wrapper input[type="checkbox"]').each(function() {
+			if ($(this).is(':checked')) {
+				var $obj = $(this),
+					listID = $obj.parents('.refine-list'),
+					listIndex = $obj.parents('.refine-list').index(),
+					removeID = false;
+				filterCollection($obj, removeID, listIndex);
+				backButton = true;
+			};
+		});
+		if (backButton) {
+			var cookieValue = $.cookie('positionTop');
+			$('body').css({ scrollTop: cookieValue + 'px' }, 750);
+		};
+		if ($('.filter-helper a').length) {
+			$('.filter-helper a').parent().remove();
+		};
 	},
 	filterCollection = function($obj, removeID, listIndex) {
 
