@@ -169,7 +169,7 @@
     <li data-title="default"></li>
     {% for image in product.images %}
         <li data-thumb="{{ image | product_img_url: 'large' }}" data-title="{{ image.alt | escape }}">
-          <a href="{{ image | product_img_url: 'master' }}" class="fancybox" data-fancybox-group="{{ product.id }}" title="{{ image.alt | escape }}">
+          <a href="{{ image | product_img_url: 'master' }}" class="fancybox" data-fancybox-group="{{ image.alt }}" title="{{ image.alt | escape }}">
             <img src="{{ 'loader.gif' | asset_url }}" data-src="{{ image | product_img_url: 'large' }}" data-src-retina="{{ image | product_img_url: 'grande' }}" alt="{{ image.alt | escape }}" {% if product-images == blank %}itemprop="image"{% endif %} data-cloudzoom="zoomImage: '{{ image | product_img_url: 'master' }}', tintColor: '{{ settings.shop_bg_color }}', zoomPosition: 'inside', zoomOffsetX: 0" class="cloudzoom" />
           </a>
         </li>
