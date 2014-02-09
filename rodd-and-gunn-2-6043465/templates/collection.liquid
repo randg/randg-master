@@ -1,4 +1,4 @@
-{% paginate collection.products by settings.pagination_limit %}
+{% paginate collection.products by 100 %}
 
 <div class="gutter" id="collectionPage">
 
@@ -13,10 +13,6 @@
         &nbsp; / &nbsp;
         <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}" title="{{ tag | escape }}" itemprop="url"><span itemprop="title">{{ tag }}</span></a></span>       
       {% endfor %}
-    {% endif %}
-  
-    {% if paginate.pages != 0 %}      
-      &nbsp; / &nbsp; Page {{ paginate.current_page }} of {{ paginate.pages }}
     {% endif %}
 
     {% if settings.collection_tags %}

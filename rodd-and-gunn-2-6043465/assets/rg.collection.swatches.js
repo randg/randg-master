@@ -249,7 +249,7 @@ RG.collectionPage = (function(doc, $, undefined) {
 			filterHelper($obj);
 		};
 
-		$('.true:first-child').addClass('alpha');
+		$('.true:first').addClass('alpha');
 		$('.product-listing div.true:not(".false")').each(function (i) {
 			if (!$(this).hasClass('false')) {
 				if (RG.info.mobile) {
