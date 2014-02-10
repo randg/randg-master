@@ -26,7 +26,7 @@
     <form action="/cart" method="post" id="cart_form">        
       <div class="section clearfix">  
         <div class="ten columns cart_items">
-          <h4 class="title">Products</h4>
+          <h4 class="title">Items in your cart:</h4>
 
           {% for item in cart.items %}
             <div class="five columns alpha">
@@ -59,7 +59,7 @@
                       {% assign index = forloop.index0 %}
                       {% assign found_image = true %}
                       {% assign variantColor = item.variant.options[option_index] %}
-                      <a href="{{ image }}" title="{{ item.title | escape }}">
+                      <a href="{{ item.product.url }}" title="{{ item.title | escape }}">
                         <img src="{{ image | product_img_url: 'compact' }}" alt="{{ item.variant.options[option_index] | escape }}" class="{{ image.alt }}" />
                       </a>
                     {% endif %}
@@ -108,7 +108,7 @@
           {% endfor %}
         </div>
 
-        <div class="five columns offset-by-one">
+        <div class="five columns offset-by-one cart-subtotal">
           <h4 class="subtotal">
             Subtotal
           </h4>
