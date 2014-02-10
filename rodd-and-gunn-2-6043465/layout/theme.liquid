@@ -3,7 +3,7 @@
 <!--[if IE 7]> <html class="no-js ie7 oldie" lang="en"> <![endif]-->
 <!--[if IE 8]> <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> 
-<html lang="en"> <!--<![endif]-->
+<html lang="en" class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="cleartype" content="on">
@@ -272,6 +272,7 @@
             {% endif %}
             <li>
               <a href="#cart" class="icon-cart cart-button">{% if cart.item_count > 0 %}<div class="cart_count">{{ cart.item_count }}</div>{% endif %} <span>Cart</span></a>
+              <a href="/cart" class="icon-cart cart-button no-js-hidden">{% if cart.item_count > 0 %}<div class="cart_count">{{ cart.item_count }}</div>{% endif %} <span>Cart</span></a>
             </li>
           </ul>
         </div>
