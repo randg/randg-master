@@ -83,9 +83,9 @@
 
     <!--[if lte IE 8]>
       <link href="{{ '2.css' | asset_url }}" rel="stylesheet" type="text/css" />
-      <link href="{{ '3.css' | asset_url }}" type="text/css" />
-      <link href="{{ '4.css' | asset_url }}" type="text/css" />
-      <link href="{{ '5.css' | asset_url }}" type="text/css" />
+      <link href="{{ '3.css' | asset_url }}" rel="stylesheet" type="text/css" />
+      <link href="{{ '4.css' | asset_url }}" rel="stylesheet" type="text/css" />
+      <link href="{{ '5.css' | asset_url }}" rel="stylesheet" type="text/css" />
     <![endif]-->
 
     {{ 'jquery.mmenu.css' | asset_url | stylesheet_tag }}
@@ -409,7 +409,7 @@
     <script>window.jQuery || document.write("<script src='{{ "jquery-1.10.2.min.js" | asset_url }}'>\x3C/script>")</script>
 
     <!-- Javascript Libraries --> 
-    {{ 'touch.jquery.js' | asset_url | script_tag }}     
+    
     {{ 'jquery.mmenu.min.js' | asset_url | script_tag }}    
     {{ 'option_selection.js' | shopify_asset_url | script_tag }}
     {{ 'jquery.flexslider.js' | asset_url | script_tag }}

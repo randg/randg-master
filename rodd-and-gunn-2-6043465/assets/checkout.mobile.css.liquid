@@ -1,0 +1,242 @@
+body { background-color:#fff; text-shadow:0; }
+#products h2 { display:none; }
+table.form { padding:0; }
+label { padding:10px 0; font-size:12px; color:#404040; }
+
+table#thumbs { width:100%; font-size:14px; margin:50px 0 0; }
+table#thumbs td { background:none; background-color:transparent; padding:5px 0; }
+#thumbs div.image { border-width:0; padding:0; }
+#thumbs div.details { width:auto; }
+#thumbs span.plist-line-price { display:block; }
+#thumbs span { color:#404040; padding:0 0 3px; font-size:12px; }
+#thumbs h3 { color:#404040; }
+
+#steps { background-color:#f3efdf; top:70px; font-style:normal; left:10px; right:10px; width:auto; margin:0; opacity:1; color:#404040; text-align:center; font-size:15px; font-weight:500; text-transform:capitalize; padding:10px 0; }
+#wallet { padding:0; }
+#content { padding:0 10px; margin:15px 0 0; }
+
+table#billing td { float:right; font-size:13px; width:100%; max-width:55%!important; }
+table#billing td.lbl { width:auto !important; float:left; }
+table#billing td input { width:100% !important; border:1px solid #ccc; padding:5px 0; text-indent:10px; margin:0 0 10px; }
+table#billing td select { margin:0 0 10px; width:100% !important; } 
+table#billing .multiple_address_selection td { width:auto !important; margin:0 0 10px; max-width:100% !important; float:none; }
+table#billing .multiple_address_selection td select { width:100% !important; padding:0 5%; display:block; }
+table#billing #billing-is-shipping td input { float:left; }
+table#billing #billing-is-shipping td label { float:left; margin:0 0 0 10px; width:80%; }
+
+table#shipping { margin:0; }
+table#shipping td { float:right; font-size:13px; width:100%; max-width:55%!important; }
+table#shipping td.lbl { width:auto !important; float:left; }
+table#shipping td input { width:100% !important; border:1px solid #ccc; padding:5px 0; text-indent:10px; margin:0 0 10px; }
+table#shipping td select { margin:0 0 10px; width:100% !important; } 
+table#shipping .multiple_address_selection td { width:auto !important; margin:0 0 10px; max-width:100% !important; float:none; }
+table#shipping .multiple_address_selection td select { width:100% !important; padding:0 5%; display:block; }
+
+#footer { padding:20px 10px; border:solid #f3efdf; border-width:1px 0 0; background-color:transparent !important; }
+#footer p { text-align:center; color:#404040; font-family:Arial, Sans-serif; font-size:11px; }
+
+#buttons { background:transparent; margin:0; }
+#customer-login-link,
+#buttons input, 
+#buttons a,
+input.submit-btn { 
+    background: {{ settings.btn_color }};
+    color: {{ settings.btn_text_color }};
+    border: 0;
+    padding: 7px 20px;
+    text-align: center;
+    cursor: pointer;
+    {% if settings.nav_typeface_method == "google_webfonts" %}
+      font-family: "{{ settings.nav_google_webfont_font | replace: '+', ' ' }}";
+    {% else %}
+      font-family: {{ settings.nav_websafe_font | replace: '+', ' '  }};
+    {% endif %}  
+    font-weight: {{ settings.button_weight }};      
+    font-size: {{ settings.button_font_size }}px;
+    text-transform: {{ settings.button_font_style }};
+    display: inline-block;
+    -webkit-transition: all 200ms ease 0s;
+    -moz-transition: all 200ms ease 0s;
+    -ms-transition: all 200ms ease 0s;
+    -o-transition: all 200ms ease 0s;
+    transition: all 200ms ease 0s;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-border-radius: 3px;
+     -webkit-border-radius: 3px;
+     border-radius: 3px; 
+ } 
+
+#buttons a { background:#ede9dd; color:#404040; text-decoration:none; margin:0 0 0 15px; }
+
+#email label, #addresses h3, .group h3 { font-size:18px !important; border:solid #f3efdf; border-width:0 0 1px; background:transparent; {% if settings.headline_typeface_method == "google_webfonts" %}
+      font-family: "{{ settings.headline_google_webfont_font | replace: '+', ' ' }}";
+    {% else %}
+      font-family: {{ settings.headline_websafe_font | replace: '+', ' ' }};
+    {% endif %}  
+    font-weight: {{ settings.headline_weight }};    
+    text-transform: {{ settings.headline_font_style}};
+    color: #404040;
+    display:block;
+    letter-spacing: {{ settings.headline_letter_spacing }}px;
+    text-rendering: optimizeLegibility;
+    padding:0;
+}
+
+.group { background-color:transparent!important; }
+.group p { padding:0 0 10px!important; }
+#cancel-purchase a { margin:15px 0 0; }
+
+#payment-methods li { background-color:#404040!important; background:none; -webkit-border-radius: 0px;
+-moz-border-radius: 0px;
+border-radius: 0px; color:#fff; margin:10px 0!important; }
+#payment-methods li label { color:#fff!important; }
+
+#customer-login-link { text-decoration:none; font-size:13px!important; margin:0 0 0 10px; display:inline; padding:7px 10px; }
+
+#addresses { background:transparent; }
+#addresses h3 { margin:0 0 15px; }
+
+#email { color:#404040; margin:0 0 15px; background:transparent; }
+#email label { margin:0 0 5px; }
+#email .sign-in-message { margin:0 0 25px; display:block; }
+h4.active-customer { padding:10px 0; color:#404040; line-height:30px; }
+
+#billing-is-shipping td { margin:0; border-width:0; background:transparent; color:#404040; }
+.gright { margin:20px 0 0; }
+
+#container { color:#404040; }
+#logo { display:block; padding:0; margin:10px auto; width:175px; height:47px; background-image:url('{{ "logo.png" | asset_url }}'); background-repeat:no-repeat; background-position:center center; background-size:100%; }
+#tagline { display:none; }
+
+#overview { padding:0 10px; }
+
+#thumbs div { float:left; margin:0 10px 0 0; }
+#thumbs td { width:100%; clear:both; margin:5px 0 0; padding:0 0 5px; overflow:hidden; border:solid #f3efdf; border-width:0 0 1px; }
+
+#cost { color:#404040; font-weight:bold; font-size:20px; text-align:center; background-color:#f3efdf; padding:15px 0; }
+
+#order_email { margin:10px 0!important; }
+
+
+@media only screen and (min-width: 480px) { 
+
+    body { background-color:#fff; }
+    #products h2 { display:none; }
+    table.form { padding:0; }
+    label { padding:10px 0; font-size:12px; color:#404040; }
+
+    table#thumbs { width:100%; font-size:14px; margin:50px 0 0; }
+    table#thumbs td { background:none; background-color:transparent; padding:5px 0; }
+    #thumbs div.image { border-width:0; padding:0; }
+    #thumbs div.details { width:auto !important; }
+    #thumbs span.plist-line-price { display:block; }
+    #thumbs span { color:#404040; padding:0 0 3px; font-size:12px; }
+    #thumbs h3 { color:#404040; }
+
+    #steps { background-color:#f3efdf; top:70px; font-style:normal; left:10px!important; right:10px; width:auto; margin:0; opacity:1; color:#404040; text-align:center; font-size:15px; font-weight:500; text-transform:capitalize; padding:10px 0; }
+    #wallet { padding:0; }
+    #content { padding:0 10px; margin:15px 0 0; }
+
+    table#billing td { float:right; font-size:13px; width:100%!important; max-width:75%!important; }
+    table#billing td.lbl { width:auto !important; float:left; }
+    table#billing td input { width:100% !important; border:1px solid #ccc; padding:5px 0; text-indent:10px; margin:0 0 10px; }
+    table#billing td select { margin:0 0 10px; width:100% !important; } 
+    table#billing .multiple_address_selection td { width:auto !important; margin:0 0 10px; max-width:100% !important; float:none; }
+    table#billing .multiple_address_selection td select { width:100% !important; padding:0 5%; display:block; }
+    table#billing #billing-is-shipping td input { float:left; }
+    table#billing #billing-is-shipping td label { float:left; margin:0 0 0 10px; width:80%; }
+
+    table#shipping { margin:0; }
+    table#shipping td { float:right; font-size:13px; width:100%; max-width:75%!important; }
+    table#shipping td.lbl { width:auto !important; float:left; }
+    table#shipping td input { width:100% !important; border:1px solid #ccc; padding:5px 0; text-indent:10px; margin:0 0 10px; }
+    table#shipping td select { margin:0 0 10px; width:100% !important; } 
+    table#shipping .multiple_address_selection td { width:auto !important; margin:0 0 10px; max-width:100% !important; float:none; }
+    table#shipping .multiple_address_selection td select { width:100% !important; padding:0 5%; display:block; }
+
+    #footer { padding:20px 10px; border:solid #f3efdf; border-width:1px 0 0; background-color:transparent !important; }
+    #footer p { text-align:center; color:#404040; font-family:Arial, Sans-serif; font-size:11px; }
+
+    #buttons { background:transparent; margin:0; }
+    #customer-login-link,
+    #buttons input, 
+    #buttons a,
+    input.submit-btn { 
+        background: {{ settings.btn_color }};
+        color: {{ settings.btn_text_color }};
+        border: 0;
+        padding: 7px 20px;
+        text-align: center;
+        cursor: pointer;
+        {% if settings.nav_typeface_method == "google_webfonts" %}
+          font-family: "{{ settings.nav_google_webfont_font | replace: '+', ' ' }}";
+        {% else %}
+          font-family: {{ settings.nav_websafe_font | replace: '+', ' '  }};
+        {% endif %}  
+        font-weight: {{ settings.button_weight }};      
+        font-size: {{ settings.button_font_size }}px;
+        text-transform: {{ settings.button_font_style }};
+        display: inline-block;
+        -webkit-transition: all 200ms ease 0s;
+        -moz-transition: all 200ms ease 0s;
+        -ms-transition: all 200ms ease 0s;
+        -o-transition: all 200ms ease 0s;
+        transition: all 200ms ease 0s;
+        -webkit-appearance: none;
+        -webkit-font-smoothing: antialiased;
+        font-smoothing: antialiased;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -moz-border-radius: 3px;
+         -webkit-border-radius: 3px;
+         border-radius: 3px; 
+     } 
+
+    #buttons a { background:#ede9dd; color:#404040; text-decoration:none; margin:0 0 0 15px; }
+
+    #email label, #addresses h3 { font-size:18px !important; border:solid #f3efdf; border-width:0 0 1px; background:transparent; {% if settings.headline_typeface_method == "google_webfonts" %}
+          font-family: "{{ settings.headline_google_webfont_font | replace: '+', ' ' }}";
+        {% else %}
+          font-family: {{ settings.headline_websafe_font | replace: '+', ' ' }};
+        {% endif %}  
+        font-weight: {{ settings.headline_weight }};    
+        text-transform: {{ settings.headline_font_style}};
+        color: #404040;
+        display:block;
+        letter-spacing: {{ settings.headline_letter_spacing }}px;
+        text-rendering: optimizeLegibility;
+        padding:0;
+    }
+
+    #addresses { background:transparent; }
+    #addresses h3 { margin:0 0 15px; }
+
+    #email { color:#404040; margin:0 0 15px; background:transparent; }
+    #email label { margin:0 0 5px; }
+    #email .sign-in-message { margin:0 0 25px; display:block; }
+    h4.active-customer { padding:10px 0; color:#404040; }
+
+    #billing-is-shipping td { margin:0; border-width:0; background:transparent; color:#404040; }
+    .gright { margin:20px 0 0; }
+
+    #container { color:#404040; }
+    #logo { display:block; padding:0; margin:10px auto; width:175px; height:47px; background-image:url('{{ "logo.png" | asset_url }}'); background-repeat:no-repeat; background-position:center center; background-size:100%; }
+    #tagline { display:none; }
+
+    #overview { padding:0 10px; }
+
+    #thumbs div { float:left; margin:0 10px 0 0; }
+    #thumbs td { width:100%; clear:both; margin:5px 0 0; padding:0 0 5px; overflow:hidden; border:solid #f3efdf; border-width:0 0 1px; }
+
+    #cost { color:#404040; font-weight:bold; font-size:20px; text-align:center; background-color:#f3efdf; padding:15px 0; }
+
+}
+
+
+
