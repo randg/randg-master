@@ -58,13 +58,18 @@
               </span>
            </span>
            {% if product.price < product.compare_at_price_max %}
-           <small><em>from</em></small>
-           {% endif %}
-           <span class="was_price">
-            {% if product.price < product.compare_at_price_max %}
-              {{ product.compare_at_price | money }}
-            {% endif %}
+           <span>
+             
            </span>
+           {% endif %}
+           
+           {% if product.price < product.compare_at_price_max %}
+           <small class="was"><em>was</em></small>
+           <span class="was_price">
+              {{ product.compare_at_price | money }}
+           </span>
+           {% endif %}
+          
          </p>
        
         {% include 'product-notify-me' %}

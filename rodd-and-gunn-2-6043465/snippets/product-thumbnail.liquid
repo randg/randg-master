@@ -74,9 +74,6 @@
         {% endif %}
       </span>
     </div>
-    {% if settings.sale_banner_enabled and product.compare_at_price_max > product.price %}
-      <div class="sale_banner">Sale</div>
-    {% endif %}
     {% for col in product.collections %}
       {% if col.handle == 'new' %}
         <div class="new_banner">New</div>

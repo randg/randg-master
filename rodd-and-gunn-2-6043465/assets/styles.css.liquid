@@ -115,7 +115,7 @@ h1, h2, h3, h4, h5, h6, .collection_title, .headline, p.subtitle {
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .collection_title { font-weight: inherit; }
 h1 a, h1 a:visited, .collection_title a, .collection_title a:visited { color: {{ settings.headline_color}} }
 h1 a:hover, h1 a:active, .collection_title a:hover, .collection_title a:active { color: {{ settings.link_color }} }
-h1, .h1, h1.home, h2.title, .collection_title { border:solid #f3f0e5; border-width:0 0 1px; font-size: {{ settings.headline_font_size }}px;  line-height: 38px; margin: 0 auto 15px; clear:both; font-weight: {{ settings.headline_weight }}; padding-top: 4px;}
+h1, .h1, h1.home, h2.title, .collection_title { border:solid #f3f0e5; border-width:0 0 1px; font-size: {{ settings.headline_font_size }}px;  line-height: 38px; margin: 0 auto 15px; clear:both; font-weight: {{ settings.headline_weight }}; }
 h1.product_name { margin-bottom: 15px; }
 h2, .h2 { font-size: 22px; margin-bottom: 1em; line-height: 1.5em }
 h3, .h3, h1.blog_title { font-size: 20px; line-height: 35px; margin: 0 auto 15px 0; text-align: left; }
@@ -1378,7 +1378,12 @@ div.hidden { display: none; }
     font-style: italic;
     text-shadow:none;
     font-weight:normal;
+    font-size:16px;
   } 
+  .was {
+    color: {{ settings.was_price_color }};
+    font-size:16px;
+  }
   .thumbnail .quick_shop {
     display: none;
     padding: 5px 0;
