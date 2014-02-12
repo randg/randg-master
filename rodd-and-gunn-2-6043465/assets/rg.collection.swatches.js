@@ -2,7 +2,7 @@
 
 var RG = RG || {};
 
-RG.collectionPage = (function(doc, $, undefined) {
+RG.collectionPage = (function (doc, $, undefined) {
 	
 	"use strict";
 
@@ -61,7 +61,7 @@ RG.collectionPage = (function(doc, $, undefined) {
 			$.cookie('positionTop', $('body').scrollTop());
 		});
 
-		$(document).on('click', '.refinebar ul li input', function() {
+		$(document).on('click', '#colorRefine input, #sizeRefine input, #lengthRefine input', function() {
 			var $obj = $(this),
 				listID = $obj.parents('.refine-list'),
 				listIndex = $obj.parents('.refine-list').index(),
@@ -72,7 +72,7 @@ RG.collectionPage = (function(doc, $, undefined) {
 			filterCollection($obj, removeID, listIndex);
 		});
 
-		$(document).on('click', '.refinebar ul li a', function(e) {
+		$(document).on('click', '#colorRefine a, #sizeRefine a, #lengthRefine a', function(e) {
 			var $obj = $(this);
 			$obj.siblings('input').trigger('click');
 			e.preventDefault();
@@ -146,15 +146,20 @@ RG.collectionPage = (function(doc, $, undefined) {
 			$('br.clear').remove();
 		});
 
-		var refineOption = $obj.attr('id').replace(/\s+/g, '');
+		var refineOption = {
+			a: $obj,
+			b: $obj.attr('id').replace(/\s+/g, '')
+		};
 
 		if (listIndex == 1) {
 			if (removeID) {
-				refineOptions1 = $.grep(refineOptions1, function(value) {
-				  return value != refineOption;
-				});
+				for (var i = 0; i < refineOptions1.length; i++) {
+					if (refineOption.b == refineOptions1[i].b) {
+						refineOptions1.splice(refineOptions1[i], 1);
+					};
+				};
 			} else {
-				var found = $.inArray(refineOptions1, refineOption);
+				var found = jQuery.inArray(refineOptions1, refineOption);
 				if (found >= 0) {
 					refineOptions1.splice(found, 1);
 				} else {
@@ -165,9 +170,11 @@ RG.collectionPage = (function(doc, $, undefined) {
 
 		if (listIndex == 2) {
 			if (removeID) {
-				refineOptions2 = $.grep(refineOptions2, function(value) {
-				  return value != refineOption;
-				});
+				for (var i = 0; i < refineOptions2.length; i++) {
+					if (refineOption.b == refineOptions2[i].b) {
+						refineOptions2.splice(refineOptions2[i], 1);
+					};
+				};
 			} else {
 				var found = $.inArray(refineOptions2, refineOption);
 				if (found >= 0) {
@@ -180,9 +187,11 @@ RG.collectionPage = (function(doc, $, undefined) {
 
 		if (listIndex == 3) {
 			if (removeID) {
-				refineOptions3 = $.grep(refineOptions3, function(value) {
-				  return value != refineOption;
-				});
+				for (var i = 0; i < refineOptions3.length; i++) {
+					if (refineOption.b == refineOptions3[i].b) {
+						refineOptions3.splice(refineOptions3[i], 1);
+					};
+				};
 			} else {
 				var found = $.inArray(refineOptions3, refineOption);
 				if (found >= 0) {
@@ -196,7 +205,7 @@ RG.collectionPage = (function(doc, $, undefined) {
 		if (refineOptions1.length > 0) {
 			$('.thumbnail').each(function() {
 				for (var i = 0; i < refineOptions1.length; i++) {
-					if ($(this).children("a.image-wrap[data-option-1*='" + refineOptions1[i] + "']").length > 0) {	
+					if ($(this).children("a.image-wrap[data-option-1*='" + refineOptions1[i].b + "']").length > 0) {	
 						if ($(this).hasClass('false')) {
 							$(this).removeClass('false').addClass('true');
 						} else {
@@ -215,7 +224,7 @@ RG.collectionPage = (function(doc, $, undefined) {
 		if (refineOptions2.length > 0) {
 			$('.thumbnail').each(function() {
 				for (var i = 0; i < refineOptions2.length; i++) {
-					if ($(this).children("a.image-wrap[data-option-2*='" + refineOptions2[i] + "']").length > 0) {	
+					if ($(this).children("a.image-wrap[data-option-2*='" + refineOptions2[i].b + "']").length > 0) {	
 						$(this).addClass('true');
 					} else {
 						$(this).addClass('false');
@@ -227,7 +236,7 @@ RG.collectionPage = (function(doc, $, undefined) {
 		if (refineOptions3.length > 0) {
 			$('.thumbnail').each(function() {
 				for (var i = 0; i < refineOptions3.length; i++) {
-					if ($(this).children("a.image-wrap[data-option-3*='" + refineOptions3[i] + "']").length > 0) {	
+					if ($(this).children("a.image-wrap[data-option-3*='" + refineOptions3[i].b + "']").length > 0) {	
 						$(this).addClass('true');
 					} else {
 						$(this).addClass('false');

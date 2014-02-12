@@ -128,8 +128,6 @@ RG.productPage = (function(doc, $, undefined) {
 	},
 	selectCallback = function(variant, selector) {
 
-		//console.log(variant);
-
 	    var $product = $('#product-' + selector.product.id);
 	    var $notify_form = $('#notify-form-' + selector.product.id);
 

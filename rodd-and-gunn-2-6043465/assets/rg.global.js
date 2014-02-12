@@ -18,7 +18,7 @@ RG.info = {
 	orientation : null,
 	pageSize : 0,
 	sizes : [ 480, 768, 980, 1200 ],
-	mobile : $(window).width() < 768,
+	mobile : $(window).width() < 768, 
 	tablet : $(window).width() >= 768,
 	action : 'click'
 };
@@ -169,8 +169,6 @@ RG.global = (function (doc, $, undefined) {
 		},
 
 		updateCartUI = function(line_item) {
-
-			console.log(line_item);
 
 			var params = {
 			    type: 'GET',

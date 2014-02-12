@@ -251,10 +251,12 @@ ul.color-swatch li.turquoise { background-color:{{ settings.turquoise }}; }
 .refinebar .refine-list { margin:0 0 20px; display:none; }
 .refinebar .refine-list-wrapper { padding:10px; border:solid #f3f0e5; border-width:1px; }
 
-.refinebar ul { padding:0; margin:0; list-style:none; max-height:245px; overflow:scroll; }
-.refinebar ul li { overflow:hidden; margin:0; padding:2px 0; }
-.refinebar ul li a { float:left; }
-.refinebar ul li input[type="checkbox"] { float:right; }
+.refinebar .refine-list-wrapper div { padding:0; margin:0; max-height:245px; overflow-y:scroll; overflow-x:hidden; }
+.refinebar .refine-list-wrapper div div { overflow:hidden; margin:0; padding:2px 0; }
+.refinebar .refine-list-wrapper div div a { float:left; }
+.refinebar .refine-list-wrapper div div input[type="checkbox"] { float:right; }
+
+.ie8 .refinebar .refine-list-wrapper div { min-height:auto; }
 
 .refinebar .filter-helper { position:absolute; left:40%; background-color:#404040; padding:5px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
 .refinebar .filter-helper a { color:#fff; }
