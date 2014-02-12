@@ -226,9 +226,33 @@ RG.collectionPage = (function (doc, $, undefined) {
 			filterHelper($obj);
 		};
 
-		$('.true:first').addClass('alpha');
-		$('.product-listing div.true:not(".false")').each(function (i) {
-			if (!$(this).hasClass('false')) {
+		if ($('.true').length) {
+			$('.true:first').addClass('alpha');
+			$('.product-listing div.true:not(".false")').each(function (i) {
+				if (!$(this).hasClass('false')) {
+					if (RG.info.mobile) {
+						if ((i + 1) % 2 == 0) {
+					    	$(this).addClass('omega');
+					    	if (!$(this).next().hasClass('clear')) {
+					    		$(this).after('<br class="clear"/>');
+					    	};
+					    } else {
+					    	$(this).addClass('alpha');
+					    };
+					} else {
+						if ((i + 1) % 4 == 0) {
+					    	$(this).addClass('omega'); 
+					    	$(this).after('<br class="clear"/>');
+					    };
+					    if ((i + 1) % 5 == 0) {
+					    	$(this).addClass('alpha');
+					    };
+					};
+				};
+			});
+		} else {
+			$('.thumbnail:first').addClass('alpha');
+			$('.product-listing div.thumbnail').each(function (i) {
 				if (RG.info.mobile) {
 					if ((i + 1) % 2 == 0) {
 				    	$(this).addClass('omega');
@@ -247,8 +271,9 @@ RG.collectionPage = (function (doc, $, undefined) {
 				    	$(this).addClass('alpha');
 				    };
 				};
-			};
-		});
+			});
+		};
+		
 
 		$("img", '.product-listing').unveil();
 
