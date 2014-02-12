@@ -66,6 +66,37 @@ RG.global = (function (doc, $, undefined) {
 			
 			RG.info.action = (hasTouch() ? 'tap' : 'click');
 
+			$(document).on('mouseover', '.color-swatch li a', function() {
+				var $obj = $(this),
+					dClass = $obj.parent().data('color');
+				$obj.parents('ul').siblings('a.image-wrap').children().children('img').each(function() {
+					if ($(this).data('color') == dClass) {
+						$(this).show();
+						$(this).siblings().hide();
+					};
+				});
+			}).on('click', '.color-swatch li a', function(e){
+				e.preventDefault();
+			});
+
+			$(document).on('mouseover', 'a.image-wrap', function() {
+				var $obj = $(this);
+				$obj.addClass('rotate');
+				if ($obj.find('img').length > 1 && $obj.hasClass('rotate')) {
+					var nextImage = $obj.find('img:visible').next();
+					rotateTimer($obj, nextImage);
+				};
+			}).on('mouseout', 'a.image-wrap', function() {
+				var $obj = $(this);
+				$obj.removeClass('rotate');
+				clearTimeout(rotateTimer);
+			}).on('click', 'a.image-wrap', function() {
+				var $obj = $(this);
+				$obj.removeClass('rotate');
+				clearTimeout(rotateTimer);
+				$.cookie('positionTop', $('body').scrollTop());
+			});
+
 			$(document).on('click', '.add_to_cart', function(e) {
 				validateForm();
 				if (validated) {
@@ -125,6 +156,18 @@ RG.global = (function (doc, $, undefined) {
 		  		};
 		  	});
 
+		},
+
+		rotateTimer = function($obj, nextImage) {
+			setTimeout(function() {
+				if ($obj.hasClass('rotate')) {
+					$obj.find('img:visible').hide();
+					if (!nextImage.length) {
+						nextImage = $obj.find('img:first-child');
+					};
+					nextImage.show();
+				};
+			}, 1000);
 		},
 
 		validateForm = function() {
