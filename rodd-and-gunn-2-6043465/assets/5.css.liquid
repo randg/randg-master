@@ -48,12 +48,7 @@
 
 .container .sidebar.four.columns { margin:0 3% 0 0; }
 
-/* #Base 1240 Grid
-================================================== */
 
-@media all and (min-width: 1240px) {
-  .gutter { display:block; padding:0; }
-}
 
 
 
@@ -63,5 +58,30 @@
 
 /* Home page banners */
 
-.home-banner p { margin:5px 5px 0 0; line-height:1.8em; }
-.home-banner #sign_up { padding:7px 0 4px; font-size:13px; }
+.container .home-banner-wrap { padding:10px 10px 6px; }
+
+.container .home-banner-wrap .two.columns.returns, 
+.container .home-banner-wrap .two.columns.delivery { margin:1px 0 0 20px; width:38%; padding:6px 0 6px 40px; font-size:13px; }
+.container .home-banner-wrap .two.columns.returns { margin:1px 0 0 30px; }
+
+.home-banner p { margin:4px 5px 0 30px; }
+.home-banner #sign_up { padding:4px 0 1px; font-size:13px; }
+
+.home-banner .delivery { background-position:5px 3px; }
+
+.home-banner .returns { background-position:5px -4px; }
+
+.home-banner .delivery span,
+.home-banner .returns span { font-size:13px; display:inline; }
+
+/* #Base 1240 Grid
+================================================== */
+
+@media all and (min-width: 1240px) {
+  .gutter { display:block; padding:0; }
+  .home-banner p { margin:4px 5px 0 40px; }
+}
+
+
+
+

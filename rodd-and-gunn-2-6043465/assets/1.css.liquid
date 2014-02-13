@@ -40,15 +40,34 @@
 .container .offset-by-fifteen { padding-left: 0; }
 
 
+@font-face {
+	font-family: 'Conv_GuardianEgyp-Regular';
+	src: url('GuardianEgyp-Regular.eot');
+	src: local('☺'), url('GuardianEgyp-Regular.woff') format('woff'), url('GuardianEgyp-Regular.ttf') format('truetype'), url('GuardianEgyp-Regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Conv_GuardianSans-Light';
+	src: url('GuardianSans-Light.eot');
+	src: local('☺'), url('GuardianSans-Light.woff') format('woff'), url('GuardianSans-Light.ttf') format('truetype'), url('GuardianSans-Light.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+
 #debugger { position:absolute; top:0; left:0; font-family:Arial, Sans-serif; z-index:1001; }
 
 
-.logo { padding:0; margin:0 auto 3px; width:200px; }
+.logo { padding:0; margin:0 auto 3px; width:150px; }
 .mini-logo { display:none; }   
 
 /* Layout */
 
-div.container.banners { padding:0; margin:0 auto 10px; border:solid #f3f0e5; border-width:0 0 1px; }
+div.container.banners { padding:0; margin:0 auto 10px; border:solid #f3f0e5; border-width:1px 0; }
+.index div.container.banners { margin:0 auto; }
 .gutter { display:block; padding:0 20px; }
 
 /* Main Navigation */
@@ -69,18 +88,20 @@ div.container.banners { padding:0; margin:0 auto 10px; border:solid #f3f0e5; bor
 
 .home-banner { width:100%; font-size:12px; font-weight:bold; margin:0; color:#404040; }
 .home-banner.newsletter-sign-up { display:none; }
-.home-banner-wrap { padding:10px; overflow:hidden; }
+.home-banner-wrap { padding:8px 10px 5px; overflow:hidden; }
 
-.container .home-banner-wrap .two.columns { width:37%; float:left; }
+.container .home-banner-wrap .two.columns { width:37%; float:left; font-family: 'Conv_GuardianSans-Light'; font-weight:bolder; }
 
 .home-banner .delivery,
 .home-banner .returns { padding:0 0 0 30px; line-height:13px; font-size:12px; } 
 .home-banner .delivery span,
-.home-banner .returns span { font-size:9px; } 
+.home-banner .returns span { font-size:10px; font-weight:normal; letter-spacing:1px; display:block; } 
 
 .home-banner .delivery { background-image:url("{{ 'ico-delivery.png' | asset_url }}"); background-size:24px; background-repeat:no-repeat; background-position:0 5px; }
 
 .home-banner .returns { background-image:url("{{ 'ico-returns.png' | asset_url }}"); background-size:28px; background-repeat:no-repeat; background-position:0 -1px; }
+
+.home-banner #contact_email { font-family: 'Conv_GuardianSans-Light'; letter-spacing:1px; }
 
 /* Home page tiles */
 
@@ -252,7 +273,7 @@ ul.color-swatch li.turquoise { background-color:{{ settings.turquoise }}; }
 .refinebar .refine-list-wrapper { padding:10px; border:solid #f3f0e5; border-width:1px; }
 
 .refinebar .refine-list-wrapper div { padding:0; margin:0; max-height:245px; overflow-y:scroll; overflow-x:hidden; }
-.refinebar .refine-list-wrapper div div { overflow:hidden; margin:0; padding:2px 0; }
+.refinebar .refine-list-wrapper div div { overflow:hidden; margin:0; }
 .refinebar .refine-list-wrapper div div a { float:left; }
 .refinebar .refine-list-wrapper div div input[type="checkbox"] { float:right; }
 

@@ -26,36 +26,14 @@ table {
 /* #Basic Styles
 ================================================== */
   body { 
-    background-color: {{ settings.shop_bg_color }};
-    {% if settings.use_custom_bg_image %}
-      background-image: url("{{ 'custom_bg.png' | asset_url }}");
-      {% if settings.bg_stretched %}
-        background-repeat:no-repeat;
-        background-attachment:fixed; 
-        -webkit-background-size:cover;
-        -moz-background-size:cover;
-        -o-background-size:cover;
-        background-size:cover;
-      {% else %}
-        background-repeat:{{ settings.repeat_bg }};
-        {% if settings.bg_fixed %}
-          background-attachment:fixed; 
-        {% endif %}
-      {% endif %}
-    {% endif %}
-
+    background-color: #ffffff;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased; 
-
-    {% if settings.regular_typeface_method == "google_webfonts" %}
-      font-family: "{{ settings.regular_google_webfont_font | replace: '+', ' ' }}";
-    {% else %}
-      font-family: {{ settings.regular_websafe_font | replace: '+', ' ' }};
-    {% endif %}  
-    font-weight: {{ settings.regular_weight }};      
-    font-size: {{ settings.regular_font_size }}px; 
-    text-transform: {{ settings.regular_font_style}};
-    color: {{ settings.regular_color}};
+    font-family: {{ settings.regular_websafe_font | replace: '+', ' '  }};
+    font-weight: normal;      
+    font-size: 14px; 
+    text-transform: none;
+    color: #404040;
     line-height: 1.8em;
 }
 ::-moz-selection {
@@ -73,46 +51,17 @@ abbr {
 
 /* #Typography
 ================================================== */
-  .logo {   
-    {% if settings.logo_typeface_method == "google_webfonts" %}
-      font-family: "{{ settings.logo_google_webfont_font | replace: '+', ' ' }}";
-    {% else %}
-      font-family: {{ settings.logo_websafe_font | replace: '+', ' ' }};
-    {% endif %}  
-    
-    font-weight: {{ settings.logo_weight }};      
-    font-size: {{ settings.logo_font_size }}px; 
-    text-transform: {{ settings.logo_font_style}};
-    color: {{ settings.logo_color }};
-  }
 
-  .logo a, 
-  .logo 
-  a:hover, 
-  .logo a:visited, 
-  .logo a:active, 
-  .header_bar .logo a, 
-  .header_bar .logo a:hover, 
-  .header_bar .logo a:visited, 
-  .header_bar .logo a:active { color: {{ settings.logo_color }}; }
-
-  .index .logo a, .index .logo a:hover, .index .logo a:visited, .index .logo a:active {
-    color: {{ settings.logo_color_home }};
-  } 
 h1, h2, h3, h4, h5, h6, .collection_title, .headline, p.subtitle { 
-    {% if settings.headline_typeface_method == "google_webfonts" %}
-      font-family: "{{ settings.headline_google_webfont_font | replace: '+', ' ' }}";
-    {% else %}
-      font-family: {{ settings.headline_websafe_font | replace: '+', ' ' }};
-    {% endif %}  
-    font-weight: {{ settings.headline_weight }};    
-    text-transform: {{ settings.headline_font_style}};
-    color: {{ settings.headline_color}};
+    font-family:'Conv_GuardianEgyp-Regular'; 
+    font-weight: normal;    
+    text-transform: uppercase;
+    color: #483F1A;
     display:block;
-    letter-spacing: {{ settings.headline_letter_spacing }}px;
+    letter-spacing: 1px;
     text-rendering: optimizeLegibility;
 }
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .collection_title { font-weight: inherit; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .collection_title { font-weight:inherit; }
 h1 a, h1 a:visited, .collection_title a, .collection_title a:visited { color: {{ settings.headline_color}} }
 h1 a:hover, h1 a:active, .collection_title a:hover, .collection_title a:active { color: {{ settings.link_color }} }
 h1, .h1, h1.home, h2.title, .collection_title { border:solid #f3f0e5; border-width:0 0 1px; font-size: {{ settings.headline_font_size }}px;  line-height: 38px; margin: 0 auto 15px; clear:both; font-weight: {{ settings.headline_weight }}; }
@@ -127,7 +76,7 @@ h5.sub_title { padding-bottom: 5px; }
 h6, .h6, h6.title { font-size: 14px; padding: 5px 0}
 .footer h6 { color: {{ settings.headline_footer_text_color }}; }
 .subheader { color: #777; }
-p { margin: 0 0 15px; font-style: normal; line-height: 20px; font-family:Arial, Sans-serif; } 
+p { margin: 0 0 15px; font-style: normal; line-height: 20px; font-family:{{ settings.regular_websafe_font | replace: '+', ' '  }}; } 
 p img { margin: 0; }
 em, i { font-style: italic; }
 strong, b { font-weight: bold; }
@@ -177,7 +126,7 @@ a:hover, a:focus { color: {{ settings.link_hover_color }}; }
   ol ol, ol ul { margin: 4px 0 5px 30px; font-size: 90%;  }
   ul ul li, ul ol li,
   ol ol li, ol ul li { margin-bottom: 6px; }
-  li { line-height: 18px; margin-bottom: 12px; font-family:Arial, Sans serif; }
+  li { line-height: 18px; margin-bottom: 12px; font-family:{{ settings.regular_websafe_font | replace: '+', ' '  }}; }
   ul.large li { line-height: 21px; }
   ul.none { list-style: none outside; margin-left: 0;}
   ul.border {
@@ -223,7 +172,7 @@ a:hover, a:focus { color: {{ settings.link_hover_color }}; }
   text-shadow: none !important;
 }
 .header div.container {
-  padding-bottom: 5px;
+  padding-bottom: 0;
   padding-top: 10px;
 }
 #header {
@@ -475,7 +424,7 @@ div#header a span {
 
 
 .nav ul.menu li {
-  padding: 0px 5px 0px 5px;
+  padding: 0px 5px 0px 5px; 
 }
 .input.guest_button, input[type="button"].guest_button {
   font-size: 16px;
@@ -508,7 +457,7 @@ input[type="submit"].guest_button, input[type="button"].guest_button {
   border-radius: 8px;
   color: #fff !important;
   font-size: 11px;
-  font-family: "Arial","Helvetica",sans-serif;
+  font-family: {{ settings.regular_websafe_font | replace: '+', ' '  }};
   font-weight: bold;
   border-bottom: 1px solid #ffffff;
   border-left: 1px solid #ffffff;
@@ -682,7 +631,7 @@ input[type="submit"].guest_button:hover {
   padding-top: 125px;  
   font-size: 32px;
   cursor: pointer;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: {{ settings.regular_websafe_font | replace: '+', ' '  }} !important;
   font-weight: 300;
 }
 
@@ -784,14 +733,10 @@ a.button,
     padding: 7px 20px;
     text-align: center;
     cursor: pointer;
-    {% if settings.nav_typeface_method == "google_webfonts" %}
-      font-family: "{{ settings.nav_google_webfont_font | replace: '+', ' ' }}";
-    {% else %}
-      font-family: {{ settings.nav_websafe_font | replace: '+', ' '  }};
-    {% endif %}  
-    font-weight: {{ settings.button_weight }};      
-    font-size: {{ settings.button_font_size }}px;
-    text-transform: {{ settings.button_font_style }};
+    font-family:'Conv_GuardianEgyp-Regular'; 
+    font-weight: bolder;      
+    font-size: 16px;
+    text-transform: uppercase;
     display: inline-block;
     -webkit-transition: all 200ms ease 0s;
     -moz-transition: all 200ms ease 0s;
@@ -950,7 +895,7 @@ input[type="text"],
     border: 1px solid #ccc;
     padding: 8px 8px 8px 12px;
     outline: none;
-    font: 13px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 13px {{ settings.regular_websafe_font | replace: '+', ' '  }};
     color: #555;
     width: 100%;
     margin: 0;
@@ -1169,15 +1114,11 @@ div.hidden { display: none; }
   -moz-transition: color 0.3s;
   transition: color 0.3s;
   z-index: 2;
-  {% if settings.nav_typeface_method == "google_webfonts" %}
-    font-family: "{{ settings.nav_google_webfont_font | replace: '+', ' ' }}";
-  {% else %}
-    font-family: {{ settings.nav_websafe_font | replace: '+', ' '  }};
-  {% endif %}  
-  font-weight: {{ settings.nav_weight }};      
-  font-size: {{ settings.nav_font_size }}px; 
-  text-transform: {{ settings.nav_font_style}};
-  letter-spacing: {{ settings.nav_letter_spacing }}px;
+  font-family:'Conv_GuardianEgyp-Regular'; 
+  font-weight: bold;      
+  font-size: 11px; 
+  text-transform: none;
+  letter-spacing: 1px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, .5);
   opacity: 0.9;
   -webkit-font-smoothing: antialiased;
@@ -1327,24 +1268,7 @@ div.hidden { display: none; }
   .thumbnail .sale, .sale {
     color: {{ settings.sale_color }};
   }
-  .sale_banner, .new_banner {
-    position: absolute;
-    top: 25px;
-    left: -5px;
-    background: {{ settings.sale_banner_color }};
-    {% if settings.nav_typeface_method == "google_webfonts" %}
-      font-family: "{{ settings.nav_google_webfont_font | replace: '+', ' ' }}";
-    {% else %}
-      font-family: {{ settings.nav_websafe_font | replace: '+', ' '  }};
-    {% endif %}  
-    font-weight: {{ settings.button_weight }};      
-    font-size: {{ settings.button_font_size }}px;
-    text-transform: {{ settings.button_font_style }};
 
-    padding: 10px;
-    text-align: center;
-    color: #fff;
-  }
   .new_banner {
     background: {{ settings.new_banner_color }};
   }
@@ -1417,7 +1341,7 @@ div.hidden { display: none; }
   }
   a.fancybutton {
     background:url({{ "fancy.png" | asset_url }}) no-repeat;
-    font:11px Arial,sans-serif;
+    font:11px {{ settings.regular_websafe_font | replace: '+', ' '  }};
     text-indent:-9999em;
     font-size:.01em;
     color:#cd1f1f;
@@ -1430,7 +1354,7 @@ div.hidden { display: none; }
   }
   a.pinterestcount {
     background:url({{ "pinit.png" | asset_url }}) no-repeat;
-    font:11px Arial,sans-serif;
+    font:11px {{ settings.regular_websafe_font | replace: '+', ' '  }};
     text-indent:-9999em;
     font-size:.01em;
     color:#cd1f1f;
@@ -1478,7 +1402,7 @@ div.hidden { display: none; }
     font-size: 22px;
     margin-bottom: 10px;
     line-height:27px;
-    font-family: {{ settings.regular_google_webfont_font }}
+    font-family:'Conv_GuardianEgyp-Regular';
   }
   .modal form {
     margin-bottom: 10px;
@@ -1536,7 +1460,7 @@ div.hidden { display: none; }
   .toggle span {
     color: {{ settings.was_price_color }};
     font-weight:bold;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: {{ settings.regular_websafe_font | replace: '+', ' '  }};
     font-size:smaller;
     float: right;
     display: none;
@@ -2043,7 +1967,7 @@ html.mm-blocking #mm-blocker
 .mm-menu *
 {
   -webkit-text-size-adjust: none;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: {{ settings.regular_websafe_font | replace: '+', ' '  }};
   font-size: 14px;
   color:#404040;
 }
@@ -2573,7 +2497,7 @@ html[xmlns] .slides {display: block;}
 
 .fancybox-error {
   color: #444;
-  font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font: 14px/20px {{ settings.regular_websafe_font | replace: '+', ' '  }};
   margin: 0;
   padding: 15px;
   white-space: nowrap;
@@ -2729,7 +2653,7 @@ html[xmlns] .slides {display: block;}
 
 .fancybox-title {
   visibility: hidden;
-  font: normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font: normal 13px/20px {{ settings.regular_websafe_font | replace: '+', ' '  }};
   position: relative;
   text-shadow: none;
   z-index: 8050;
@@ -2906,7 +2830,6 @@ div.cloudzoom-ajax-loader {
 
 /* Tablet Portrait size to standard 980 (devices and browsers) */
   @media only screen and (min-width: 768px) and (max-width: 979px) {
-    .nav ul.menu li { padding: 10px 3px 10px 3px; }
     .dropdown { left: 3px; }
     .nav ul li .cart-button {
       background-color: transparent;
@@ -2941,7 +2864,6 @@ div.cloudzoom-ajax-loader {
     }
     .breadcrumb {
       text-align: center;
-      margin-bottom: 1.5em;
     }
     .featured_text {
       font-size: {{ settings.regular_font_size }}px;
@@ -2949,7 +2871,7 @@ div.cloudzoom-ajax-loader {
       text-align: center;
     }
     div.content {
-      padding-top: 30px;
+      padding-top:0;
     }
     #header {
       display: block;
@@ -3121,6 +3043,28 @@ div.cloudzoom-ajax-loader {
   color: {{ settings.link_color }} !important;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @font-face {
   font-family: 'OutOfTheSandbox';
   src:url('{{ 'OutOfTheSandbox.eot' | asset_url }}');
@@ -3222,20 +3166,4 @@ you can use the generic selector below, but it's slower:
   content: "\e013";
 }
 
-/* #Font-Face
-================================================== */
-/*  This is the proper syntax for an @font-face file.
-    Upload your font files to Assets and then
-    copy your FontName into code below and remove
-    comment brackets */
-    
-/*  @font-face {
-      font-family: 'FontName';
-      src: url('FontName.eot');
-      src: url('FontName.eot?iefix') format('eot'),
-           url('FontName.woff') format('woff'),
-           url('FontName.ttf') format('truetype'),
-           url('FontName.svg#webfontZam02nTh') format('svg');
-      font-weight: normal;
-      font-style: normal; }
-*/
+

@@ -56,17 +56,19 @@
 
 
 
-
-
+.header_bar .container ul.menu { width:70%; line-height:20px; margin:0 auto; }
+.header_bar .container .utility-navigation-wrap ul.menu { width:auto; margin:0; }
+.nav ul.menu li { padding: 0px 3px; }
 
 
 /* Header */
 
 .header-wrap, .header-bar, .header { min-height:5px; }
 .logo { width:175px; }  
-.mini-logo { position:absolute; bottom:-7px; left:30px; width:55px; z-index:1001; }
+.mini-logo { position:absolute; bottom:5px; left:30px; width:55px; z-index:1001; }
 .mini-logo img { width:100%; }
 
+div.container.banners { border-width:0 0 1px; }
 div.container.banners.scroll-layout { padding:35px 0 0; }
 
 /* Main Navigation */
@@ -78,24 +80,26 @@ div.container.banners.scroll-layout { padding:35px 0 0; }
 .home-banner { width:49.9%; }
 .home-banner.newsletter-sign-up { display:block; }
 
-.container .home-banner-wrap .two.columns.returns { width:41%; line-height:20px; margin:6px 0 0; }
-.container .home-banner-wrap .two.columns.delivery { width:45%; line-height:20px; margin:6px 0 0; }
+.container .home-banner-wrap { padding:10px 10px 6px; }
+.container .home-banner-wrap .two.columns.returns,
+.container .home-banner-wrap .two.columns.delivery { width:31%; line-height:13px; font-size:12px; margin:1px 0 0; }
+.container .home-banner-wrap .two.columns.returns { margin:1px 0 0 45px; }
 .container .home-banner-wrap .returns { width:34%; }
-.container .home-banner-wrap input[type="email"] { padding:5px 8px 5px 12px; }
+.container .home-banner-wrap input[type="email"] { padding:4px 8px 2px 7px; margin:2px 0 0 }
 
-.home-banner p { margin:0; width:26%; float:left; line-height:17px; padding:0 5px 0 0; font-family:{{ settings.regular_google_webfont_font }} }
-.home-banner .contact-form { overflow:hidden; width:72%; }
+.home-banner p { margin:1px 0 0; width:17%; float:left; line-height:11px; font-size:10px; text-transform:uppercase; padding:0 5px 0 0; font-family:'Conv_GuardianSans-Light'; }
+.home-banner .contact-form { overflow:hidden; width:72%; float:left; }
 .home-banner #contact_email { width:67%; float:left; margin:0; font-size:11px; }
-.home-banner #sign_up { width:30%; float:right; margin:0; padding:5px 14px; }
+.home-banner #sign_up { width:30%; float:left; margin:0 0 0 7px; padding:5px 14px 2px; font-size:12px; }
 
 .home-banner .delivery,
 .home-banner .returns { padding:0 0 0 40px; line-height:17px; font-size:14px; }
 .home-banner .delivery span,
 .home-banner .returns span { font-size:11px; }
 
-.home-banner .delivery { background-size:26px; background-position:5px 0; }
+.home-banner .delivery { background-size:26px; background-position:5px 4px; }
 
-.home-banner .returns { background-size:30px; background-position:5px -6px; }
+.home-banner .returns { background-size:30px; background-position:5px -3px; }
 
 #collectionPage .thumbnail { padding:0 0 20px; margin:0 2.5% 0 1.5%; width:22%; }
 #collectionPage .thumbnail.alpha { margin:0 2.5% 0 0; }
