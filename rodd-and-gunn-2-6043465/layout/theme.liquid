@@ -118,14 +118,17 @@
       
       <div class="hidden">
         <nav id="nav">
-          <!--{% if settings.search_enabled %}
-            <div class="mm-search">
-              <form class="search" action="/search">
-                <input type="hidden" name="type" value="product" />
-                <input type="text" name="q" placeholder="Search" value="{% if search and search.results.first.price %}{{ search.terms }}{% endif %}" autocapitalize="off" autocomplete="off" autocorrect="off" />
-              </form>
+          <div class="mm-search">
+            <form class="search" action="/search">
+              <input type="hidden" name="type" value="product" />
+              <input type="text" name="q" placeholder="Search" value="{% if search and search.results.first.price %}{{ search.terms }}{% endif %}" autocapitalize="off" autocomplete="off" autocorrect="off" />
+            </form>
+            <div class="desktop-hidden">
+              <div class="currency-dropdown">
+                {% include 'currencies-switcher' %}
+              </div>
             </div>
-          {% endif %}-->
+          </div>
           <ul>
             {% for link in linklists[settings.main_linklist].links %}
               {% if linklists[link.handle] == empty %}
@@ -222,11 +225,11 @@
               {% endif %}
             </a>
           </div>
-
-          <div class="currency-dropdown">
-            {% include 'currencies-switcher' %}
+          <div class="mobile_hidden">
+            <div class="currency-dropdown">
+              {% include 'currencies-switcher' %}
+            </div>
           </div>
-          
         </div>
       </div>
     </div>

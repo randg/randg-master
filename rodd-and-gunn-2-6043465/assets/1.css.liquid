@@ -407,7 +407,11 @@ select#currencies { padding:8px 28px 8px 35px; border:none; background:transpare
 .usd { background-image:url({{ 'bg-flag-us.png' | asset_url }}); background-size:25px 13px; background-repeat:no-repeat; background-position:4px 9px; }
 .cad { background-image:url({{ 'bg-flag-canada.png' | asset_url }}); background-size:25px 13px; background-repeat:no-repeat; background-position:4px 9px; }
 
+form.search { width:60%; float:left; }
 
+.mm-search .desktop-hidden { float:right; }
+.desktop-hidden .currency-dropdown { position:relative; }
+.desktop-hidden .currency-dropdown select#currencies { padding:8px 20px 8px 32px; }
 
 
 
