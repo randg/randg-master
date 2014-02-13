@@ -34,19 +34,25 @@ $(function() {
   {% endif %}
   $(window).scroll(function() {
     if(!$('html').hasClass('mm-opened')) {
-      $header.toggleClass('header_bar', $(window).scrollTop() > 65);
-      $banners.toggleClass('scroll-layout', $(window).scrollTop() > 65);
-      if ($(window).scrollTop() > 65 && $(window).width() >= 768) {
+      $header.toggleClass('header_bar', $(window).scrollTop() > 66);
+      $banners.toggleClass('scroll-layout', $(window).scrollTop() > 66);
+      if ($(window).scrollTop() > 66 && $(window).width() >= 980) {
         $('.mini-logo').show();
       } else {
         $('.mini-logo').hide();
       };
-      if ($(window).scrollTop() > 0 && $(window).scrollTop() < 65 && $(window).width() >= 768) {
-        $('.utility-navigation-wrap').css({ top: -60 + $(window).scrollTop() + 'px' });
-      } else if ($(window).scrollTop() >= 65) {
+      if ($(window).scrollTop() > 0 && $(window).scrollTop() < 66 && $(window).width() >= 980) {
+        $('.utility-navigation-wrap').css({ top: -62 + $(window).scrollTop() + 'px' });
+      } else if ($(window).scrollTop() > 0 && $(window).scrollTop() < 66 && $(window).width() >= 768) {
+        $('.utility-navigation-wrap').css({ top: 7 + $(window).scrollTop() + 'px' });
+      } else if ($(window).scrollTop() >= 66 && $(window).width() >= 980) {
         $('.utility-navigation-wrap').css({ top: 3 + 'px' });
-      } else {
+      } else if ($(window).scrollTop() >= 66 && $(window).width() >= 768) {
+        $('.utility-navigation-wrap').css({ top: 8 + 'px' });
+      } else if ($(window).width() >= 980) {
         $('.utility-navigation-wrap').css({ top: -60 + 'px' });
+      } else if ($(window).width() >= 768) {
+        $('.utility-navigation-wrap').css({ top: 7 + 'px' });
       };
       {% if settings.use_logo_home %}
         if($(window).width() >= 768) {
@@ -58,6 +64,10 @@ $(function() {
         }
       {% endif %}
     }
+  });
+
+  $(window).resize(function() {
+    $(window).scroll();
   });
 
   // Initiate the Mega Menu
