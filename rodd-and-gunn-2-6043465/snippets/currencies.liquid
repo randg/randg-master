@@ -57,6 +57,8 @@ else {
 
 jQuery('[name=currencies]').val(Currency.currentCurrency).change(function() {
   var newCurrency = jQuery(this).val();
+  jQuery(this).parent().removeAttr('class');
+  jQuery(this).parent().addClass('currency-dropdown ' + newCurrency.toLowerCase());
   Currency.convertAll(Currency.currentCurrency, newCurrency);
   cookieCurrency = newCurrency;
 });
@@ -68,7 +70,7 @@ var selectCallback = function(variant, selector) {
 };
 
 setTimeout(function() {
-  jQuery('[name=currencies]').val(Currency.currentCurrency);
+  jQuery('[name=currencies]').val(Currency.currentCurrency).trigger('change');
 }, 1);
 
 </script>
