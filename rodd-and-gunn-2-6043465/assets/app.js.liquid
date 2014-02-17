@@ -123,7 +123,15 @@ $(function() {
     $(".fancybox").fancybox({
       width: modal_width,
       padding: 0, 
-      wrapCSS: 'gallery'
+      wrapCSS: 'gallery',
+      nextEffect: 'none',
+      prevEffect: 'none',
+      afterShow: function() {
+        if ($('.fancybox-image').length == 1) {
+          console.log('poop');
+          $('.fancybox-prev, .fancybox-next').hide();
+        };
+      }
     });
 
   };
