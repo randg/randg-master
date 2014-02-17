@@ -76,7 +76,15 @@ RG.global = (function (doc, $, undefined) {
 					};
 				});
 			}).on('click', '.color-swatch li a', function(e){
-				e.preventDefault();
+				var queryExists = getQueryVariable('color'),
+		  			$obj = $(this),
+		  			colorObj = $obj.parent().attr('data-color').toLowerCase(),
+		  			color = colorObj.replace(/ /g,'-');
+		  		if (queryExists == false) {
+			  		$obj.attr('href', $obj.parents('ul').siblings('a.image-wrap').attr('href') + '?color=' + color);
+			  	} else {
+			  		e.preventDefault();
+			  	};
 			});
 
 			$(document).on('mouseover', 'a.image-wrap', function() {

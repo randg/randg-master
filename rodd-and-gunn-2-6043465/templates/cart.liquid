@@ -1,12 +1,7 @@
   <div class="gutter">
     <div class="sixteen columns clearfix collection_nav">
       <h1 class="collection_title">Cart</h1>
-
-      {% if cart.item_count > 0 %}
-        <div class="continue_shopping">
-          <a href="{% if cart.items.first.product.collections != blank %}{{ cart.items.first.product.collections.last.url }}{% else %}/collections/all{% endif %}">Continue Shopping &rarr;</a>
-        </div>
-      {% endif %}
+      <input type="submit" class="action_button add_to_cart mobile_hidden" id="checkout" name="checkout" value="Checkout" />
     </div>
 
     {% if cart.item_count == 0 %}
@@ -25,118 +20,130 @@
 
     <form action="/cart" method="post" id="cart_form">        
       <div class="section clearfix">  
-        <div class="ten columns cart_items">
-          <h4 class="title">Items in your cart:</h4>
+        <div class="sixteen columns cart_items">
+          <ul class="cart-header mobile_hidden">
+            <li class="desc"><h4>ITEM DESCRIPTION</h4></li>
+            <li class="quan"><h4>QUANTITY</h4></li>
+            <li class="subt"><h4>SUB-TOTAL</h4></li>
+          </ul>
 
-          {% for item in cart.items %}
-            <div class="five columns alpha">
-              {% assign option_index = 0 %}
-              {% assign found_option = false %}
-              {% assign index = 0 %}
-              {% assign found_image = false %}
-              {% assign variantColor = false %}
+          <ul class="cart-body">
+            {% for item in cart.items %}
+            <li>
+              <ul>
+                <li class="desc columns">
+                  {% assign option_index = 0 %}
+                  {% assign found_option = false %}
+                  {% assign index = 0 %}
+                  {% assign found_image = false %}
+                  {% assign variantColor = false %}
 
-              {% for option in item.product.options %}
-                {% if found_option == false %}
-                  {% assign downcased_option = option %}
-                  {% if downcased_option contains 'Color' or downcased_option contains 'Colour' or downcased_option contains 'Style' %}
-                    {% assign option_index = forloop.index0 %}
-                    {% assign found_option = true %}
+                  {% for option in item.product.options %}
+                    {% if found_option == false %}
+                      {% assign downcased_option = option %}
+                      {% if downcased_option contains 'Color' or downcased_option contains 'Colour' or downcased_option contains 'Style' %}
+                        {% assign option_index = forloop.index0 %}
+                        {% assign found_option = true %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% if found_option %}
+
+                    {% assign found = false %}
+                    {% capture title %}
+                      {{ item.variant.option1 | strip | escape | handleize }}
+                    {% endcapture %}
+
+                    {% for image in item.product.images %}
+                      {% unless found_image %}
+                        {% if image.alt == item.variant.options[option_index] %}
+                          {% assign index = forloop.index0 %}
+                          {% assign found_image = true %}
+                          {% assign variantColor = item.variant.options[option_index] %}
+                          <a href="{{ item.product.url }}" title="{{ item.title | escape }}">
+                            <img src="{{ image | product_img_url: 'compact' }}" alt="{{ item.variant.options[option_index] | escape }}" class="{{ image.alt }}" />
+                          </a>
+                        {% endif %}
+                      {% endunless %}
+                    {% endfor %}
+
                   {% endif %}
-                {% endif %}
-              {% endfor %}
 
-              {% if found_option %}
-
-                {% assign found = false %}
-                {% capture title %}
-                  {{ item.variant.option1 | strip | escape | handleize }}
-                {% endcapture %}
-
-                {% for image in item.product.images %}
-                  {% unless found_image %}
-                    {% if image.alt == item.variant.options[option_index] %}
-                      {% assign index = forloop.index0 %}
-                      {% assign found_image = true %}
-                      {% assign variantColor = item.variant.options[option_index] %}
-                      <a href="{{ item.product.url }}" title="{{ item.title | escape }}">
-                        <img src="{{ image | product_img_url: 'compact' }}" alt="{{ item.variant.options[option_index] | escape }}" class="{{ image.alt }}" />
-                      </a>
+                  <div class="item-details">
+                    <p>
+                      <a href="{{item.product.url }}" title="{{ item.title | escape }}">{{ item.title }}</a>
+                    </p> 
+                    
+                    {% if item.properties %}
+                      <p>
+                      {% for p in item.properties %}
+                        {% unless p.last == blank %}
+                          {% if p.last contains '/uploads/' %}
+                            {{ p.first }}: <a class="lightbox" href="{{ p.last }}">uploaded file</a><br />
+                          {% else %}
+                            {{ p.first }}: {{ p.last }}<br />
+                          {% endif %}
+                        {% endunless %}
+                      {% endfor %}
+                      </p>
                     {% endif %}
-                  {% endunless %}
-                {% endfor %}
+                    <p class="remove_item">
+                      <a href="/cart/change?line={{ forloop.index }}&quantity=0" title="Remove Item">Remove</a>
+                    </p>
+                    <p class="price_total desktop-hidden">
+                      {{ item.line_price | money_with_currency }}
+                    </p>
 
-              {% endif %}
 
-              
-            </div>
+                  </div>
+                </li>
+                <li class="quan columns mobile_hidden">
+                  <p id="quantity_{{ forloop.index }}">
+                    <label for="updates_{{ item.id }}" class="quantity_label">Quantity:</label>
+                    <input type="number" min="0" size="2" maxlength="2" class="quantity" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
+                  </p>
+                </li>
+                <li class="subt mobile_hidden">
+                  <p class="price_total">
+                    {{ item.line_price | money_with_currency }}
+                  </p>
+                </li>
+              </ul>
 
-            <div class="five columns omega">
-              <p>
-                <a href="{{item.product.url }}" title="{{ item.title | escape }}">{{ item.title }}</a>
-              </p> 
-              
-              {% if item.properties %}
-                <p>
-                {% for p in item.properties %}
-                  {% unless p.last == blank %}
-                    {% if p.last contains '/uploads/' %}
-                      {{ p.first }}: <a class="lightbox" href="{{ p.last }}">uploaded file</a><br />
-                    {% else %}
-                      {{ p.first }}: {{ p.last }}<br />
-                    {% endif %}
-                  {% endunless %}
-                {% endfor %}
-                </p>
-              {% endif %}
+            </li>
 
-              <p class="price_total">
-                {{ item.line_price | money_with_currency }}
-              </p>
+            {% endfor %}
 
-              <p id="quantity_{{ forloop.index }}">
-                <label for="updates_{{ item.id }}" class="quantity_label">Quantity:</label>
-                <input type="number" min="0" size="2" maxlength="2" class="quantity" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
-              </p>
-
-              <p class="remove_item">
-                <a href="/cart/change?line={{ forloop.index }}&quantity=0" title="Remove Item">Remove</a>
-              </p>
-            </div>
-            <br class="clear" />
-            <br class="clear" />
-          {% endfor %}
+          </ul>
         </div>
 
-        <div class="five columns offset-by-one cart-subtotal">
-          <h4 class="subtotal">
-            Subtotal
-          </h4>
 
-          <p class="subtotal_amount">
-            <strong>{{ cart.total_price | money_with_currency }}</strong> 
-            <small id="estimated-shipping" style="display:none">+ <em>{{ 0 | money }} estimated shipping</em></small>
 
-            {% unless settings.tax_included %}
-              <small class="excluding_tax"><em>Excluding tax &amp; shipping</em></small>
-            {% endunless %}
-          </p>
+        <div class="sixteen columns cart-subtotal">
 
-          {% if settings.display_special_instructions %} 
-            <label for="note">Note to {{ shop.name }}:</label>
-            <textarea id="note" name="note" rows="2">{{ cart.note }}</textarea>        
+          {% if cart.item_count > 0 %}
+            <div class="continue_shopping">
+              <a href="{% if cart.items.first.product.collections != blank %}{{ cart.items.first.product.collections.last.url }}{% else %}/collections/all{% endif %}">&larr; Continue Shopping</a>
+            </div>
           {% endif %}
 
-          <p>
-            <input type="submit" class="action_button add_to_cart" id="checkout" name="checkout" value="Checkout" />
-          </p>
-          
-          {% if settings.display_additional_checkout and additional_checkout_buttons %}
-            <p class="center">
-              {{ content_for_additional_checkout_buttons | google_button_options: 'transparent' }}
+          <div class="cart-sub">
+
+            <p class="subtotal_amount">
+              Sub-total before shipping charges: {{ cart.total_price | money_with_currency }}
             </p>
-          {% endif %}
+            <p>Estimated Shipping (choose method in checkout): FREE</p>
+            <strong>Estimated Total: {{ cart.total_price | money_with_currency }}</strong>
+
+            <input type="submit" class="action_button add_to_cart" id="checkout" name="checkout" value="Checkout" />
+
+          </div>
+
         </div>
+
+
+
       </div>
     </form>
     

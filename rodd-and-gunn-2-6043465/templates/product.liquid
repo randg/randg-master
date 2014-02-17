@@ -2,7 +2,7 @@
   <div class="sixteen columns">
     <div class="clearfix breadcrumb">
       <div class="right mobile_hidden">
-        <a href="javascript:history.go(-1)">&larr; Back to {{ collection.title }}</a>
+        <a href="javascript:history.go(-1)">&larr; Back to Results</a>
       </div>
 
       <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
@@ -156,7 +156,7 @@
       {% assign skip_product = product %}
       {% assign products = collections[col].products %}
       {% assign products_per_row = settings.products_per_row %}
-      <div class="{% if settings.product_sidebar %}twelve offset-by-four{% else %}sixteen{% endif %} columns">
+      <div class="{% if settings.product_sidebar %}twelve offset-by-four{% else %}sixteen related-products{% endif %} columns">
         {% include 'product-loop' with settings.product_sidebar %}
       </div>
     {% endif %}

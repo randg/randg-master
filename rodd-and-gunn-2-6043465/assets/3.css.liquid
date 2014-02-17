@@ -52,8 +52,11 @@
 .container .sidebar.four.columns { margin:0 3% 0 0; }
 
 
-
-.home-tiles .eight.columns.home-tile { width:33.33%; float:left; margin:0; }
+.flexslider { margin:0 auto 10px; }
+.home-tiles .eight.columns.home-tile { width:32.33%; float:left; margin:0; }
+.home-tiles .eight.columns.pos-left { margin:0 0.5% 0 0; }
+.home-tiles .eight.columns.pos-center { margin:0 1%; }
+.home-tiles .eight.columns.pos-right { margin:0 0 0 0.5%; }
 
 
 .header_bar .container ul.menu { line-height:20px; margin:0 0 0 20px; float:left; width:auto; }
@@ -128,11 +131,36 @@ h1.product_name { text-align:left; }
 
 /* Cart Page */
 
-.cart h1.collection_title { text-align:left; }
-.cart .continue_shopping { text-align:left; float:right; margin:-35px 0 0; }
-.cart .cart_items h4,
-.cart .cart-subtotal h4 { text-align:left; }
+.cart h1.collection_title { text-align:left; padding:0 0 10px; }
+.cart .continue_shopping { text-align:left; }
+.cart .cart_items h4 { text-align:left; }
 .cart .cart-subtotal { padding:0; }
+
+.cart ul.cart-header li { float:left; }
+
+.cart ul li h4 { padding:2px 0 0; }
+.cart ul li.desc { width:60%; }
+.cart ul li.quan { width:20%; }
+.cart ul li.subt { width:20%; }
+
+.cart ul.cart-body { padding:0 0 20px; border:solid #f3f0e5; border-width:0 0 1px; }
+.cart ul.cart-body li { float:none; } 
+.cart ul.cart-body li ul li { float:left; }
+.cart ul.cart-body li ul li p { overflow:hidden; }
+
+.cart ul.cart-body li ul li > a { float:left; width:auto; }
+
+.cart ul li.desc a { float:left; }
+.cart ul.cart-body li ul li .item-details { float:left; position:relative; }
+
+.cart .cart-subtotal .continue_shopping { float:left; padding:20px 0 0; position:relative; width:auto; }
+.cart .cart-subtotal .cart-sub { width:50%; float:right; padding:20px 0 0; }
+.cart .cart-subtotal .cart-sub strong,
+.cart .cart-subtotal .cart-sub p { text-align:right; width:100%; display:block; margin:0 0 5px; }
+ 
+
+.cart .collection_nav input { float:right; width:50%; margin:-49px 0 0; }
+.cart .cart-subtotal { width:100%; }
 
 .cart .cart_items .alpha { float:left; margin:0; }
 .cart .cart_items .columns.omega { width:55%; float:left; }
@@ -140,6 +168,13 @@ h1.product_name { text-align:left; }
 .container div.collection_nav { margin:0; }
 
 .container .five.columns.alpha { width:160px; }
+
+.cart .cart-subtotal .cart-sub input.add_to_cart { width:100%; }
+
+
+div.select { margin:1px 0 0; }
+
+div.content { padding:10px 0 0; }
 
 
 
