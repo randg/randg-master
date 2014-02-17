@@ -66,6 +66,29 @@ RG.global = (function (doc, $, undefined) {
 			
 			RG.info.action = (hasTouch() ? 'tap' : 'click');
 
+			/*$("#mc-embedded-subscribe-form").submit(function() {
+
+	            var $form = $(this),
+	            $iframe = $("#form-submission"),
+	            $window = $(window);
+
+	            $iframe.css({
+	                height: 500,
+	                width: 500,
+	                position: "absolute",
+	                left: ($window.width() / 2) - 250,
+	                top: ($window.height() / 2) - 250
+	            });
+
+	            $iframe.load(function(){
+				    $iframe.fadeIn('fast', function() {
+				    	$iframe.find('.wrapper').append('<div>poop</div>');
+				    });
+				});
+	            $('.form-submission-lightbox').fadeIn();
+	        });*/
+
+
 			$(document).on('mouseover', '.color-swatch li a', function() {
 				var $obj = $(this),
 					dClass = $obj.parent().data('color');
