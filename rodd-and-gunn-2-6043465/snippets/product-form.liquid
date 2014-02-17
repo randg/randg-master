@@ -37,7 +37,7 @@
       </div>
     {% endif %}
 
-    {% if product.type != 'Accessories' and product.type != 'Bag' %} 
+    {% if product.type != 'Accessories' and product.type != 'Bag' and product.type != 'Hat' %} 
       <div class="size-chart"><a data-type="{{ product.type | escape | handleize }}" class="size-chart-overlay" href="#inlineChart">View size chart</a></div>
     {% endif %}
 
