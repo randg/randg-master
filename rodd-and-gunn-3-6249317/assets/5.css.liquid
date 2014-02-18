@@ -12,15 +12,16 @@
 /* Base Grid */ 
 .container .one.column                      { width: 55px;  }
 .container .two.columns                     { width: 130px; }
-.container .four.columns                    { width: 22%; }
-.container .five.columns                    { width: 355px; }
+.container .four.columns                    { width: 16%; }
+.container .related-products .four.columns                    { width: 22%; }
+.container .five.columns                    {  }
 
-.container .seven.columns                   { width: 505px; }
+.container .seven.columns                   { width: 505px; } 
 .container .eight.columns                   { width: 580px; }
 .container .nine.columns                    { width: 655px; }
-.container .ten.columns                     { width: 730px; }
+.container .ten.columns                     {  }
 .container .eleven.columns                  { width: 805px; }
-.container .twelve.columns                  { width: 75%; margin:0; }
+.container .twelve.columns                  { width: 81%; margin:0; }
 .container .thirteen.columns                { width: 955px; }
 .container .fourteen.columns                { width: 1030px; }
 .container .fifteen.columns                 { width: 1105px; }
@@ -48,12 +49,7 @@
 
 .container .sidebar.four.columns { margin:0 3% 0 0; }
 
-/* #Base 1240 Grid
-================================================== */
 
-@media all and (min-width: 1240px) {
-  .gutter { display:block; padding:0; }
-}
 
 
 
@@ -63,5 +59,29 @@
 
 /* Home page banners */
 
-.home-banner p { margin:8px 1% 0 0; line-height:1.8em; }
-.home-banner #sign_up { padding:7px 0; }
+.container .home-banner-wrap { padding:10px 10px 6px; }
+
+.container .home-banner-wrap .two.columns.returns, 
+.container .home-banner-wrap .two.columns.delivery { margin:1px 0 0; width:38%; padding:6px 0 6px 40px; font-size:13px; }
+.container .home-banner-wrap .two.columns.returns { margin:1px 0 0 50px; }
+
+.home-banner p { margin:4px 5px 0 30px; }
+
+.home-banner .delivery { background-position:5px 3px; }
+
+.home-banner .returns { background-position:5px -4px; }
+
+.home-banner .delivery span,
+.home-banner .returns span { font-size:13px; display:inline; }
+
+/* #Base 1240 Grid
+================================================== */
+
+@media all and (min-width: 1240px) {
+  .gutter { display:block; padding:0; }
+  .home-banner p { margin:4px 5px 0 40px; }
+}
+
+
+
+

@@ -626,6 +626,7 @@ li.text-payment {
     width: auto;
     margin: 0;
     padding: 0;
+    font-size:13px;
 }
 
 #shipping-same label {
@@ -670,14 +671,35 @@ li.text-payment {
 
 .field-with-errors .error-message {
     display: block;
-    position: static;
+    position: absolute;
     text-align: inherit;
-    top: auto;
+    top: 6px;
     height: auto;
-    width: auto;
+    width: 85px;
+    left:102%;
     color: inherit;
     font: inherit;
-    font-size:13px!important;
+    font-size:11px!important;
+}
+
+
+
+.field-with-errors input[type="text"] {
+    background-color:#ffcccc;
+}
+
+#billing_address_province_li .field-with-errors .error-message {
+    top:1px;
+    left:54.5%;
+}
+
+#email .field-with-errors .error-message {
+    left:37%;
+}
+
+#credit-card-info .field-with-errors .error-message {
+    width:85px!important;
+    left:97%;
 }
 
 .gleft {
@@ -811,7 +833,7 @@ li.text-payment {
     display: inline;
     font: inherit;
     padding: 0;
-    margin:0 0 0 13px;
+    margin:8px 0 0;
 }
 
 html,body,form,fieldset,p,div,h1,h2,h3,h4,h5,h6 {
@@ -1134,6 +1156,7 @@ a.bottab,.field-with-errors {
     background: none;
     border: none;
     padding: 0;
+    position:relative;
 }
 
 .tos-wrapper,.tos-policies,#payment {
@@ -1166,6 +1189,9 @@ h1,#pay-with h3,h4.active-customer {
     background: none;
     margin: 0;
     padding: 0;
+    overflow:hidden;
+    width:50%;
+    float:left;
 }
 
 .clearfix,.form ul.inline li label,html[xmlns] .clearfix {
@@ -1175,6 +1201,23 @@ h1,#pay-with h3,h4.active-customer {
 .sign-in,.thumblist-content,#payment-methods li input,.button-group li input {
     float: none;
     margin: 0;
+}
+
+#payment-methods {
+    overflow:hidden;
+}
+
+#payment-methods li input, #payment-methods li label {
+    float: left;
+}
+
+#payment-methods li label {
+    margin:0 0 0 10px;
+}
+
+#payment-methods li label span {
+    display:block;
+    margin:0 0 6px;
 }
 
 .forgot-password,.sign-in-area input[type=submit] {
@@ -1212,10 +1255,7 @@ body:hover .visually-hidden a,body:hover .visually-hidden input,body:hover .visu
     display: none;
 }
 
-#email .field-with-errors .error-message,.horizontal #email .field-with-errors .error-message {
-    top: auto;
-    width: auto;
-}
+
 
 #payment-methods li label,.button-group li label {
     display: block;
@@ -1262,26 +1302,84 @@ ul.edit-options,ul.cart-items {
 
 body { min-width:768px; font-family:Arial, Sans-serif; color:#404040; }
 
+#overview { width:100%; }
+
+.step1 #content { margin:45px 0 0; }
+
+.step1 #products { display:none; }
+.step2 #products { display:block; width:50%; max-width:700px; min-width:600px; margin:35px auto 0; }
+#products { width:50%; max-width:700px; min-width:600px; margin:0 auto; }
+
+#wallet { padding:0 0 5px; width:50%; max-width:700px; min-width:600px; margin:0 auto; }
+
+#cost { color:#404040; font-weight:bold; font-size:20px; text-align:center; background-color:#f3efdf; padding:5px 0; }
+.step1 #wallet #cost { display:none; }
+.step2 #wallet #cost { display:block; }
+#shipping_span { position:relative; top:-23px; left:409px; font-size:13px!important; }
+
+#content { width:100%; margin:0; }
+#content form { width:50%; max-width:700px; min-width:600px; margin:0 auto; } 
+
+#email { color:#404040; padding:0 0 15px; margin:0 0 15px; border:solid #f3efdf; border-width:0 0 1px; }
+#email label { margin:0 0 10px; font-family:"{{ settings.nav_google_webfont_font | replace: '+', ' ' }}"!important; font-size:20px!important; }
+#email .sign-in-message { margin:10px 10px 0; font-size:13px; }
+
+#customer-login-link { margin:0; }
+
+table#billing #billing-is-shipping td { width:80%!important; float:right; } 
+
+#cancel-purchase { display:block; overflow:hidden; text-indent:-15px; float:left; }
+#cancel-purchase a { font-size:11px; text-transform:capitalize; }
+#cancel-purchase a:before { content:'\2190\00a0'; } 
+#commit-button { float:right; } 
+
+#credit-card-info input { border:1px solid #ccc; padding:5px 0; text-indent:10px; }
+
+
+#credit-card-info table { width:100%; } 
+#credit-card-info table td { padding:5px 0 0!important; }
+#credit-card-info input { width:94.7%; }
+input#credit_card_first_name { width:90%; }
+input#credit_card_last_name { width:90%; }
+select#credit_card_year { margin:6px 0 3px; }
+input#credit_card_verification_value { margin:6px 0 0; width:13%; }
+select#credit_card_month { margin:0 0 10px; }
+
+#complete-purchase { float:right; }
+
 #container { color:#404040; padding:0 20px; position:relative; }
 #logo { display:block; padding:0; margin:10px auto; width:175px; height:47px; background-image:url('{{ "logo.png" | asset_url }}'); background-repeat:no-repeat; background-position:center center; background-size:100%; }
 #tagline { display:none; }
-#products { border-right:solid 1px #f3efdf; }
+
+#container.slim #main { width:50%; margin:0 auto; max-width:700px; min-width:600px; }
+#container.slim #header { border-bottom:solid 37px #f3f0e5; margin:0 0 20px; }
+#container.slim table#thumbs { margin:10px 0 0; border-top:solid 1px #f3f0e5!important; }
+#container.slim table#thumbs td { border-bottom:solid 1px #f3f0e5!important; }
+#container.slim table#thumbs td img { float:left; padding:10px 0; }
+#container.slim table#thumbs td h3 { float:left; margin:10px 0 0 10px; }
+#container.slim #content { margin:10px 0 0; }
+
 #products h2 { display:none; }
-#overview { padding:0; width:50%; float:left; margin:41px 0 0; }
-#content { width:47%; float:right; margin:60px 0 0; }
+.shopify-dialog { background-color:#fff; border:solid 2px #000; width:70%!important; left:50%!important; margin:0 0 0 -35%; }
+.shopify-dialog-title { padding:20px 0 0 20px; }
+.shopify-dialog-content { padding:0 20px 20px; }
+.shopify-dialog-content td { width:50%; }
+.shopify-dialog-content td img { max-width:100%; }
+.shopify-dialog-title-close { color:#404040!important; text-indent:0; font-size:35px; float:right; position:absolute; right:10px; top:0px; }
+
 #footer { clear:both; padding:20px 10px; border:solid #f3efdf; border-width:1px 0 0; }
 #footer p { text-align:center; color:#404040; font-family:Arial, Sans-serif; font-size:11px; }
 #steps { text-align:center; font-family:"{{ settings.nav_google_webfont_font | replace: '+', ' ' }}"!important; font-size:15px; text-transform:capitalize; padding:10px 0; position:absolute; top:55px; left:20px; right:20px; margin:0; background-color:#f3efdf; }
 #main { overflow:hidden; padding:0 0 120px!important; }
-#buttons { position:absolute; left:50%; width:500px; margin:0 0 0 -250px!important; bottom:80px; }
+
 #addresses table { width:100%; }
 .step2 #commit-button { margin:0 15px 0 0; }
-#customer-login-link,
-#buttons input, 
-#buttons a,
+
+#create-account-btn,
+#buttons input,
 input.submit-btn { 
-    background: {{ settings.btn_color }};
-    color: {{ settings.btn_text_color }};
+    background: #ff7f00;
+    color: #fff; 
     border: 0;
     padding: 7px 20px;
     text-align: center;
@@ -1311,16 +1409,10 @@ input.submit-btn {
      border-radius: 3px; 
  } 
 
-#buttons a { background:#ede9dd; color:#404040; text-decoration:none; margin:0 0 0 15px; }
-#customer-login-link { margin:0 0 0 10px; text-decoration:none; padding:7px 10px!important; }
 
 .error-message { color:#f00!important; text-transform:capitalize; font-style:13px!important; }
 
-
-
-
-.step2 #buttons { width:625px!important; margin:0 0 0 -312px!important; }
-
+#create-account-btn { margin:10px 0 0; }
 
 table#thumbs { width:100%; font-size:14px; }
 #thumbs div { float:left; margin:0 10px 0 0; }
@@ -1328,20 +1420,26 @@ table#thumbs { width:100%; font-size:14px; }
 #thumbs h3,
 #thumbs span { color:#404040; padding:0 0 3px; }
 #thumbs span.plist-line-price { display:block; padding:3px 0 0; }
-#wallet { padding:0 0 5px; }
-#cost { color:#404040; font-weight:bold; font-size:20px; text-align:center; background-color:#f3efdf; padding:15px 0; }
+
 #shipping-rates { margin:0 0 20px; }
 
 .group p { font-size:13px!important; }
 .sst { margin:15px 0 0!important; font-size:13px; }
 
-#email { color:#404040; padding:0 0 15px; margin:0 0 15px; border:solid #f3efdf; border-width:0 0 1px; }
-#email label { margin:0 0 10px; font-family:"{{ settings.nav_google_webfont_font | replace: '+', ' ' }}"!important; font-size:20px!important; }
-#email .sign-in-message { margin:10px 0 0; display:block; font-size:13px; }
+
 #order_email { border:solid 1px #cccccc; padding:5px 0!important; text-indent:10px; }
 table#billing { border-bottom:solid 1px #f3efdf; padding:0 0 10px; }
-table#billing td { float:right; font-size:13px; width:100%!important; max-width:75%!important; }
+table#billing td { float:left; font-size:13px; width:100%!important;  }
+
+table#billing td:nth-child(2) { max-width:75%!important; }
+
+table#billing td ul.inline { width:100%; }
+table#billing td ul.inline li { width:100%!important; clear:both; }
+table#billing td ul.inline li label { width:20% !important; float:left; }
+table#billing td ul.inline li select { float:left; font-size:13px; width:100%!important; max-width:32%!important; } 
+
 table#billing td.lbl { width:20% !important; float:left; }
+table#billing td.lbl label { margin:7px 0 0; }
 table#billing td input { width:99% !important; border:1px solid #ccc; padding:5px 0; text-indent:10px; margin:0 0 10px; }
 table#billing td select { margin:0 0 10px; width:100% !important; } 
 table#billing .multiple_address_selection td { width:auto !important; margin:0 0 10px; max-width:100% !important; float:none; }
@@ -1349,8 +1447,15 @@ table#billing .multiple_address_selection td select { width:100% !important; pad
 table#billing #billing-is-shipping td input { float:left; width:auto!important; }
 table#billing #billing-is-shipping td label { float:left; margin:0 0 0 10px; width:80%; }
 
-table#shipping { margin:0; }
-table#shipping td { float:right; font-size:13px; width:100%!important; max-width:75%!important; }
+table#shipping { border-bottom:solid 1px #f3efdf; padding:0 0 10px; }
+table#shipping td { float:left; font-size:13px; width:100%!important;  }
+
+table#shipping td:nth-child(2) { max-width:75%!important; }
+
+table#shipping td ul.inline { width:100%; }
+table#shipping td ul.inline li { width:100%!important; clear:both; }
+table#shipping td ul.inline li label { width:20% !important; float:left; }
+table#shipping td ul.inline li select { float:left; font-size:13px; width:100%!important; max-width:32%!important; } 
 table#shipping td.lbl { width:20% !important; float:left; }
 table#shipping td input { width:99% !important; border:1px solid #ccc; padding:5px 0; text-indent:10px; margin:0 0 10px; }
 table#shipping td select { margin:0 0 10px; width:100% !important; } 
