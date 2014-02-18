@@ -246,7 +246,7 @@ RG.collectionPage = (function (doc, $, undefined) {
 						if ((i + 1) % 4 == 0) {
 					    	$(this).addClass('omega'); 
 					    	$(this).after('<br class="clear"/>');
-					    	$(this).nextAll('.true').addClass('alpha');
+					    	$(this).nextAll('.true').first().addClass('alpha');
 					    };
 					};
 				};
@@ -267,7 +267,7 @@ RG.collectionPage = (function (doc, $, undefined) {
 					if ((i + 1) % 4 == 0) {
 				    	$(this).addClass('omega'); 
 				    	$(this).after('<br class="clear"/>');
-				    	$(this).nextAll('.thumbnail').addClass('alpha');
+				    	$(this).nextAll('.thumbnail').first().addClass('alpha');
 				    };
 				};
 			});
