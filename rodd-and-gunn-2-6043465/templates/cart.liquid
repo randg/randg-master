@@ -1,7 +1,7 @@
   <div class="gutter">
     <div class="sixteen columns clearfix collection_nav">
       <h1 class="collection_title">Cart</h1>
-      <input type="submit" class="action_button add_to_cart mobile_hidden" id="checkout" name="checkout" value="Checkout" />
+      <input type="submit" class="action_button action_checkout mobile_hidden" id="checkout" name="checkout" value="Checkout" />
     </div>
 
     {% if cart.item_count == 0 %}
@@ -136,7 +136,7 @@
             <p>Estimated Shipping (choose method in checkout): FREE</p>
             <strong>Estimated Total: {{ cart.total_price | money_with_currency }}</strong>
 
-            <input type="submit" class="action_button add_to_cart" id="checkout" name="checkout" value="Checkout" />
+            <input type="submit" class="action_button action_checkout" id="checkout" name="checkout" value="Checkout" />
 
           </div>
 
