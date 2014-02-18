@@ -68,10 +68,14 @@
         {% else %}
           <span class="sold_out">{{ settings.sold_out_text }} - </span>{{ product.price_min | money }}
         {% endif %}
-        {% if product.compare_at_price_max > product.price %}
-          <small><em>from</em></small>
-          <span class="was_price">{{ product.compare_at_price_max | money }}</span>
+
+        {% if product.price < product.compare_at_price_max %}
+           <small class="was"><em>was</em></small>
+           <span class="was_price">
+              {{ product.compare_at_price | money }}
+           </span>
         {% endif %}
+
       </span>
     </div>
     {% for col in product.collections %}
