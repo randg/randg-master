@@ -123,9 +123,12 @@ RG.collectionPage = (function (doc, $, undefined) {
 			if (removeID) {
 				for (var i = 0; i < refineOptions1.length; i++) {
 					if (refineOption.b == refineOptions1[i].b) {
-						refineOptions1.splice(refineOptions1[i], 1);
+						refineOptions1.splice(i, 1);
 					};
-				};
+				};	
+				for (var i = 0; i < refineOptions1.length; i++) {
+					console.log(refineOptions1[i]);
+				};			
 			} else {
 				var found = jQuery.inArray(refineOptions1, refineOption);
 				if (found >= 0) {
@@ -140,7 +143,7 @@ RG.collectionPage = (function (doc, $, undefined) {
 			if (removeID) {
 				for (var i = 0; i < refineOptions2.length; i++) {
 					if (refineOption.b == refineOptions2[i].b) {
-						refineOptions2.splice(refineOptions2[i], 1);
+						refineOptions2.splice(i, 1);
 					};
 				};
 			} else {
@@ -157,7 +160,7 @@ RG.collectionPage = (function (doc, $, undefined) {
 			if (removeID) {
 				for (var i = 0; i < refineOptions3.length; i++) {
 					if (refineOption.b == refineOptions3[i].b) {
-						refineOptions3.splice(refineOptions3[i], 1);
+						refineOptions3.splice(i, 1);
 					};
 				};
 			} else {
@@ -173,7 +176,7 @@ RG.collectionPage = (function (doc, $, undefined) {
 		if (refineOptions1.length > 0) {
 			$('.thumbnail').each(function() {
 				for (var i = 0; i < refineOptions1.length; i++) {
-					if ($(this).children("a.image-wrap[data-option-1*='" + refineOptions1[i].b + "']").length > 0) {	
+					if ($(this).children("a.image-wrap[data-option-1*='" + refineOptions1[i].b + "']").length > 0) {
 						if ($(this).hasClass('false')) {
 							$(this).removeClass('false').addClass('true');
 						} else {
@@ -243,9 +246,7 @@ RG.collectionPage = (function (doc, $, undefined) {
 						if ((i + 1) % 4 == 0) {
 					    	$(this).addClass('omega'); 
 					    	$(this).after('<br class="clear"/>');
-					    };
-					    if ((i + 1) % 5 == 0) {
-					    	$(this).addClass('alpha');
+					    	$(this).nextAll('.true').addClass('alpha');
 					    };
 					};
 				};
@@ -253,28 +254,25 @@ RG.collectionPage = (function (doc, $, undefined) {
 		} else {
 			$('.thumbnail:first').addClass('alpha');
 			$('.product-listing div.thumbnail').each(function (i) {
-				if (RG.info.mobile) {
-					if ((i + 1) % 2 == 0) {
+				if (RG.info.mobile) { 
+					if ((i + 1) % 2 == 0) { 
 				    	$(this).addClass('omega');
 				    	if (!$(this).next().hasClass('clear')) {
 				    		$(this).after('<br class="clear"/>');
 				    	};
 				    } else {
-				    	$(this).addClass('alpha');
+				    	$(this).addClass('alpha'); 
 				    };
 				} else {
 					if ((i + 1) % 4 == 0) {
 				    	$(this).addClass('omega'); 
 				    	$(this).after('<br class="clear"/>');
-				    };
-				    if ((i + 1) % 5 == 0) {
-				    	$(this).addClass('alpha');
+				    	$(this).nextAll('.thumbnail').addClass('alpha');
 				    };
 				};
 			});
 		};
 		
-
 		$("img", '.product-listing').unveil();
 
 	},
