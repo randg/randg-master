@@ -4,7 +4,7 @@
     {{ pages[settings.collection_top_sidebar_page].content }}
   {% endif %}
 
-  <h4 class="toggle"><span>+</span>{{ settings.tags_text }}</h4>
+  <h4 class="toggle"><div class="mobile_hidden"><span>+</span>{{ settings.tags_text }}</div><a class="desktop-hidden" href="#"><span>+</span>{{ settings.tags_text }}</a></h4>
 
   {% if collection.handle == 'knitwear' %}
     {% assign theCollection = 'knitwear' %}
