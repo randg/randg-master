@@ -20,7 +20,7 @@ RG.productPage = (function(doc, $, undefined) {
 			buildImageGallery();
 		};
 	},
-	events = function() {
+	events = function() { 
 		$(document).on('mouseover', '.selector-wrapper:first-child .single-option-selector', function() {
 			$(this).addClass('user-initiated');
 		});
@@ -142,6 +142,7 @@ RG.productPage = (function(doc, $, undefined) {
 	      };
 
 	      $.each($thumbs, function(index, value) { 
+
 	        if($(value).attr('data-title').toLowerCase() == optionValue.toLowerCase() && !$(value).hasClass('flex-active')) {
 	        	if ($('.user-initiated').length && $('body[data-select-position="0"]').length) {
 		        	userSelectedColor = $(value).attr('data-title');
