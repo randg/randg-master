@@ -34,6 +34,8 @@ RG.global = (function (doc, $, undefined) {
 			// Initiate global page events
 			events();
 
+			modernBrowsers();
+
 			// Initialize debugging
 			if (RG.settings.debug) { 
 				debugging.size();
@@ -59,6 +61,12 @@ RG.global = (function (doc, $, undefined) {
 			RG.productPage.init();
 			RG.accountPage.init();
 
+		},
+
+		modernBrowsers = function() {
+			if (!$('html').hasClass('oldie') && $('.product_form').length) {
+				$('form.product_form').attr('action', '#');
+			};
 		},
 
 		// Sets Global click events for common objects 
@@ -131,22 +139,26 @@ RG.global = (function (doc, $, undefined) {
 			$(document).on('click', '.add_to_cart', function(e) {
 				validateForm();
 				if (validated) {
-					var quantity = 1,
-	 		  			variantId = getVariantId(),
-	 		  			loader = '<li class="loader"></li>';
-	 
-	 		  		if (!$('#cart ul li[data-id="' + variantId + '"]').length) {
-	 			  		$('#cart ul li:first-child').after(loader);
-	 			  	} else {
-	 			  		$('#cart ul li[data-id="' + variantId + '"]').addClass('loader');
-	 			  	};
+					if (!$('.oldie').length) {
+						var quantity = 1,
+		 		  			variantId = getVariantId(),
+		 		  			loader = '<li class="loader"></li>';
+		 
+		 		  		if (!$('#cart ul li[data-id="' + variantId + '"]').length) {
+		 			  		$('#cart ul li:first-child').after(loader);
+		 			  	} else {
+		 			  		$('#cart ul li[data-id="' + variantId + '"]').addClass('loader');
+		 			  	};
 
-	 		    	$('#cart').mmenu().trigger("open").on("opened.mm", function() {
-	 		    		$('#cart').addClass('auto-open');
-	 			    	Shopify.addItem(variantId, quantity, updateCartUI);
-	 			    });
+		 		    	$('#cart').mmenu().trigger("open").on("opened.mm", function() {
+		 		    		$('#cart').addClass('auto-open');
+		 			    	Shopify.addItem(variantId, quantity, updateCartUI);
+		 			    });
+		 			    e.preventDefault();
+		 		    };
+				} else {
+					e.preventDefault();
 				};
- 		  		e.preventDefault();
  		  	});
 
 		  	$(document).one('click', 'a.image-wrap', function() {
@@ -311,6 +323,8 @@ RG.global = (function (doc, $, undefined) {
 	          $('.cart_count').html(cart.item_count);
 	        };
 
+	        //console.log($product);
+
 	        $('em.subtotal').html(Shopify.formatMoney(cart.total_price, $('form.product_form', $product).data('money-format')));
 
 	        Currency.convertAll(shopCurrency, cookieCurrency);
@@ -321,11 +335,14 @@ RG.global = (function (doc, $, undefined) {
 
 	  		var variantId = null,
 	  			colorVariant = $('.selector-wrapper:eq(0)').children('.single-option-selector').find(':selected').text(),
+	  			singleColorVariant = $('.select select[name="id"]').find(':selected').text(),
 		  		sizeVariant = $('.selector-wrapper:eq(1)').children('.single-option-selector').find(':selected').text(),
 		  		lengthVariant = $('.selector-wrapper:eq(2)').children('.single-option-selector').find(':selected').text();
-	  		
+	  			
+	  		//console.log(singleColorVariant);
 	  		$('.select > select').children('option').each(function() {
-	  			if ($(this).text() == colorVariant + ' / ' + sizeVariant || $(this).text() == colorVariant + ' / ' + sizeVariant + ' / ' + lengthVariant) {
+	  			//console.log(singleColorVariant + ' - ' + $(this).text());
+	  			if ($(this).text() == singleColorVariant || $(this).text() == colorVariant + ' / ' + sizeVariant || $(this).text() == colorVariant + ' / ' + sizeVariant + ' / ' + lengthVariant) {
 	  				variantId = $(this).val();
 	  			};
 	  		});

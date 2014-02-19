@@ -7,7 +7,7 @@
 {% endfor %}
 
 {% if product.available %}
-  <form action="#" method="post" class="clearfix product_form" data-money-format="{{ shop.money_format }}" data-option-index="{{ option_index }}" id="product-form-{{ product.id }}">
+  <form action="/cart/add" method="post" class="clearfix product_form" data-money-format="{{ shop.money_format }}" data-option-index="{{ option_index }}" id="product-form-{{ product.id }}">
 
     {% if product.options.size > 1 %}
       <div class="select">
