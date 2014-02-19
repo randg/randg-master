@@ -76,7 +76,7 @@ $(function() {
     searchfield: true
   });
 
-  if ($('html').hasClass('ie')) {
+  if ($('html').hasClass('ie8') || $('html').hasClass('ie7')) {
     $('.cart-button').click(function() { window.location = '/cart'; });
   } else {
     $('#cart').mmenu({
