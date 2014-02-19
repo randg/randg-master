@@ -229,7 +229,7 @@ html.mm-left.mm-opening #header
 html.mm-opened.mm-opening #header
 {
   margin-right: 0px;
-  left: 255px;
+  left: 78.3%;
 
   -webkit-transition: right 0.5s ease, left 0.5s ease, margin 0.5s ease;
   -moz-transition: right 0.5s ease, left 0.5s ease, margin 0.5s ease;
@@ -239,7 +239,7 @@ html.mm-opened.mm-opening #header
 html.mm-right.mm-opened.mm-opening #header
 {
   margin-right: 0px;
-  left: -255px;
+  left: -79.6%;
 
   -webkit-transition: right 0.5s ease, left 0.5s ease, margin 0.5s ease;
   -moz-transition: right 0.5s ease, left 0.5s ease, margin 0.5s ease;
@@ -250,7 +250,7 @@ html.mm-right.mm-opened.mm-opening #header
   html.mm-opened.mm-opening #header
   {
     margin-right: 0px;
-    left: 405px;
+    left: 78.3%;
 
     -webkit-transition: right 0.5s ease, left 0.5s ease, margin 0.5s ease;
     -moz-transition: right 0.5s ease, left 0.5s ease, margin 0.5s ease;
@@ -575,7 +575,7 @@ input[type="submit"].guest_button:hover {
   -o-transition : border 200ms ease-out;  
 }
 
-.sidebar a.active, .sidebar li.active a, .sidebar a:hover, .refinebar a.active, .refinebar li.active a, .refinebar a:hover {
+.sidebar a.active, .sidebar li.active a, .sidebar a:hover, .refinebar li.active a {
   border-left: solid 4px {{ settings.nav_active_color }};
 }
 
@@ -1929,14 +1929,15 @@ html.mm-blocking #mm-blocker
 
 .mm-menu.mm-horizontal
 {
-  width: 265px;
+  width: 78.3%;
 }
 
 @media all and (min-width: 480px) {
 /* horizontal submenu */
 .mm-menu.mm-horizontal
 {
-  width: 420px;
+  width: 78.3%;
+  overflow:hidden;
 }
 }
 .mm-menu.mm-horizontal.mm-right
@@ -2109,7 +2110,7 @@ em.subtotal
 em.subtotal
 {
   color:#404040;
-  font-size:20px;
+  padding:0;
 }
 
 
@@ -2173,7 +2174,7 @@ em.subtotal
 */
 .mm-menu div.mm-search
 {
-  width: 250px;
+  width: 100%;
   height: 50px;
   padding: 10px;
   position: absolute;
@@ -2867,12 +2868,6 @@ div.cloudzoom-ajax-loader {
     .index .logo a, .index .logo a:hover, .index .logo a:visited, .index .logo a:active {
       color: {{ settings.logo_color }};
     } 
-    #cart a.action_button.edit_cart {
-      width:120px;
-    }
-    #cart .action_button {
-      width:120px;
-    }
     .cart_count {
       left: 8px;
     }
