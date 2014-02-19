@@ -18,4 +18,12 @@
       });
     // ]]>
   </script>
+{% else %}
+<script type="text/javascript">
+  // <![CDATA[  
+    $(function() {    
+      $product = $('#product-' + {{ product.id }});
+    });
+  // ]]>
+</script>
 {% endif %}

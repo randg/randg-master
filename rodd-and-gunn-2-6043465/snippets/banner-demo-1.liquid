@@ -16,7 +16,7 @@
     
         {% form 'customer' %}
            {% if form.posted_successfully? %}
-             <p><em>Thank you for joining our mailing list!</em></p>
+             <p><em>Thank you for joining our mailing list!</em></p> 
            {% elsif form.errors %}
              {% for field in form.errors %}
                <p><em>{{ field }} - {{ form.errors.messages[field] }}</em></p>
