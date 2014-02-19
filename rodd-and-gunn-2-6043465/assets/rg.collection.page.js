@@ -46,8 +46,8 @@ RG.collectionPage = (function (doc, $, undefined) {
 			e.preventDefault();
 		});
 
-		$(document).on(RG.info.action, '.refinebar h4', function() {
-		    if (RG.info.mobile) { 
+		$(document).on('click', '.refinebar h4', function() {
+		    if (RG.info.mobile) {
 		        var $obj= $(this);
 		        if($obj.siblings('.refine-list').is(':visible')) {
 		        	$obj.siblings('.refine-list').hide();
@@ -124,9 +124,6 @@ RG.collectionPage = (function (doc, $, undefined) {
 					if (refineOption.b == refineOptions1[i].b) {
 						refineOptions1.splice(i, 1);
 					};
-				};	
-				for (var i = 0; i < refineOptions1.length; i++) {
-					console.log(refineOptions1[i]);
 				};			
 			} else {
 				var found = jQuery.inArray(refineOptions1, refineOption);
@@ -293,7 +290,7 @@ RG.collectionPage = (function (doc, $, undefined) {
 			if ($(this).hasClass('yes-color') && $(this).hasClass('yes-size') && $(this).hasClass('yes-length')) {
 				showProduct($obj);
 			};
-			
+
 			if (refineOptions1.length == 0 && refineOptions2.length == 0 && refineOptions3.length == 0) {
 				$('.thumbnail').each(function () {
 					$(this).children('a.image-wrap').attr('data-show-item', '1');
