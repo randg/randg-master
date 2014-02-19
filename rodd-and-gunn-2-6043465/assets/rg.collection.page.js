@@ -79,7 +79,8 @@ RG.collectionPage = (function (doc, $, undefined) {
 
 	},
 	filterHistory = function() {
-		var backButton = false;
+		var backButton = false,
+			storedRefineOptionsArr = JSON.parse($.cookie('refineOptions'));
 		$('.refine-list-wrapper input[type="checkbox"]').each(function() {
 			if ($(this).is(':checked')) {
 				var $obj = $(this),
@@ -90,9 +91,21 @@ RG.collectionPage = (function (doc, $, undefined) {
 				backButton = true;
 			};
 		});
+		if ($('.oldie').length) {
+			if ($.cookie('refineOptions') != null) {
+				backButton = true;
+			};
+		};
 		if (backButton) {
 			var cookieValue = $.cookie('positionTop');
 			$('body').css({ scrollTop: cookieValue + 'px' }, 750);
+			for (var i = 0; i < storedRefineOptionsArr.length; i++) {
+				$('.refine-item-list').each(function() {
+					if ($(this).children('input').attr('id') == storedRefineOptionsArr[i] && !$(this).children('input').is(':checked')) {
+						$(this).children('input').trigger('click');
+					};
+				});
+			};
 		};
 		if ($('.filter-helper a').length) {
 			$('.filter-helper a').parent().remove();
@@ -175,7 +188,7 @@ RG.collectionPage = (function (doc, $, undefined) {
 					if ($(this).children("a.image-wrap[data-option-1*='" + refineOptions1[i].b + "']").length > 0) {	
 						$(this).removeClass('no-color').addClass('yes-color');
 					} else {
-						if ($('#colorRefine').children('.color-list').children('input:checked').length == 1) {
+						if ($('#colorRefine').children('.refine-item-list').children('input:checked').length == 1) {
 							$(this).removeClass('yes-color').addClass('no-color');
 						};
 						if (removeID && $(this).children("a.image-wrap[data-option-1*='" + refineOption.b + "']").length > 0) {

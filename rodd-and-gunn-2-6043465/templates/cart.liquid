@@ -1,7 +1,6 @@
   <div class="gutter">
     <div class="sixteen columns clearfix collection_nav">
       <h1 class="collection_title">Cart</h1>
-      <input type="submit" class="action_button action_checkout mobile_hidden" id="checkout" name="checkout" value="Checkout" />
     </div>
 
     {% if cart.item_count == 0 %}
@@ -18,7 +17,8 @@
       </div>
     {% else %}
 
-    <form action="/cart" method="post" id="cart_form">        
+    <form action="/cart" method="post" id="cart_form">  
+      <input type="submit" class="action_button action_checkout mobile_hidden" id="checkout" name="checkout" value="Checkout" />      
       <div class="section clearfix">  
         <div class="sixteen columns cart_items">
           <ul class="cart-header mobile_hidden">

@@ -72,7 +72,7 @@
       {{ 'ie.css' | asset_url | stylesheet_tag }}
     <![endif]-->
     <!--[if lte IE 7]>
-      {{ 'lte-ie7.js' | asset_url | script_tags }}
+      {{ 'lte-ie7.js' | asset_url | script_tag }}
     <![endif]-->
 
     <link rel="stylesheet" type="text/css" href="{{ '1.css' | asset_url }}" media="all" />
@@ -256,7 +256,7 @@
             {% endif %}
             <li>
               <a href="#cart" class="icon-cart cart-button">{% if cart.item_count > 0 %}<div class="cart_count">{{ cart.item_count }}</div>{% endif %} <span>Cart</span></a>
-              <a href="/cart" class="icon-cart cart-button no-js-hidden">{% if cart.item_count > 0 %}<div class="cart_count">{{ cart.item_count }}</div>{% endif %} <span>Cart</span></a>
+              <a href="/cart" class="icon-cart cart-button no-js-hidden">{% if cart.item_count > 0 %}<div class="no-js-hidden cart_count">{{ cart.item_count }}</div>{% endif %} <span>Cart</span></a>
             </li>
           </ul>
         </div>

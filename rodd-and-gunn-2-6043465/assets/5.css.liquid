@@ -1,5 +1,19 @@
 .container                                  { position: relative; width: 100%; max-width:1200px; margin: 0 auto; padding: 0;}
 
+.ie7 .container,
+.ie8 .container { width:1200px; }
+
+.ie7 .main-navigation-wrap,
+.ie8 .main-navigation-wrap { width:1200px; margin:0 auto; } 
+
+.ie7 .main-navigation-wrap ul.menu,
+.ie8 .main-navigation-wrap ul.menu { width:1200px; }
+
+.ie7 .header_bar,
+.ie8 .header_bar { left:50%; margin:0 0 0 -600px; }
+
+.ie7 .currency-dropdown { width:90px; }
+
 .column, .columns                           { float: left; display: inline; margin-left: 10px; margin-right: 10px;}
 
 .row                                        { margin-bottom: 20px; }
@@ -52,9 +66,12 @@
 
 
 
+.ie7 .index .flexslider,
+.ie8 .index .flexslider { width:1200px; }
 
+.ie7 .footer_menu li { float:left; }
 
-
+.ie8 #currencies { width:120px; }
 
 
 /* Home page banners */
@@ -67,12 +84,16 @@
 
 .home-banner p { margin:4px 5px 0 30px; }
 
-.home-banner .delivery { background-position:5px 3px; }
-
-.home-banner .returns { background-position:5px -4px; }
+.home-banner .delivery { background-position:3px 1px; }
+.home-banner .returns.two.columns { background-position:7px 1px; }
 
 .home-banner .delivery span,
 .home-banner .returns span { font-size:13px; display:inline; }
+
+.ie7 .home-banner .delivery span,
+.ie7 .home-banner .returns span,
+.ie8 .home-banner .delivery span,
+.ie8 .home-banner .returns span { font-size:11px; }
 
 /* #Base 1240 Grid
 ================================================== */

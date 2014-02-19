@@ -64,7 +64,7 @@
             {% endcapture %}
           {% endif %}
           {% unless colourlist contains colour %}
-            <div class="{{ colour | escape | downcase | handleize }} color-list">
+            <div class="{{ colour | escape | downcase | handleize }} refine-item-list">
               <a href="#" class="{{ colour }}">{{ colour }}</a>
               <input type="checkbox" name="color" id="{{ colour | escape | handleize }}" value="{{ colour }}" />
             </div>
@@ -113,7 +113,7 @@
             {% endcapture %}
           {% endif %}
           {% unless sizelist contains size %}
-            <div class="{{ size | escape | downcase | handleize }} size-list">
+            <div class="{{ size | escape | downcase | handleize }} refine-item-list">
               <a href="#" class="{{ size }}">{{ size }}</a>
               <input type="checkbox" name="size" id="{{ size }}" value="{{ size }}" />
             </div>
@@ -162,7 +162,7 @@
             {% endcapture %}
           {% endif %}
           {% unless lengthlist contains leglength %}
-            <div class="{{ leglength | escape | downcase | handleize }} size-list">
+            <div class="{{ leglength | escape | downcase | handleize }} refine-item-list">
               <a href="#" class="{{ leglength | escape | downcase | handleize }}">{{ leglength }}</a>
               <input type="checkbox" name="leglength" id="{{ leglength | escape | handleize }}" value="{{ leglength | replace:'"','&#034' }}" />
             </div>

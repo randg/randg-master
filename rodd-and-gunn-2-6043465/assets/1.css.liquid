@@ -79,6 +79,7 @@ div.container.banners { padding:0; margin:0 auto 10px; border:solid #f3f0e5; bor
  
 /* Footer Navigation */
 
+.footer { position:relative; }
 .footer_menu { list-style:none; padding:0; margin:0; overflow:hidden; text-align:center; } 
 .footer_menu li { display:inline-block; margin:0 10px 5px; }
 
@@ -88,7 +89,7 @@ div.container.banners { padding:0; margin:0 auto 10px; border:solid #f3f0e5; bor
 
 .home-banner { width:100%; font-size:12px; font-weight:bold; margin:0; color:#404040; }
 .home-banner.newsletter-sign-up { display:none; }
-.home-banner-wrap { padding:8px 10px 5px; overflow:hidden; }
+.home-banner-wrap { padding:8px 6px 5px; overflow:hidden; }
 
 .container .home-banner-wrap .two.columns { width:37%; float:left; font-family: 'Conv_GuardianSans-Light'; font-weight:bolder; }
 
@@ -97,11 +98,14 @@ div.container.banners { padding:0; margin:0 auto 10px; border:solid #f3f0e5; bor
 .home-banner .delivery span,
 .home-banner .returns span { font-size:10px; font-weight:normal; letter-spacing:1px; display:block; } 
 
-.home-banner .delivery { background-image:url("{{ 'ico-delivery.png' | asset_url }}"); background-size:24px; background-repeat:no-repeat; background-position:0 5px; }
+.home-banner .delivery { background-image:url("{{ 'icon-shippingx2.jpg' | asset_url }}"); background-size:23px 16px; background-repeat:no-repeat; background-position:0 5px; }
 
-.home-banner .returns { background-image:url("{{ 'ico-returns.png' | asset_url }}"); background-size:28px; background-repeat:no-repeat; background-position:0 -1px; }
+.home-banner .returns.two.columns { float:right; background-image:url("{{ 'icon-returnsx2.jpg' | asset_url }}"); background-size:21px 18px; background-repeat:no-repeat; background-position:4px 3px; }
 
 .home-banner #contact_email { font-family: 'Conv_GuardianSans-Light'; letter-spacing:1px; }
+
+.oldie .home-banner .delivery { background-image:url("{{ 'icon-shipping.jpg' | asset_url }}"); }
+.oldie .home-banner .returns.two.columns { background-image:url("{{ 'icon-returns.jpg' | asset_url }}"); }
 
 /* Home page tiles */
 
@@ -272,7 +276,7 @@ ul.color-swatch li.turquoise { background-color:{{ settings.turquoise }}; }
 .refinebar .refine-list { margin:0 0 20px; display:none; }
 .refinebar .refine-list-wrapper { padding:10px; border:solid #f3f0e5; border-width:1px; }
 
-.refinebar .refine-list-wrapper div { padding:0; margin:0; max-height:245px; overflow-y:scroll; overflow-x:hidden; }
+.refinebar .refine-list-wrapper div { padding:0; margin:0; max-height:245px; overflow-y:scroll; overflow-x:hidden; position:relative; }
 .refinebar .refine-list-wrapper div div { overflow:hidden; margin:0; }
 .refinebar .refine-list-wrapper div div a { float:left; }
 .refinebar .refine-list-wrapper div div input[type="checkbox"] { float:right; }
@@ -322,6 +326,11 @@ h1 a.logout { color:#404040; }
 
 .cart-hidden { display:none!important; }
 
+.cart .quote { margin:50px 0 20px; font-size:13px; }
+.cart .quote a { display:block; } 
+
+.cart input.action_checkout { margin:10px 0 0; }
+
 /* Product Page */
 
 .flexslider .loader { width:100%; height:100%; position:absolute; z-index:100; background-color:#fff; background-image:url("{{ 'ajax-loader.gif' | asset_url }}"); background-position:center center; background-repeat:no-repeat; }
@@ -344,9 +353,9 @@ select.v-error { background-color:#ffcccc; margin:0 0 5px; }
 
 /* No Javascript */
 
-.nav .no-js-hidden { display:none; }
+.nav .no-js-hidden { display:none!important; }
 .no-js .icon-cart { display:none; }
-.no-js .no-js-hidden { display:block; }
+.no-js .no-js-hidden { display:block!important; }
 
 /* Size Charts */
 
@@ -411,6 +420,8 @@ select.v-error { background-color:#ffcccc; margin:0 0 5px; }
 select#currencies { padding:8px 28px 8px 35px; border:none; background:transparent url({{ 'select.png' | asset_url }}) no-repeat right center; background-size: 17px 5px; background-position:0 -10px; }
 .usd { background-image:url({{ 'bg-flag-us.png' | asset_url }}); background-size:25px 13px; background-repeat:no-repeat; background-position:4px 9px; }
 .cad { background-image:url({{ 'bg-flag-canada.png' | asset_url }}); background-size:25px 13px; background-repeat:no-repeat; background-position:4px 9px; }
+
+.ie8 .usd { background-position:4px 11px; }
 
 form.search { width:60%; float:left; }
 

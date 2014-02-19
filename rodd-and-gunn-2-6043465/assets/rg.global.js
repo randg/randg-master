@@ -130,10 +130,19 @@ RG.global = (function (doc, $, undefined) {
 				$obj.removeClass('rotate');
 				clearTimeout(rotateTimer);
 			}).on('click', 'a.image-wrap', function() {
-				var $obj = $(this);
+				var $obj = $(this),
+					refineOptionsArr = [];
 				$obj.removeClass('rotate');
 				clearTimeout(rotateTimer);
 				$.cookie('positionTop', $('body').scrollTop());
+				if ($('#collectionPage').length) {
+					$('.refine-item-list').each(function() {
+						if ($(this).children('input').is(':checked')) {
+							refineOptionsArr.push($(this).children('input').attr('id'));
+						};
+					});
+					$.cookie('refineOptions', JSON.stringify(refineOptionsArr));
+				};
 			});
 
 			$(document).on('click', '.add_to_cart', function(e) {
